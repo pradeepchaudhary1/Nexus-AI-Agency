@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791208482016,
+      "tag": "0000_create_lead_submissions",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791437455882,
+      "tag": "0001_resources_and_admin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791713004011,
+      "tag": "0002_lead_delivery_outbox",
+      "breakpoints": true
+    }
+  ]
+}
