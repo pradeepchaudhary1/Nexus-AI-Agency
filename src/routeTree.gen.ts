@@ -18,6 +18,7 @@ import { Route as BookAuditRouteImport } from './routes/book-audit'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
@@ -66,6 +67,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/industries'
     | '/privacy'
+    | '/projects'
     | '/resources'
     | '/solutions'
     | '/admin/resources'
@@ -148,6 +158,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/industries'
     | '/privacy'
+    | '/projects'
     | '/resources'
     | '/solutions'
     | '/admin/resources'
@@ -162,6 +173,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/industries'
     | '/privacy'
+    | '/projects'
     | '/resources'
     | '/solutions'
     | '/_authenticated/admin/resources'
@@ -177,6 +189,7 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   IndustriesRoute: typeof IndustriesRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProjectsRoute: typeof ProjectsRoute
   ResourcesRoute: typeof ResourcesRoute
   SolutionsRoute: typeof SolutionsRoute
 }
@@ -246,6 +259,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources': {
       id: '/resources'
       path: '/resources'
@@ -291,6 +311,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   IndustriesRoute: IndustriesRoute,
   PrivacyRoute: PrivacyRoute,
+  ProjectsRoute: ProjectsRoute,
   ResourcesRoute: ResourcesRoute,
   SolutionsRoute: SolutionsRoute,
 }

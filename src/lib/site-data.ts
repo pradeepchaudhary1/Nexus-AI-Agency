@@ -75,17 +75,20 @@ export const steps = [
 ];
 
 export const socials = [
-  { label: "Instagram", href: "https://www.instagram.com/jarvi.s873/" },
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61590691852564" },
+  { label: "Instagram", href: "https://www.instagram.com/nexusa.iagency/" },
+  { label: "Facebook", href: "https://www.facebook.com/share/1DgGpuUazn/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/pradeep-kumar-dagur-a49a86239/" },
   { label: "X", href: "https://x.com/pdagur5556" },
-  { label: "YouTube", href: "https://www.youtube.com/channel/UC0nOchQi9XlpMYpLhlTrMxw" },
+  { label: "YouTube", href: "https://www.youtube.com/channel/UCH67LTn2FcZUXe_FWXKa68w" },
+  { label: "WhatsApp", href: "https://wa.me/919166516942" },
+  { label: "Email", href: "mailto:thenexusaiagency@gmail.com" },
 ];
 
 export const navItems = [
   { label: "Agent Demos", to: "/agent-demos" },
   { label: "Solutions", to: "/solutions" },
   { label: "Industries", to: "/industries" },
+  { label: "Our Projects", to: "/projects" }, // <-- Updated to Our Projects
   { label: "How It Works", to: "/how-it-works" },
   { label: "Resources", to: "/resources" },
   { label: "About", to: "/about" },

@@ -1,100 +1,186 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
-import { useServerFn } from "@tanstack/react-start";
-import { MessageCircle, Send, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { MessageSquare, X, Send, Bot, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { submitChatLead } from "@/lib/chatbot.functions";
-
-type Field = "business_type" | "business_name" | "contact_name" | "phone" | "email" | "city" | "pain_point" | "requirement" | "preferred_contact_time";
-type Msg = { from: "bot" | "user"; text: string };
-
-const steps: { field: Field; q: string }[] = [
-  { field: "business_type", q: "What's your business type?" },
-  { field: "business_name", q: "Great! What's your business name?" },
-  { field: "contact_name", q: "And your name, please?" },
-  { field: "phone", q: "What's the best phone number to reach you?" },
-  { field: "email", q: "Your email address? (type 'skip' if you prefer not to share)" },
-  { field: "city", q: "Which city and country are you in?" },
-  { field: "pain_point", q: "What's the main problem you're facing right now?" },
-  { field: "requirement", q: "What would you like automated? (e.g. calling agent, website chatbot, lead follow-up)" },
-  { field: "preferred_contact_time", q: "What's your preferred callback time?" },
-];
-
-const GREETING = "Hello! This is Zoya, virtual assistant for support to you. I can guide you about AI calling agents, website chatbots and lead automation.";
-const CONSENT = "Ok then, I'm sharing your details with the Nexus AI team, so that you can get a callback for an automation plan. Would you like to see an automation / calling agent demo? (yes / no)";
-const SUCCESS = "Done! Your inquiry has been sent to Nexus AI Agency. Our team will contact you shortly.";
-const FAILURE = "We could not submit the form right now. Please submit the form manually or WhatsApp us at +91 92665 16942.";
-const STOP = "Understood. I won't share your details and our team will not contact you. Take care!";
-const SENSITIVE = /\b(otp|password|passcode|pin|cvv|card number|aadhaar|aadhar|pan card|bank account|ifsc|api key|login)\b/i;
+import { Input } from "@/components/ui/input";
 
 export function ZoyaChat() {
   const [open, setOpen] = useState(false);
-  const [msgs, setMsgs] = useState<Msg[]>([{ from: "bot", text: GREETING }, { from: "bot", text: steps[0]!.q }]);
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Partial<Record<Field, string>>>({});
-  const [phase, setPhase] = useState<"collect" | "consent" | "sending" | "done">("collect");
+  const [messages, setMessages] = useState([
+    { sender: "bot", text: "Hello! I'm Zoya, your AI workforce assistant at Nexus AI. How can I help your business automate today?" }
+  ]);
   const [input, setInput] = useState("");
-  const endRef = useRef<HTMLDivElement>(null);
-  const send = useServerFn(submitChatLead);
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); }, [msgs, open]);
-  const bot = (text: string) => setMsgs((m) => [...m, { from: "bot", text }]);
+  // ==========================================
+  // NOURSABI-STYLE MAGNETIC CURSOR TRACKING
+  // ==========================================
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
 
-  const onSubmit = async (e: FormEvent) => {
+  useEffect(() => {
+    let animId: number;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!buttonRef.current || open) {
+        targetX = 0;
+        targetY = 0;
+        return;
+      }
+
+      const rect = buttonRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      // Distance from cursor to button center
+      const distX = e.clientX - centerX;
+      const distY = e.clientY - centerY;
+      const distance = Math.hypot(distX, distY);
+
+      // Magnetic Pull Zone (Within 250px radius)
+      if (distance < 250) {
+        const pull = (1 - distance / 250) * 26; // Smooth pull up to 26px
+        targetX = (distX / distance) * pull;
+        targetY = (distY / distance) * pull;
+      } else {
+        // Ambient subtle parallax across whole screen
+        const normX = (e.clientX / window.innerWidth) - 0.5;
+        const normY = (e.clientY / window.innerHeight) - 0.5;
+        targetX = normX * 14;
+        targetY = normY * 14;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      targetX = 0;
+      targetY = 0;
+    };
+
+    // Smooth physics damping loop
+    const animate = () => {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+      setOffset({ x: currentX, y: currentY });
+      animId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave);
+    animId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(animId);
+    };
+  }, [open]);
+
+  const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = input.trim();
-    if (!text || phase === "sending" || phase === "done") return;
+    if (!input.trim()) return;
+
+    const userText = input;
+    setMessages((prev) => [...prev, { sender: "user", text: userText }]);
     setInput("");
-    setMsgs((m) => [...m, { from: "user", text }]);
 
-    if (/\b(stop|don'?t contact|do not contact)\b/i.test(text)) { setPhase("done"); bot(STOP); return; }
-    if (SENSITIVE.test(text)) { bot("For your safety, please never share OTPs, passwords, card, bank, Aadhaar/PAN or login details here. " + (phase === "consent" ? CONSENT : steps[step]!.q)); return; }
-    if (/\b(price|cost|how much|deadline|guarantee)\b/i.test(text) && phase === "collect") bot("Pricing, timelines and results are confirmed by our team after understanding your needs.");
-
-    if (phase === "collect") {
-      const field = steps[step]!.field;
-      if (field === "phone" && text.replace(/\D/g, "").length < 7) { bot("That doesn't look like a valid phone number. Could you re-enter it?"); return; }
-      const next = { ...answers, [field]: field === "email" && /^skip$/i.test(text) ? "" : text };
-      setAnswers(next);
-      if (step + 1 < steps.length) { setStep(step + 1); bot(steps[step + 1]!.q); }
-      else { setPhase("consent"); bot(CONSENT); }
-      return;
-    }
-
-    if (phase === "consent") {
-      if (/^(n|no|nope|nahi|nah)\b/i.test(text)) { setPhase("done"); bot("No problem — I won't share your details. Feel free to message me anytime."); return; }
-      setPhase("sending");
-      bot("Sending your details…");
-      try {
-        const res = await send({ data: { ...(answers as Record<Field, string>), consent: true, do_not_contact: false } });
-        bot(res.success ? SUCCESS : FAILURE);
-      } catch { bot(FAILURE); }
-      setPhase("done");
-    }
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: "bot",
+          text: "Thank you for reaching out! You can also connect directly with Pradeep on WhatsApp at +91 80034 69293 or click 'Scan Your Site' to audit your AEO readiness."
+        }
+      ]);
+    }, 800);
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3">
+    <>
+      {/* Floating Magnetic Chat Trigger Button */}
+      <div
+        ref={buttonRef}
+        style={{
+          transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+          transition: "transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1)",
+        }}
+        className="fixed bottom-6 right-6 z-50 pointer-events-auto"
+      >
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label="Open AI chat assistant"
+          className="size-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 flex items-center justify-center shadow-xl shadow-emerald-500/25 border-2 border-emerald-400/40 transition-transform active:scale-95 group"
+        >
+          {open ? (
+            <X className="size-6 text-slate-950 transition-transform group-hover:rotate-90 duration-200" />
+          ) : (
+            <div className="relative">
+              <MessageSquare className="size-6 text-slate-950 fill-slate-950 transition-transform group-hover:scale-110 duration-200" />
+              <span className="absolute -top-1 -right-1 size-2.5 rounded-full bg-emerald-200 animate-ping" />
+            </div>
+          )}
+        </button>
+      </div>
+
+      {/* Chat Dialog Window */}
       {open && (
-        <div className="glass-panel flex h-[min(520px,75vh)] w-[min(360px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl">
-          <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-3">
-            <div><p className="font-display font-semibold">Zoya</p><p className="text-xs text-muted-foreground">Nexus AI virtual assistant</p></div>
-            <Button variant="ghost" size="icon" onClick={() => setOpen(false)} aria-label="Close chat"><X /></Button>
+        <div className="fixed bottom-24 right-6 z-50 w-[92vw] sm:w-[380px] h-[500px] max-h-[80vh] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-300">
+          {/* Header */}
+          <div className="p-4 border-b border-border bg-muted/40 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <div className="size-8 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center">
+                <Bot className="size-4.5" />
+              </div>
+              <div>
+                <h4 className="text-sm font-bold flex items-center gap-1.5 text-foreground">
+                  Zoya <Sparkles className="size-3 text-emerald-500" />
+                </h4>
+                <p className="text-[11px] text-muted-foreground">Nexus AI Solutions Assistant</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setOpen(false)}
+              className="text-muted-foreground hover:text-foreground p-1 rounded-md"
+            >
+              <X className="size-4" />
+            </button>
           </div>
-          <div className="flex-1 space-y-3 overflow-y-auto p-4 text-sm">
-            {msgs.map((m, i) => (
-              <div key={i} className={`max-w-[85%] rounded-2xl px-3 py-2 leading-5 ${m.from === "bot" ? "bg-muted text-foreground" : "ml-auto bg-primary text-primary-foreground"}`}>{m.text}</div>
+
+          {/* Messages Body */}
+          <div className="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+              >
+                <div
+                  className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 leading-relaxed ${
+                    msg.sender === "user"
+                      ? "bg-primary text-primary-foreground rounded-br-xs"
+                      : "bg-muted text-foreground border border-border/50 rounded-bl-xs"
+                  }`}
+                >
+                  {msg.text}
+                </div>
+              </div>
             ))}
-            <div ref={endRef} />
           </div>
-          <form onSubmit={onSubmit} className="flex gap-2 border-t border-border p-3">
-            <input value={input} onChange={(e) => setInput(e.target.value)} disabled={phase === "done" || phase === "sending"} placeholder={phase === "done" ? "Chat ended" : "Type your answer…"} maxLength={500} className="form-select h-10 flex-1" aria-label="Message Zoya" />
-            <Button type="submit" size="icon" disabled={phase === "done" || phase === "sending"} aria-label="Send"><Send /></Button>
+
+          {/* Input Form */}
+          <form onSubmit={handleSend} className="p-3 border-t border-border bg-card flex gap-2">
+            <Input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Ask about AI voice agents..."
+              className="h-10 text-xs"
+            />
+            <Button type="submit" size="sm" className="h-10 px-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold">
+              <Send className="size-4" />
+            </Button>
           </form>
         </div>
       )}
-      <Button size="icon" onClick={() => setOpen((v) => !v)} className="size-14 rounded-full shadow-glow" aria-label={open ? "Close Zoya chat" : "Chat with Zoya"}>
-        {open ? <X className="size-6" /> : <MessageCircle className="size-6" />}
-      </Button>
-    </div>
+    </>
   );
 }

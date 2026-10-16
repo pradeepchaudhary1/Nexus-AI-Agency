@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/integrations/client";
 import { LeadDeliveryPanel } from "@/components/lead-delivery-panel";
 import { bucketFor, categories, categoryMeta, formatDate, formatSize, visibilities } from "@/lib/resource-meta";
 
@@ -168,7 +168,7 @@ function AdminResources() {
             <tbody>
               {list.isLoading && <tr><td colSpan={6} className="p-4 text-muted-foreground">Loading…</td></tr>}
               {list.data?.length === 0 && <tr><td colSpan={6} className="p-4 text-muted-foreground">No resources yet.</td></tr>}
-              {list.data?.map((r) => (
+              {list.data?.map((r: any) => (
                 <tr key={r.id} className={`border-t border-border ${r.archived ? "opacity-50" : ""}`}>
                   <td className="p-3"><p className="font-medium">{r.title}</p><p className="text-xs text-muted-foreground">{r.file_name ?? r.external_url ?? "—"}</p></td>
                   <td className="p-3">{categoryMeta(r.category).label}</td>

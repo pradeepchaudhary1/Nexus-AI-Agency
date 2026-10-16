@@ -35,7 +35,7 @@ export function LeadDeliveryPanel() {
       {pending.isLoading ? <p className="mt-4 text-sm text-muted-foreground">Loading…</p> : rows.length === 0 ? (
         <p className="mt-4 text-sm text-muted-foreground">All captured leads have been delivered.</p>
       ) : (
-        <ul className="mt-4 space-y-2 text-sm">{rows.map((r) => (
+        <ul className="mt-4 space-y-2 text-sm">{rows.map((r: any) => (
           <li key={r.id} className="rounded-md border border-border p-3">
             <span className="font-medium">{r.name}</span> · {r.source} · {r.webhook_status} · {r.webhook_attempts} attempt(s)
             {r.webhook_last_error && <p className="mt-1 text-xs text-muted-foreground">{r.webhook_last_error}</p>}

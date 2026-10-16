@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireSupabaseAuth } from "@/integrations/auth-middleware";
 import { RATE_LIMIT, buildWebhookPayload, leadSchema, type Lead, type LeadInput, type LeadRow } from "./leads.shared";
 
 export type { LeadInput };
@@ -17,7 +17,7 @@ export const submitLead = createServerFn({ method: "POST" })
     const data = parsed.data;
     if (data.website) return { success: true }; // honeypot: silently drop bots
 
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { supabaseAdmin } = await import("@/integrations/client.server");
     const ipHash = await hashIp();
 
     // Same idempotency key = same submission (a retry/double click). Return the existing lead, never a duplicate.
@@ -30,7 +30,7 @@ export const submitLead = createServerFn({ method: "POST" })
     if (ipHash) {
       const since = new Date(Date.now() - RATE_LIMIT.windowMinutes * 60_000).toISOString();
       const { count } = await supabaseAdmin.from("lead_submissions").select("id", { count: "exact", head: true }).eq("client_ip_hash", ipHash).gte("created_at", since);
-      if ((count ?? 0) >= RATE_LIMIT.max) return { success: false, error: "You've sent several requests in a short time. Please wait a few minutes, or WhatsApp us at +91 92665 16942." };
+      if ((count ?? 0) >= RATE_LIMIT.max) return { success: false, error: "You've sent several requests in a short time. Please wait a few minutes, or WhatsApp us at +91 91665 16942." };
     }
 
     // 1) Database first — the lead is durable before any external call.
@@ -70,7 +70,7 @@ export const retryLeadDeliveries = createServerFn({ method: "POST" })
   .handler(async ({ context }) => {
     const { data: isAdmin } = await context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" });
     if (!isAdmin) throw new Error("Admin access required");
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { supabaseAdmin } = await import("@/integrations/client.server");
     // Only leads captured by the outbox system (have an idempotency key); older rows are never auto-sent.
     const { data, error } = await supabaseAdmin.from("lead_submissions").select(ROW_COLUMNS)
       .neq("webhook_status", "sent").not("idempotency_key", "is", null)
@@ -87,13 +87,13 @@ export const getLeadDeliveryStatus = createServerFn({ method: "GET" })
   .handler(async ({ context }) => {
     const { data: isAdmin } = await context.supabase.rpc("has_role", { _user_id: context.userId, _role: "admin" });
     if (!isAdmin) throw new Error("Admin access required");
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { supabaseAdmin } = await import("@/integrations/client.server");
     const { data } = await supabaseAdmin.from("lead_submissions").select("id,name,source,webhook_status,webhook_attempts,webhook_last_error,created_at")
       .neq("webhook_status", "sent").not("idempotency_key", "is", null).order("created_at", { ascending: false }).limit(50);
     return data ?? [];
   });
 
-type Admin = Awaited<typeof import("@/integrations/supabase/client.server")>["supabaseAdmin"];
+type Admin = Awaited<typeof import("@/integrations/client.server")>["supabaseAdmin"];
 
 async function deliverToMake(row: LeadRow & { webhook_attempts: number }, admin: Admin): Promise<boolean> {
   const url = process.env["MAKE_WEBHOOK_URL"];
@@ -162,7 +162,7 @@ async function sendLeadAlert(data: Lead) {
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${lovableKey}`, "X-Connection-Api-Key": resendKey },
     body: JSON.stringify({
       from: "NexusAIAgency Leads <onboarding@resend.dev>",
-      to: ["pdagur698@gmail.com"],
+      to: ["thenexusaiagency@gmail.com"],
       reply_to: data.email,
       subject: `New ${formType} lead: ${data.name}`,
       html,

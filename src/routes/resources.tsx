@@ -1,62 +1,73 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useSuspenseQuery } from "@tanstack/react-query";
-import { Search } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { PageHero } from "@/components/page-sections";
-import { ResourceCard } from "@/components/resource-card";
-import { resourcesQuery } from "@/lib/resources.functions";
-import { categories } from "@/lib/resource-meta";
-
-const URL = "https://nexus-ai-solution.lovable.app/resources";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { BookOpen, FileText } from "lucide-react";
 
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources & Client Hub — NexusAIAgency" },
-      { name: "description", content: "Updates, documents, demo recordings, tutorials and client project notes from NexusAIAgency." },
-      { property: "og:title", content: "Resources & Client Hub — NexusAIAgency" },
-      { property: "og:description", content: "Browse AI automation updates, PDFs, demo recordings, courses and project case studies." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: URL },
-      { name: "twitter:card", content: "summary_large_image" },
+      { title: "Free AI Resources & Blueprints — NexusAIAgency" },
+      { name: "description", content: "Download free prompt packs, AI voice receptionist templates, and automation guides by Nexus AI." },
     ],
-    links: [{ rel: "canonical", href: URL }],
   }),
-  loader: ({ context }) => context.queryClient.ensureQueryData(resourcesQuery),
-  errorComponent: () => <div className="site-container section-pad text-muted-foreground">Resources could not load. Please refresh.</div>,
-  notFoundComponent: () => <div className="site-container section-pad">Not found.</div>,
   component: ResourcesPage,
 });
 
-function ResourcesPage() {
-  const { data } = useSuspenseQuery(resourcesQuery);
-  const [category, setCategory] = useState("all");
-  const [q, setQ] = useState("");
-  const filtered = useMemo(() => {
-    const term = q.trim().toLowerCase();
-    return data.items.filter((r) => (category === "all" || r.category === category) && (!term || r.title.toLowerCase().includes(term) || r.tags.some((t) => t.toLowerCase().includes(term))));
-  }, [data.items, category, q]);
+export function ResourcesPage() {
+  const resources = [
+    {
+      title: "Clinic AI Receptionist Prompt Architecture (Vapi/ElevenLabs)",
+      category: "Voice AI Blueprint",
+      description: "Complete system instructions and triage prompt template for dental and healthcare appointment booking.",
+      downloadLink: "https://docs.google.com/document/d/1eVNmPV1-1C4CPP5DUI6aXKQjpm6jJsG7EjVMGRlQ2qk/edit"
+    },
+    {
+      title: "Make.com & n8n Lead-to-WhatsApp Webhook Guide",
+      category: "Automation SOP",
+      description: "Step-by-step documentation on parsing voice call JSON webhooks and dispatching instant CRM notifications.",
+      downloadLink: "https://docs.google.com/document/d/1eVNmPV1-1C4CPP5DUI6aXKQjpm6jJsG7EjVMGRlQ2qk/edit"
+    },
+    {
+      title: "Complete 2026 AEO & Schema.org Checklist for Businesses",
+      category: "SEO/AEO Guide",
+      description: "The exact structured data and llms.txt directives required to get cited in Perplexity and ChatGPT search.",
+      downloadLink: "https://docs.google.com/document/d/1eVNmPV1-1C4CPP5DUI6aXKQjpm6jJsG7EjVMGRlQ2qk/edit"
+    }
+  ];
 
-  return <>
-    <PageHero eyebrow="Client Hub" title="Resources, demos and project updates." copy="Documents, recordings, tutorials and project notes from the NexusAIAgency team. Client-only and internal items can be requested." />
-    <section className="section-pad">
-      <div className="site-container">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
-            {[{ value: "all", label: "All" }, ...categories].map((c) => (
-              <button key={c.value} onClick={() => setCategory(c.value)} aria-pressed={category === c.value} className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${category === c.value ? "border-primary bg-primary text-primary-foreground" : "border-border text-muted-foreground hover:text-foreground"}`}>{c.label}</button>
-            ))}
-          </div>
-          <label className="relative w-full lg:w-72"><span className="sr-only">Search resources</span><Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" /><Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search title or tag" className="pl-9" /></label>
-        </div>
-        {data.error && <p className="mt-8 text-sm text-destructive">{data.error}</p>}
-        {filtered.length === 0 ? (
-          <p className="mt-12 rounded-md border border-dashed border-border p-10 text-center text-muted-foreground">No resources here yet. New items will appear as soon as they are published.</p>
-        ) : (
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{filtered.map((item) => <ResourceCard key={item.id} item={item} />)}</div>
-        )}
+  return (
+    <div className="site-container py-12 max-w-5xl">
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <Badge className="mb-2 bg-primary/10 text-primary border-primary/20">
+          <BookOpen className="w-3.5 h-3.5 mr-1 inline" /> Free Agency Knowledge Vault
+        </Badge>
+        <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+          AI Toolkits, SOPs &amp; Blueprints
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Free operational templates to help business owners understand voice AI and autonomous workflows.
+        </p>
       </div>
-    </section>
-  </>;
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {resources.map((res, i) => (
+          <Card key={i} className="border hover:shadow-md transition-all flex flex-col justify-between">
+            <CardHeader className="pb-2">
+              <Badge variant="outline" className="w-fit text-[10px] mb-2">{res.category}</Badge>
+              <CardTitle className="text-sm font-bold leading-snug">{res.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4 pt-0">
+              <p className="text-xs text-muted-foreground">{res.description}</p>
+              <a href={res.downloadLink} target="_blank" rel="noreferrer" className="block w-full">
+                <Button variant="outline" size="sm" className="w-full text-xs gap-1.5">
+                  <FileText className="w-3.5 h-3.5" /> Read Documentation
+                </Button>
+              </a>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
 }
