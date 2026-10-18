@@ -28,7 +28,7 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-export function AboutPage() {
+function AboutPage() {
   return (
     <div className="site-container py-12 max-w-5xl">
       {/* ======================================================== */}

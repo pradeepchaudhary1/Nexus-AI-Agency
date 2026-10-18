@@ -11,9 +11,9 @@ export const Route = createFileRoute("/industries")({
     { property: "og:title", content: "Industries for AI Agents — NexusAIAgency" },
     { property: "og:description", content: "See how NexusAIAgency adapts AI agents for many business types, not only real estate." },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://nexus-ai-solution.lovable.app/industries" },
+    { property: "og:url", content: "https://www.nexusaiagency.in/industries" },
     { name: "twitter:card", content: "summary_large_image" },
-  ], links: [{ rel: "canonical", href: "https://nexus-ai-solution.lovable.app/industries" }] }),
+  ], links: [{ rel: "canonical", href: "https://www.nexusaiagency.in/industries" }] }),
   component: IndustriesPage,
 });
 

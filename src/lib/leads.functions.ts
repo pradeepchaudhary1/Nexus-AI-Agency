@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequestHeader } from "@tanstack/react-start/server";
 import { requireSupabaseAuth } from "@/integrations/auth-middleware";
 import { RATE_LIMIT, buildWebhookPayload, leadSchema, type Lead, type LeadInput, type LeadRow } from "./leads.shared";
+import { supabase } from "@/integrations/client";
 
 export type { LeadInput };
 export type SubmitResult = { success: true } | { success: false; error: string };

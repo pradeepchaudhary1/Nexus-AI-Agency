@@ -11,9 +11,9 @@ export const Route = createFileRoute("/solutions")({
     { property: "og:title", content: "AI Automation Solutions — NexusAIAgency" },
     { property: "og:description", content: "Explore the AI agents and connected automation systems NexusAIAgency builds for business workflows." },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://nexus-ai-solution.lovable.app/solutions" },
+    { property: "og:url", content: "https://www.nexusaiagency.in/solutions" },
     { name: "twitter:card", content: "summary_large_image" },
-  ], links: [{ rel: "canonical", href: "https://nexus-ai-solution.lovable.app/solutions" }] }),
+  ], links: [{ rel: "canonical", href: "https://www.nexusaiagency.in/solutions" }] }),
   component: SolutionsPage,
 });
 

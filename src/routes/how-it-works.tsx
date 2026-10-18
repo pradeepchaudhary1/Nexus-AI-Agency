@@ -10,9 +10,9 @@ export const Route = createFileRoute("/how-it-works")({
     { property: "og:title", content: "How NexusAIAgency Works" },
     { property: "og:description", content: "See how NexusAIAgency turns business bottlenecks into pilot-ready AI automation systems." },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://nexus-ai-solution.lovable.app/how-it-works" },
+    { property: "og:url", content: "https://www.nexusaiagency.in/how-it-works" },
     { name: "twitter:card", content: "summary_large_image" },
-  ], links: [{ rel: "canonical", href: "https://nexus-ai-solution.lovable.app/how-it-works" }] }),
+  ], links: [{ rel: "canonical", href: "https://www.nexusaiagency.in/how-it-works" }] }),
   component: HowItWorksPage,
 });
 

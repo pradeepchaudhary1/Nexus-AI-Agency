@@ -14,7 +14,7 @@ export const Route = createFileRoute("/resources")({
   component: ResourcesPage,
 });
 
-export function ResourcesPage() {
+function ResourcesPage() {
   const resources = [
     {
       title: "Clinic AI Receptionist Prompt Architecture (Vapi/ElevenLabs)",

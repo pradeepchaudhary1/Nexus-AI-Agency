@@ -10,9 +10,9 @@ export const Route = createFileRoute("/agent-demos")({
     { property: "og:title", content: "Agent Demo Lab — NexusAIAgency" },
     { property: "og:description", content: "Preview how AI agents can support customers, qualify leads, manage calls, research and update CRM workflows." },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://nexus-ai-solution.lovable.app/agent-demos" },
+    { property: "og:url", content: "https://www.nexusaiagency.in/agent-demoss" },
     { name: "twitter:card", content: "summary_large_image" },
-  ], links: [{ rel: "canonical", href: "https://nexus-ai-solution.lovable.app/agent-demos" }] }),
+  ], links: [{ rel: "canonical", href: "https://www.nexusaiagency.in/agent-demos" }] }),
   component: AgentDemosPage,
 });
 

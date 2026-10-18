@@ -26,7 +26,7 @@ interface CustomProject {
   notes: string;
 }
 
-export function ProjectsPage() {
+function ProjectsPage() {
   const [items, setItems] = useState<CustomProject[]>([]);
   const [title, setTitle] = useState("");
   const [type, setType] = useState("Video / Demo Call");
