@@ -11,7 +11,7 @@ const GENERIC_ERROR = "We could not save your request. Please try again in a mom
 const ROW_COLUMNS = "id,source,name,email,phone,business_type,team_size,bottleneck,lead_volume,existing_tools,message,demo_type,created_at,webhook_status,webhook_attempts";
 
 export const submitLead = createServerFn({ method: "POST" })
-  .inputValidator((input: LeadInput) => input)
+  .Validator((input: LeadInput) => input)
   .handler(async ({ data: raw }): Promise<SubmitResult> => {
     const parsed = leadSchema.safeParse(raw);
     if (!parsed.success) return { success: false, error: parsed.error.issues[0]?.message ?? "Please check your details and try again." };

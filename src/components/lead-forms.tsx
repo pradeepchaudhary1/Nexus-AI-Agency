@@ -3,9 +3,186 @@ import { supabase } from '@/integrations/client';
 import { CheckCircle2, ArrowRight, MessageSquare, Loader2, AlertCircle, Globe } from 'lucide-react';
 
 const TARGET_EMAIL = "thenexusaiagency@gmail.com";
-// Apni Google Apps Script Web App URL yahan daalein:
-const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwy9zgG8krLDHRJpD7UVmHGbGObvwxNMkhKavWoSVCHVTgd1QIXGFQ8AM0DhUK1UDs/exec"; 
 
+// Aapka Google Apps Script Web App URL yahan daalein (agar banaya hai to):
+const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbwy9zgG8krLDHRJpD7UVmHGbGObvwxNMkhKavWoSVCHVTgd1QIXGFQ8AM0DhUK1UDs/exec";
+
+// ==========================================
+// 1. REUSABLE LEAD FORM (Home & Demo Lab)
+// ==========================================
+export interface LeadFormProps {
+  source?: 'readiness_audit' | 'demo_request' | 'booking' | string;
+  demoType?: string;
+  compact?: boolean;
+}
+
+export const LeadForm: React.FC<LeadFormProps> = ({ source = 'booking', demoType, compact = false }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [website, setWebsite] = useState('');
+  const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg(null);
+
+    const sheetData = {
+      name: name.trim(),
+      email: email.trim(),
+      phone: phone.trim() || 'Not provided',
+      website: website.trim() || 'Not provided',
+      requirement: message.trim() || (demoType ? `Demo Request: ${demoType}` : 'General Inquiry'),
+      bottleneck: message.trim() || 'Website Inbound Request',
+      source: source || 'Website Form',
+      campaign: 'Direct Inbound',
+      lead_status: 'New',
+      lead_score: 75,
+      notes: demoType ? `Interested in Demo: ${demoType}` : 'Standard lead form submission',
+      _subject: `🔥 New Lead from Nexus AI: ${name.trim()}`,
+      _template: 'table',
+    };
+
+    // 1. Send to Gmail via FormSubmit
+    try {
+      await fetch(`https://formsubmit.co/ajax/${TARGET_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(sheetData)
+      });
+    } catch (e) {}
+
+    // 2. Send to Google Sheets CRM
+    if (GOOGLE_SHEET_WEBAPP_URL && !GOOGLE_SHEET_WEBAPP_URL.includes("your_script_id")) {
+      try {
+        await fetch(GOOGLE_SHEET_WEBAPP_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(sheetData)
+        });
+      } catch (e) {}
+    }
+
+    // 3. Supabase DB Backup
+    try {
+      await supabase.from('lead_submissions').insert([{
+        name: sheetData.name,
+        email: sheetData.email,
+        phone: sheetData.phone === 'Not provided' ? null : sheetData.phone,
+        message: `${sheetData.requirement} | Website: ${sheetData.website}`,
+        demo_type: demoType || null,
+        source: String(source),
+        bottleneck: sheetData.bottleneck,
+      }]);
+    } catch (e) {}
+
+    // 4. Local storage backup
+    try {
+      const localLeads = JSON.parse(localStorage.getItem('nexus_leads') || '[]');
+      localLeads.unshift({ ...sheetData, createdAt: new Date().toISOString() });
+      localStorage.setItem('nexus_leads', JSON.stringify(localLeads));
+    } catch (e) {}
+
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  const waMsg = encodeURIComponent(
+    `Hi Pradeep, I submitted an inquiry on Nexus AI.\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nWebsite: ${website || 'None'}\nDetails: ${message || demoType || 'General Inquiry'}`
+  );
+
+  if (submitted) {
+    return (
+      <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-center">
+        <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto mb-3" />
+        <h4 className="text-lg font-bold text-foreground">Inquiry Received!</h4>
+        <p className="text-xs text-muted-foreground mt-1 mb-4">Your details have been received. We will contact you shortly.</p>
+        <a
+          href={`https://wa.me/919166516942?text=${waMsg}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold text-xs rounded-xl shadow-md transition-all"
+        >
+          <MessageSquare className="w-4 h-4" /> Priority WhatsApp Chat
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      {errorMsg && (
+        <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+          <AlertCircle className="w-4 h-4 shrink-0" />
+          <span>{errorMsg}</span>
+        </div>
+      )}
+      <div>
+        <input
+          type="text"
+          required
+          placeholder="Your Full Name *"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-primary"
+        />
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <input
+          type="email"
+          required
+          placeholder="Work Email *"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-primary"
+        />
+        <input
+          type="tel"
+          placeholder="Phone Number *"
+          required
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-primary"
+        />
+      </div>
+      <div>
+        <input
+          type="url"
+          placeholder="Website URL (Optional e.g. https://yourcompany.com)"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-primary"
+        />
+      </div>
+      {!compact && (
+        <textarea
+          rows={3}
+          placeholder="What workflow, voice call handling, or bottleneck do you want to automate?"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          className="w-full px-3.5 py-2.5 bg-background border border-border rounded-lg text-sm text-foreground focus:outline-none focus:border-primary resize-none"
+        />
+      )}
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full py-3 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm rounded-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+      >
+        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Submit Request"}
+        <ArrowRight className="w-4 h-4" />
+      </button>
+    </form>
+  );
+};
+
+// ==========================================
+// 2. FULL READINESS REVIEW AUDIT FORM
+// ==========================================
 export const ReadinessReviewForm = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,7 +202,6 @@ export const ReadinessReviewForm = () => {
     setLoading(true);
     setErrorMsg(null);
 
-    // Exact fields matching your Google Sheet CRM headers
     const sheetData = {
       name: fullName.trim(),
       email: email.trim(),
@@ -39,8 +215,8 @@ export const ReadinessReviewForm = () => {
       campaign: 'Website Inbound',
       lead_status: 'Qualified',
       lead_score: 85,
-      notes: `Submitted full readiness audit. Team size ${teamSize}, Monthly leads ${leadVolume}.`,
-      _subject: `⚡ New Readiness Review: ${fullName.trim()} (${businessType})`,
+      notes: `Readiness Audit Form. Team size: ${teamSize}, Monthly leads: ${leadVolume}, Tools: ${existingTools}`,
+      _subject: `⚡ New Readiness Review: ${fullName.trim()} (${businessType || 'Business'})`,
       _template: 'table',
     };
 
@@ -53,8 +229,8 @@ export const ReadinessReviewForm = () => {
       });
     } catch (e) {}
 
-    // 2. Direct to Google Sheets CRM (Mapped to Exact Columns)
-    if (GOOGLE_SHEET_WEBAPP_URL && !GOOGLE_SHEET_WEBAPP_URL.includes("placeholder")) {
+    // 2. Direct to Google Sheets CRM
+    if (GOOGLE_SHEET_WEBAPP_URL && !GOOGLE_SHEET_WEBAPP_URL.includes("your_script_id")) {
       try {
         await fetch(GOOGLE_SHEET_WEBAPP_URL, {
           method: 'POST',
@@ -65,7 +241,7 @@ export const ReadinessReviewForm = () => {
       } catch (e) {}
     }
 
-    // 3. Supabase Database Backup
+    // 3. Supabase DB Backup
     try {
       await supabase.from('lead_submissions').insert([{
         name: sheetData.name,
@@ -79,6 +255,13 @@ export const ReadinessReviewForm = () => {
         source: 'readiness_audit',
       }]);
     } catch (e) {}
+
+    // 4. Local storage backup
+    try {
+      const existing = JSON.parse(localStorage.getItem('nexus_leads') || '[]');
+      existing.unshift({ ...sheetData, createdAt: new Date().toISOString() });
+      localStorage.setItem('nexus_leads', JSON.stringify(existing));
+    } catch (storageErr) {}
 
     setLoading(false);
     setSubmitted(true);
@@ -94,7 +277,7 @@ export const ReadinessReviewForm = () => {
         <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
         <h3 className="text-xl font-bold text-white">Readiness Review Requested!</h3>
         <p className="text-slate-300 text-sm mt-1 mb-5">
-          Thank you, <span className="text-cyan-400 font-semibold">{fullName}</span>. Details have been logged in our system.
+          Thank you, <span className="text-cyan-400 font-semibold">{fullName}</span>. Your details have been submitted.
         </p>
         <a
           href={`https://wa.me/919166516942?text=${waMsg}`}
