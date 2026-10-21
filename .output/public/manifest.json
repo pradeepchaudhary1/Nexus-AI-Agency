@@ -1,0 +1,22 @@
+{
+  "short_name": "Nexus AI",
+  "name": "Nexus AI Agency — Autonomous Systems",
+  "icons": [
+    {
+      "src": "/assets/nexus-logo.jpeg",
+      "type": "image/jpeg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/assets/nexus-logo.jpeg",
+      "type": "image/jpeg",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#020817",
+  "theme_color": "#020817",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/"
+}

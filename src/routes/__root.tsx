@@ -84,6 +84,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "NexusAIAgency" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      
+      // PWA meta tags
+      { name: "theme-color", content: "#020817" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "apple-mobile-web-app-title", content: "Nexus AI" },
     ],
     links: [
       {
@@ -104,6 +110,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "apple-touch-icon", href: "/assets/nexus-logo.jpeg" },
     ],
   }),
   shellComponent: RootShell,
@@ -128,6 +136,28 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      const registerServiceWorker = () => {
+        navigator.serviceWorker.register("/sw.js").catch((err) => {
+          console.log("Service Worker registration failed:", err);
+        });
+      };
+
+      if (document.readyState === "complete") {
+        registerServiceWorker();
+      } else {
+        window.addEventListener("load", registerServiceWorker, { once: true });
+        return () => {
+          window.removeEventListener("load", registerServiceWorker);
+        };
+      }
+    }
+
+    return undefined;
+  }, []);
+
 
   return (
     <QueryClientProvider client={queryClient}>
