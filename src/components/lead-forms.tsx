@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Send, CheckCircle2, Sparkles } from 'lucide-react'
+import { Send, CheckCircle2, CheckSquare, Square } from 'lucide-react'
 
 export function LeadForm() {
   const [formData, setFormData] = useState({
@@ -8,18 +8,18 @@ export function LeadForm() {
     email: '',
     phone: '',
     website: '',
-    services: ['AI Calling Agent', 'WhatsApp Follow-up'] as string[],
+    services: ['AI Calling Agent', 'WhatsApp Follow-up Automation'] as string[],
     message: '',
   })
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
   const availableServices = [
-    'Website',
+    'Website Development',
     'AI Calling Agent',
-    'AEO/GEO Optimization',
-    'CRM',
-    'WhatsApp Follow-up',
+    'AEO & GEO Optimization',
+    'CRM Integration',
+    'WhatsApp Follow-up Automation',
   ]
 
   const toggleService = (srv: string) => {
@@ -47,7 +47,6 @@ export function LeadForm() {
     }
 
     try {
-      // 1. Google Apps Script CRM Submission
       await fetch(
         'https://script.google.com/macros/s/AKfycbyTqSEK8iK79n4W00g069z32iS44V34lG85W98lC/exec',
         {
@@ -58,7 +57,7 @@ export function LeadForm() {
         }
       )
     } catch (err) {
-      console.warn('Submission network fallback:', err)
+      console.warn('Network fallback:', err)
     }
 
     setLoading(false)
@@ -66,128 +65,139 @@ export function LeadForm() {
   }
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-md">
+    <div className="bg-slate-900/95 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl backdrop-blur-md">
       {!submitted ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Full Name *</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Full Name *</label>
               <input
                 required
+                type="text"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-                placeholder="Pradeep Chaudhary"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+                placeholder="e.g. David Miller"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Business Name *</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Business Name *</label>
               <input
                 required
+                type="text"
                 value={formData.businessName}
                 onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-                placeholder="Apex Healthcare / Urban Realty"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+                placeholder="e.g. Apex Health Clinic / Urban Realty"
               />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Email Address *</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Email Address *</label>
               <input
                 required
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-                placeholder="contact@business.com"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+                placeholder="name@company.com"
               />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1">Phone Number (WhatsApp) *</label>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">Phone Number (WhatsApp) *</label>
               <input
                 required
+                type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-                placeholder="+91 8003469293"
+                className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+                placeholder="e.g. +91 9876543210"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs text-slate-400 mb-1">Website URL (Optional)</label>
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">Website URL (Optional)</label>
             <input
               type="text"
               value={formData.website}
               onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-              placeholder="https://yourwebsite.com (agar nahi hai to blank chhod dein)"
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+              placeholder="https://yourwebsite.com (leave empty if not applicable)"
             />
           </div>
 
-          {/* Automation Checkboxes */}
+          {/* Unified Input Box for Automations */}
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-2">
-              Select Required Automations (Tap to Select):
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
+              Required Automation Modules *
             </label>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {availableServices.map((srv) => (
-                <label
-                  key={srv}
-                  onClick={() => toggleService(srv)}
-                  className={`flex items-center gap-2 p-2.5 rounded-lg border text-xs cursor-pointer select-none transition ${
-                    formData.services.includes(srv)
-                      ? 'bg-cyan-500/15 border-cyan-500 text-cyan-300 font-semibold'
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    checked={formData.services.includes(srv)}
-                    onChange={() => {}}
-                    className="accent-cyan-500 rounded"
-                  />
-                  <span>{srv}</span>
-                </label>
-              ))}
+            <div className="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {availableServices.map((srv) => {
+                  const isChecked = formData.services.includes(srv)
+                  return (
+                    <div
+                      key={srv}
+                      onClick={() => toggleService(srv)}
+                      className={`flex items-center gap-2.5 px-3 py-2 rounded-md border text-xs cursor-pointer select-none transition ${
+                        isChecked
+                          ? 'bg-cyan-500/10 border-cyan-500/60 text-cyan-300 font-semibold shadow-sm'
+                          : 'bg-slate-900/60 border-slate-800/80 text-slate-400 hover:border-slate-700'
+                      }`}
+                    >
+                      {isChecked ? (
+                        <CheckSquare className="w-4 h-4 text-cyan-400 shrink-0" />
+                      ) : (
+                        <Square className="w-4 h-4 text-slate-600 shrink-0" />
+                      )}
+                      <span>{srv}</span>
+                    </div>
+                  )
+                })}
+              </div>
+              <p className="text-[11px] text-slate-500 pt-1">
+                Select one or multiple modules required for your deployment.
+              </p>
             </div>
           </div>
 
           {/* Notes / Message Box */}
           <div>
-            <label className="block text-xs text-slate-400 mb-1">
-              Notes / Additional Requirements
+            <label className="block text-xs font-medium text-slate-400 mb-1.5">
+              Project Notes & Specific Requirements
             </label>
             <textarea
               rows={3}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white focus:border-cyan-500 outline-none"
-              placeholder="Aapke business ke specific challenges ya timings yahan likhein..."
+              className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
+              placeholder="Describe your current inquiry volume, integration goals, or specific business hours..."
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center justify-center gap-2 hover:opacity-95 shadow-lg shadow-cyan-500/25 transition"
+            className="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center justify-center gap-2 hover:opacity-95 shadow-lg shadow-cyan-500/25 transition cursor-pointer"
           >
-            {loading ? 'Submitting...' : 'Submit Inquiry & Get Custom AI Blueprint'}
+            {loading ? 'Submitting Details...' : 'Submit Inquiry & Get Custom AI Blueprint'}
             <Send className="w-4 h-4" />
           </button>
         </form>
       ) : (
-        <div className="text-center py-8 space-y-3">
+        <div className="text-center py-10 space-y-4">
           <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto animate-bounce" />
           <h3 className="text-xl font-bold text-white">Inquiry Received Successfully!</h3>
-          <p className="text-sm text-slate-300">
-            Aapki enquiry hamare system mein save ho gayi hai. Hamne confirmation email aapke inbox par bhej diya hai aur founder Pradeep Chaudhary aapse jald hi contact karenge.
+          <p className="text-sm text-slate-300 max-w-md mx-auto">
+            Thank you for reaching out. We have logged your requirements and our team will get in touch via WhatsApp and Email shortly.
           </p>
         </div>
       )}
     </div>
   )
 }
+
 export default LeadForm

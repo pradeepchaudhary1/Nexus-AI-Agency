@@ -1,6 +1,6 @@
 import { _ as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { l as PageHero } from "./page-sections-Js0CCVme.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/privacy-DNrdz8hg.js
+import { l as PageHero } from "./page-sections-DdYHycY5.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/privacy-BxBBQxQK.js
 var import_jsx_runtime = require_jsx_runtime();
 function PrivacyPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PageHero, {

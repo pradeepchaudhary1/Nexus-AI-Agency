@@ -1,4 +1,4 @@
-import { E as Megaphone, F as GraduationCap, J as Clapperboard, L as FolderLock, at as Briefcase, z as FileText } from "../_libs/lucide-react.mjs";
+import { $ as Clapperboard, A as Megaphone, U as FileText, V as FolderLock, ut as Briefcase, z as GraduationCap } from "../_libs/lucide-react.mjs";
 import { _ as lazyRouteComponent, v as createFileRoute } from "../_libs/@tanstack/react-router+[...].mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-DrwCE_TL.js
 var categories = [

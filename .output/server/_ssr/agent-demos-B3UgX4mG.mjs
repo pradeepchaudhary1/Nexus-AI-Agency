@@ -1,9 +1,9 @@
 import { _ as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { dt as ArrowRight } from "../_libs/lucide-react.mjs";
+import { gt as ArrowRight } from "../_libs/lucide-react.mjs";
 import { b as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { f as SectionHeading, l as PageHero, r as DemoLab } from "./page-sections-Js0CCVme.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/agent-demos-DnZ22Srj.js
+import { f as SectionHeading, l as PageHero, r as DemoLab } from "./page-sections-DdYHycY5.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/agent-demos-B3UgX4mG.js
 var import_jsx_runtime = require_jsx_runtime();
 function AgentDemosPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PageHero, {

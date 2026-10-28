@@ -15,6 +15,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AgentDemosRouteImport } from './routes/agent-demos'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookAuditRouteImport } from './routes/book-audit'
+import { Route as ClinicsRouteImport } from './routes/clinics'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
@@ -22,6 +23,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as RealEstateRouteImport } from './routes/real-estate'
 import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as SalonsLocalRouteImport } from './routes/salons-local'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
 
@@ -52,6 +54,11 @@ const AuthRoute = AuthRouteImport.update({
 const BookAuditRoute = BookAuditRouteImport.update({
   id: '/book-audit',
   path: '/book-audit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClinicsRoute = ClinicsRouteImport.update({
+  id: '/clinics',
+  path: '/clinics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -89,6 +96,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SalonsLocalRoute = SalonsLocalRouteImport.update({
+  id: '/salons-local',
+  path: '/salons-local',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolutionsRoute = SolutionsRouteImport.update({
   id: '/solutions',
   path: '/solutions',
@@ -107,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/agent-demos': typeof AgentDemosRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
+  '/clinics': typeof ClinicsRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/onboarding': typeof OnboardingRoute
@@ -114,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
+  '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
@@ -123,6 +137,7 @@ export interface FileRoutesByTo {
   '/agent-demos': typeof AgentDemosRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
+  '/clinics': typeof ClinicsRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/onboarding': typeof OnboardingRoute
@@ -130,6 +145,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
+  '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
@@ -141,6 +157,7 @@ export interface FileRoutesById {
   '/agent-demos': typeof AgentDemosRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
+  '/clinics': typeof ClinicsRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
   '/onboarding': typeof OnboardingRoute
@@ -148,6 +165,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
+  '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
@@ -159,6 +177,7 @@ export interface FileRouteTypes {
     | '/agent-demos'
     | '/auth'
     | '/book-audit'
+    | '/clinics'
     | '/how-it-works'
     | '/industries'
     | '/onboarding'
@@ -166,6 +185,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/real-estate'
     | '/resources'
+    | '/salons-local'
     | '/solutions'
     | '/admin/resources'
   fileRoutesByTo: FileRoutesByTo
@@ -175,6 +195,7 @@ export interface FileRouteTypes {
     | '/agent-demos'
     | '/auth'
     | '/book-audit'
+    | '/clinics'
     | '/how-it-works'
     | '/industries'
     | '/onboarding'
@@ -182,6 +203,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/real-estate'
     | '/resources'
+    | '/salons-local'
     | '/solutions'
     | '/admin/resources'
   id:
@@ -192,6 +214,7 @@ export interface FileRouteTypes {
     | '/agent-demos'
     | '/auth'
     | '/book-audit'
+    | '/clinics'
     | '/how-it-works'
     | '/industries'
     | '/onboarding'
@@ -199,6 +222,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/real-estate'
     | '/resources'
+    | '/salons-local'
     | '/solutions'
     | '/_authenticated/admin/resources'
   fileRoutesById: FileRoutesById
@@ -210,6 +234,7 @@ export interface RootRouteChildren {
   AgentDemosRoute: typeof AgentDemosRoute
   AuthRoute: typeof AuthRoute
   BookAuditRoute: typeof BookAuditRoute
+  ClinicsRoute: typeof ClinicsRoute
   HowItWorksRoute: typeof HowItWorksRoute
   IndustriesRoute: typeof IndustriesRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -217,6 +242,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   RealEstateRoute: typeof RealEstateRoute
   ResourcesRoute: typeof ResourcesRoute
+  SalonsLocalRoute: typeof SalonsLocalRoute
   SolutionsRoute: typeof SolutionsRoute
 }
 
@@ -262,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/book-audit'
       fullPath: '/book-audit'
       preLoaderRoute: typeof BookAuditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clinics': {
+      id: '/clinics'
+      path: '/clinics'
+      fullPath: '/clinics'
+      preLoaderRoute: typeof ClinicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -313,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/salons-local': {
+      id: '/salons-local'
+      path: '/salons-local'
+      fullPath: '/salons-local'
+      preLoaderRoute: typeof SalonsLocalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solutions': {
       id: '/solutions'
       path: '/solutions'
@@ -348,6 +388,7 @@ const rootRouteChildren: RootRouteChildren = {
   AgentDemosRoute: AgentDemosRoute,
   AuthRoute: AuthRoute,
   BookAuditRoute: BookAuditRoute,
+  ClinicsRoute: ClinicsRoute,
   HowItWorksRoute: HowItWorksRoute,
   IndustriesRoute: IndustriesRoute,
   OnboardingRoute: OnboardingRoute,
@@ -355,6 +396,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   RealEstateRoute: RealEstateRoute,
   ResourcesRoute: ResourcesRoute,
+  SalonsLocalRoute: SalonsLocalRoute,
   SolutionsRoute: SolutionsRoute,
 }
 export const routeTree = rootRouteImport
