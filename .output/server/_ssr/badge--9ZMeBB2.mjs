@@ -1,5 +1,5 @@
 import "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { n as cn } from "./button-Bo4nKw7z.mjs";
 require_react();

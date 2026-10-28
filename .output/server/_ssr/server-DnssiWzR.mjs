@@ -1,5 +1,5 @@
 import "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { B as _getRenderedMatches, E as fromJSON, F as resolveManifestCssLink, G as isRedirect, H as invariant, J as rootRouteId, L as isDangerousProtocol, M as getScriptPreloadAttrs, N as getStylesheetHref, O as toCrossJSONAsync, P as resolveManifestAssetLink, R as isPromise, V as executeRewriteInput, Y as isNotFound, a as isSsrResponse, c as stripSsrResponseBody, i as disposeSsrResponse, k as toCrossJSONStream, m as RouterProvider, n as bindSsrResponseToRequest, o as normalizeSsrResponse, r as defineHandlerCallback, s as replaceSsrResponse, t as renderRouterToStream, z as waitForReason } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as createServerHistory } from "../_libs/tanstack__history.mjs";
 import { a as mergeHeaders, i as defaultSerovalDeserializerPlugins, n as getNormalizedURL, o as makeSerovalPlugin, r as createRawStreamRPCPlugin, s as createSerializationAdapter, t as attachRouterServerSsrUtils } from "../_libs/@tanstack/router-core+[...].mjs";
@@ -30,7 +30,7 @@ var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-D_J1hwHz.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-D-lqwjd9.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -1116,7 +1116,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-DjGrmpGE.mjs"),
+		import("./router-ER4kd4Ur.mjs"),
 		import("./start-B4yqOSfX.mjs"),
 		import("./empty-plugin-adapters-D9UWiqvJ.mjs")
 	]);

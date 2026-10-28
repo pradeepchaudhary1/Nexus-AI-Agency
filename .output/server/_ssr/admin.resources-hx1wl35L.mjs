@@ -1,18 +1,17 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
-import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { K as Download, M as LogOut, Z as CloudUpload, _t as Archive, b as RefreshCw, i as Trash2, vt as ArchiveRestore } from "../_libs/lucide-react.mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { n as cn, t as Button } from "./button-Bo4nKw7z.mjs";
+import { P as LogOut, Q as CloudUpload, _t as Archive, a as Trash2, b as RefreshCw, q as Download, vt as ArchiveRestore } from "../_libs/lucide-react.mjs";
 import { G as isRedirect, S as useRouter, x as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
 import { l as createServerFn } from "./createServerFn-DDDJMFWM.mjs";
 import { t as requireSupabaseAuth } from "./auth-middleware-B3V5iLmQ.mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
-import { a as formatDate, c as visibilities, i as categoryMeta, n as bucketFor, o as formatSize, r as categories, t as Route } from "./admin.resources-DrwCE_TL.mjs";
+import { a as formatDate, c as visibilities, i as categoryMeta, n as bucketFor, o as formatSize, r as categories, t as Route } from "./admin.resources-BXBQxpI_.mjs";
 import { t as createSsrRpc } from "./createSsrRpc-fQERfvAR.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
 import { t as Label } from "./label-DvayCU8F.mjs";
-import { t as Textarea } from "./textarea-DFifGPW9.mjs";
 import { i as useQueryClient, n as useQuery } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-BicaLNq_.js
+//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-hx1wl35L.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function useServerFn(serverFn) {
@@ -31,6 +30,14 @@ function useServerFn(serverFn) {
 		}
 	}, [router, serverFn]);
 }
+var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
+		className: cn("flex min-h-[60px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm", className),
+		ref,
+		...props
+	});
+});
+Textarea.displayName = "Textarea";
 createServerFn({ method: "POST" }).validator((input) => input).handler(createSsrRpc("e211e8c27eee0a1053129b7769a37cb2e31b3dc869a84a1c647eee19cfb57993"));
 /** Admin-only: retry Make.com delivery for leads still pending or failed. */
 var retryLeadDeliveries = createServerFn({ method: "POST" }).middleware([requireSupabaseAuth]).handler(createSsrRpc("42176c07eea664427d537ff5050dee15cf8f1a4c1142eae678e285658a891bb3"));

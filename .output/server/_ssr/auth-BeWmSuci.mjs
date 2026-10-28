@@ -1,5 +1,5 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
 import { x as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";

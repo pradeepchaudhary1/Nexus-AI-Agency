@@ -1,5 +1,5 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { n as cn } from "./button-Bo4nKw7z.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/input-BlEJlNY0.js
 var import_react = /* @__PURE__ */ __toESM(require_react());

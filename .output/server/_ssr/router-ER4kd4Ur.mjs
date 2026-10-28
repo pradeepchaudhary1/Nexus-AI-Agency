@@ -1,20 +1,20 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { _ as require_jsx_runtime, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { C as PhoneCall, E as MessageSquare, J as CreditCard, K as Download, N as Lock, T as Moon, W as ExternalLink, X as CodeXml, Y as Cpu, a as Sun, d as Sparkles, ft as Braces, g as Send, gt as ArrowRight, k as Menu, mt as BookOpen, p as Shield, pt as Bot, q as Database, rt as CircleCheck, s as Stethoscope, t as X, v as Scissors, x as Play, y as Save, yt as Activity } from "../_libs/lucide-react.mjs";
+import { A as Menu, D as Moon, F as Lock, G as ExternalLink, H as Globe, J as Database, M as MapPin, O as MessageSquare, S as Play, T as Pen, W as FileText, X as Cpu, Y as CreditCard, Z as CodeXml, a as Trash2, c as Stethoscope, d as Sparkles, ft as Braces, g as Send, gt as ArrowRight, lt as Building2, mt as BookOpen, n as Video, o as Sun, p as Shield, pt as Bot, q as Download, rt as CircleCheck, t as X, v as Scissors, w as PhoneCall, x as Plus, y as Save, yt as Activity } from "../_libs/lucide-react.mjs";
 import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
 import { l as createServerFn } from "./createServerFn-DDDJMFWM.mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
-import { a as formatDate, i as categoryMeta, s as iconFor, t as Route$17 } from "./admin.resources-DrwCE_TL.mjs";
+import { a as formatDate, i as categoryMeta, s as iconFor, t as Route$17 } from "./admin.resources-BXBQxpI_.mjs";
 import { t as createSsrRpc } from "./createSsrRpc-fQERfvAR.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
 import { n as useQuery, r as QueryClientProvider, t as queryOptions } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { _ as navItems, c as OfferCards, d as ProcessStrip, f as SectionHeading, h as WorkflowVisual, i as Faq, m as TrustPoints, o as IndustryPreview, p as ServicePreview, r as DemoLab, s as LeadForm, t as BookingBand, u as ProblemGrid, y as socials } from "./page-sections-DdYHycY5.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-DjGrmpGE.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-ER4kd4Ur.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-DPO6wRQ2.css";
+var styles_default = "/assets/styles-BHUymh_Z.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -1166,7 +1166,7 @@ function Index() {
         }
       ` } }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HomePage, {})] });
 }
-var $$splitComponentImporter$9 = () => import("./route-Di7iQBCH.mjs");
+var $$splitComponentImporter$8 = () => import("./route-Di7iQBCH.mjs");
 var Route$14 = createFileRoute("/_authenticated")({
 	ssr: false,
 	beforeLoad: async () => {
@@ -1174,9 +1174,9 @@ var Route$14 = createFileRoute("/_authenticated")({
 		if (error || !data.user) throw redirect({ to: "/auth" });
 		return { user: data.user };
 	},
-	component: lazyRouteComponent($$splitComponentImporter$9, "component")
+	component: lazyRouteComponent($$splitComponentImporter$8, "component")
 });
-var $$splitComponentImporter$8 = () => import("./about-BE2rA_IH.mjs");
+var $$splitComponentImporter$7 = () => import("./about-BE2rA_IH.mjs");
 var Route$13 = createFileRoute("/about")({
 	head: () => ({
 		meta: [
@@ -1211,9 +1211,9 @@ var Route$13 = createFileRoute("/about")({
 			href: "https://www.nexusaiagency.in/about"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$8, "component")
+	component: lazyRouteComponent($$splitComponentImporter$7, "component")
 });
-var $$splitComponentImporter$7 = () => import("./agent-demos-B3UgX4mG.mjs");
+var $$splitComponentImporter$6 = () => import("./agent-demos-B3UgX4mG.mjs");
 var Route$12 = createFileRoute("/agent-demos")({
 	head: () => ({
 		meta: [
@@ -1248,9 +1248,9 @@ var Route$12 = createFileRoute("/agent-demos")({
 			href: "https://www.nexusaiagency.in/agent-demos"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$7, "component")
+	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$6 = () => import("./auth-BeWmSuci.mjs");
+var $$splitComponentImporter$5 = () => import("./auth-BeWmSuci.mjs");
 var Route$11 = createFileRoute("/auth")({
 	head: () => ({ meta: [
 		{ title: "Admin Sign In — NexusAIAgency" },
@@ -1279,9 +1279,9 @@ var Route$11 = createFileRoute("/auth")({
 			content: "noindex"
 		}
 	] }),
-	component: lazyRouteComponent($$splitComponentImporter$6, "component")
+	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var $$splitComponentImporter$5 = () => import("./book-audit-CR5AGE3a.mjs");
+var $$splitComponentImporter$4 = () => import("./book-audit-BY5dvuwB.mjs");
 var Route$10 = createFileRoute("/book-audit")({
 	head: () => ({
 		meta: [
@@ -1316,7 +1316,7 @@ var Route$10 = createFileRoute("/book-audit")({
 			href: "https://www.nexusaiagency.in/book-audit"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$5, "component")
+	component: lazyRouteComponent($$splitComponentImporter$4, "component")
 });
 var Route$9 = createFileRoute("/clinics")({ component: ClinicsFunnel });
 function ClinicsFunnel() {
@@ -1596,7 +1596,7 @@ function ClinicsFunnel() {
 		]
 	});
 }
-var $$splitComponentImporter$4 = () => import("./how-it-works-CNyev-ey.mjs");
+var $$splitComponentImporter$3 = () => import("./how-it-works-CNyev-ey.mjs");
 var Route$8 = createFileRoute("/how-it-works")({
 	head: () => ({
 		meta: [
@@ -1631,9 +1631,9 @@ var Route$8 = createFileRoute("/how-it-works")({
 			href: "https://www.nexusaiagency.in/how-it-works"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$4, "component")
+	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$3 = () => import("./industries-B8GQ7cAS.mjs");
+var $$splitComponentImporter$2 = () => import("./industries-B8GQ7cAS.mjs");
 var Route$7 = createFileRoute("/industries")({
 	head: () => ({
 		meta: [
@@ -1668,7 +1668,7 @@ var Route$7 = createFileRoute("/industries")({
 			href: "https://www.nexusaiagency.in/industries"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$3, "component")
+	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
 var Route$6 = createFileRoute("/onboarding")({ component: OnboardingPage });
 function OnboardingPage() {
@@ -1736,7 +1736,7 @@ function OnboardingPage() {
 		})
 	});
 }
-var $$splitComponentImporter$2 = () => import("./privacy-BxBBQxQK.mjs");
+var $$splitComponentImporter$1 = () => import("./privacy-BxBBQxQK.mjs");
 var Route$5 = createFileRoute("/privacy")({
 	head: () => ({
 		meta: [
@@ -1771,16 +1771,457 @@ var Route$5 = createFileRoute("/privacy")({
 			href: "https://nexus-ai-solution.lovable.app/privacy"
 		}]
 	}),
-	component: lazyRouteComponent($$splitComponentImporter$2, "component")
-});
-var $$splitComponentImporter$1 = () => import("./projects-BLquehQw.mjs");
-var Route$4 = createFileRoute("/projects")({
-	head: () => ({ meta: [{ title: "Our Projects & Verified Reviews — NexusAIAgency" }, {
-		name: "description",
-		content: "Explore real AI client deliverables, sheets, demos, and authentic client feedback for Nexus AI."
-	}] }),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
+var Route$4 = createFileRoute("/projects")({ component: ProjectsPage });
+var DEFAULT_PROJECTS = [
+	{
+		id: "proj-1",
+		title: "Dental Clinic 24/7 AI Receptionist (Sofia)",
+		category: "Voice AI System",
+		clientBusiness: "Apex Healthcare & Dental Clinic",
+		clientLocation: "Jaipur, Rajasthan, India",
+		clientPhone: "+91 9876543210",
+		coverImage: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+		description: "Automated after-hours patient inquiry intake, medical triage guardrails, and calendar rescheduling with zero human drop-off.",
+		deploymentType: "pdf",
+		deploymentUrl: "https://docs.google.com/document/d/1kzX_D2Z3TBfQmJ9Mw6xqDX4RYlXlfFSyv-9NcO34eX8/edit?usp=sharing"
+	},
+	{
+		id: "proj-2",
+		title: "UrbanNest Luxury Real Estate AI Portal",
+		category: "Website & AEO",
+		clientBusiness: "UrbanNest Properties & Builders",
+		clientLocation: "Mumbai & Austin, TX",
+		clientPhone: "+91 8003469293",
+		coverImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80",
+		description: "Sub-second real estate search engine pre-configured with AEO schema, automated WhatsApp brochures, and buyer budget qualification.",
+		deploymentType: "website",
+		deploymentUrl: "https://urbannestproperties.lovable.app"
+	},
+	{
+		id: "proj-3",
+		title: "Glow & Go Studio 24/7 Booking Assistant",
+		category: "Voice AI & WhatsApp",
+		clientBusiness: "Glow & Go Salons & Spa",
+		clientLocation: "Delhi NCR, India",
+		clientPhone: "+91 9166516942",
+		coverImage: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
+		description: "Automated appointment scheduler handling phone calls while stylists attend in-store clients, with automated WhatsApp reminders.",
+		deploymentType: "website",
+		deploymentUrl: "https://glow-go-studio.lovable.app"
+	},
+	{
+		id: "proj-4",
+		title: "NextRank Academy Counselling & Admission Engine",
+		category: "WhatsApp CRM & Voice",
+		clientBusiness: "NextRank Coaching Institute",
+		clientLocation: "Kota, Rajasthan, India",
+		clientPhone: "+91 8003469293",
+		coverImage: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+		description: "Multi-channel speed-to-lead qualification system connecting incoming student inquiries to Google Sheets CRM with 60-second follow-up.",
+		deploymentType: "website",
+		deploymentUrl: "https://nextrankguide.lovable.app"
+	}
+];
+function ProjectsPage() {
+	const [projects, setProjects] = (0, import_react.useState)(DEFAULT_PROJECTS);
+	const [activeCategory, setActiveCategory] = (0, import_react.useState)("All");
+	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
+	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
+	const [pin, setPin] = (0, import_react.useState)("");
+	const [editingProject, setEditingProject] = (0, import_react.useState)(null);
+	const [isModalOpen, setIsModalOpen] = (0, import_react.useState)(false);
+	(0, import_react.useEffect)(() => {
+		if (typeof window !== "undefined") {
+			if (new URLSearchParams(window.location.search).get("admin") === "true") setIsAdmin(true);
+			const saved = localStorage.getItem("nexus_projects_db");
+			if (saved) try {
+				setProjects(JSON.parse(saved));
+			} catch {}
+		}
+	}, []);
+	const saveProjectsToStorage = (updated) => {
+		setProjects(updated);
+		if (typeof window !== "undefined") localStorage.setItem("nexus_projects_db", JSON.stringify(updated));
+	};
+	const handleDelete = (id) => {
+		if (confirm("Are you sure you want to delete this project?")) {
+			const updated = projects.filter((p) => p.id !== id);
+			saveProjectsToStorage(updated);
+		}
+	};
+	const handleOpenAdd = () => {
+		setEditingProject({
+			id: "proj-" + Date.now(),
+			title: "",
+			category: "Voice AI System",
+			clientBusiness: "",
+			clientLocation: "Jaipur, India",
+			clientPhone: "",
+			coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+			description: "",
+			deploymentType: "website",
+			deploymentUrl: ""
+		});
+		setIsModalOpen(true);
+	};
+	const handleOpenEdit = (proj) => {
+		setEditingProject(proj);
+		setIsModalOpen(true);
+	};
+	const handleSaveModal = (e) => {
+		e.preventDefault();
+		if (!editingProject) return;
+		const exists = projects.some((p) => p.id === editingProject.id);
+		let updated;
+		if (exists) updated = projects.map((p) => p.id === editingProject.id ? editingProject : p);
+		else updated = [editingProject, ...projects];
+		saveProjectsToStorage(updated);
+		setIsModalOpen(false);
+		setEditingProject(null);
+	};
+	const categories = [
+		"All",
+		"Voice AI System",
+		"Website & AEO",
+		"WhatsApp CRM & Voice",
+		"Voice AI & WhatsApp"
+	];
+	const filteredProjects = activeCategory === "All" ? projects : projects.filter((p) => p.category === activeCategory);
+	const getDeploymentIcon = (type) => {
+		if (type === "pdf") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-4 h-4 text-amber-400" });
+		if (type === "video") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Video, { className: "w-4 h-4 text-red-400" });
+		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-4 h-4 text-cyan-400" });
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		className: "min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-black",
+		children: [
+			isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "bg-amber-950/90 border-b border-amber-600/50 p-3 sticky top-0 z-50 text-xs backdrop-blur-md",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "max-w-6xl mx-auto flex items-center justify-between gap-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "font-bold text-amber-400 flex items-center gap-1.5",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Owner Portfolio Manager"]
+					}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+							type: "password",
+							placeholder: "Enter PIN",
+							value: pin,
+							onChange: (e) => setPin(e.target.value),
+							className: "bg-black/80 px-2.5 py-1 rounded border border-amber-600 text-white text-xs w-24 outline-none"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								if (pin === "2026") setIsUnlocked(true);
+								else alert("Incorrect PIN");
+							},
+							className: "bg-amber-600 px-3 py-1 rounded font-bold text-black",
+							children: "Unlock"
+						})]
+					}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+							className: "text-emerald-400 font-semibold flex items-center gap-1",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-3.5 h-3.5" }), " Admin Active"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							onClick: handleOpenAdd,
+							className: "bg-cyan-600 hover:bg-cyan-500 px-3.5 py-1.5 rounded-lg font-bold text-white flex items-center gap-1.5 transition cursor-pointer",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Plus, { className: "w-3.5 h-3.5" }), " Add New Project"]
+						})]
+					})]
+				})
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+				className: "pt-24 pb-12 px-4 text-center max-w-4xl mx-auto",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-4 h-4" }), " Production Deployments & Case Studies"]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+						className: "text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4",
+						children: ["Autonomous Systems ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500",
+							children: "In Action"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-slate-300 max-w-2xl mx-auto text-sm md:text-base mb-8",
+						children: "Explore real-world voice agents, AEO-ready websites, and autonomous CRM pipelines deployed for healthcare, real estate, and service businesses worldwide."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "flex flex-wrap items-center justify-center gap-2 mb-8",
+						children: categories.map((cat) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => setActiveCategory(cat),
+							className: `px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${activeCategory === cat ? "bg-cyan-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/20" : "bg-slate-900 border border-slate-800 text-slate-400 hover:border-slate-700"}`,
+							children: cat
+						}, cat))
+					})
+				]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+				className: "pb-24 px-4 max-w-6xl mx-auto",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "grid md:grid-cols-2 gap-6",
+					children: filteredProjects.map((project) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition group flex flex-col justify-between",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "relative h-52 w-full overflow-hidden bg-slate-950",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+									src: project.coverImage,
+									alt: project.title,
+									className: "w-full h-full object-cover group-hover:scale-105 transition duration-500"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/30" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md border border-cyan-500/30 text-cyan-300 text-[11px] font-bold px-3 py-1 rounded-full",
+									children: project.category
+								}),
+								isAdmin && isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md p-1.5 rounded-lg border border-slate-700",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										onClick: () => handleOpenEdit(project),
+										className: "p-1 hover:text-cyan-400 text-slate-300 transition cursor-pointer",
+										title: "Edit Project",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pen, { className: "w-3.5 h-3.5" })
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										onClick: () => handleDelete(project.id),
+										className: "p-1 hover:text-red-400 text-slate-300 transition cursor-pointer",
+										title: "Delete Project",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Trash2, { className: "w-3.5 h-3.5" })
+									})]
+								})
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-6",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex flex-wrap items-center gap-3 text-xs text-slate-400 mb-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+										className: "flex items-center gap-1 text-slate-300 font-medium",
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Building2, { className: "w-3.5 h-3.5 text-cyan-400" }),
+											" ",
+											project.clientBusiness
+										]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+										className: "flex items-center gap-1 text-slate-400",
+										children: [
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MapPin, { className: "w-3.5 h-3.5 text-amber-400" }),
+											" ",
+											project.clientLocation
+										]
+									})]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition",
+									children: project.title
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs text-slate-400 leading-relaxed mb-4",
+									children: project.description
+								})
+							]
+						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+								className: "text-[11px] text-slate-500 capitalize flex items-center gap-1.5",
+								children: [getDeploymentIcon(project.deploymentType), project.deploymentType === "pdf" ? "Architecture PDF" : project.deploymentType === "video" ? "Walkthrough Video" : "Live Platform"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: project.deploymentUrl,
+								target: "_blank",
+								rel: "noreferrer",
+								className: "inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/40 text-cyan-300 hover:text-slate-950 font-bold text-xs transition duration-200",
+								children: ["View Deployment ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { className: "w-3.5 h-3.5" })]
+							})]
+						})]
+					}, project.id))
+				})
+			}),
+			isModalOpen && editingProject && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 text-left shadow-2xl my-8",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center justify-between pb-4 border-b border-slate-800 mb-4",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", {
+							className: "text-lg font-bold text-white flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Pen, { className: "w-4 h-4 text-cyan-400" }), " Manage Project Deployment"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => setIsModalOpen(false),
+							className: "text-slate-400 hover:text-white cursor-pointer",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "w-5 h-5" })
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						onSubmit: handleSaveModal,
+						className: "space-y-4 text-xs",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+								className: "block text-slate-400 mb-1",
+								children: "Project Title *"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+								required: true,
+								value: editingProject.title,
+								onChange: (e) => setEditingProject({
+									...editingProject,
+									title: e.target.value
+								}),
+								placeholder: "e.g. Dental Clinic 24/7 AI Receptionist (Sofia)",
+								className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 gap-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+									className: "block text-slate-400 mb-1",
+									children: "Category / Project Type *"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+									value: editingProject.category,
+									onChange: (e) => setEditingProject({
+										...editingProject,
+										category: e.target.value
+									}),
+									className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Voice AI System" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Website & AEO" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "WhatsApp CRM & Voice" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Voice AI & WhatsApp" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", { children: "Full Autonomous Suite" })
+									]
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+									className: "block text-slate-400 mb-1",
+									children: "Client Business Name *"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+									required: true,
+									value: editingProject.clientBusiness,
+									onChange: (e) => setEditingProject({
+										...editingProject,
+										clientBusiness: e.target.value
+									}),
+									placeholder: "e.g. Apex Dental Care",
+									className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+								})] })]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 gap-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+									className: "block text-slate-400 mb-1",
+									children: "Client Location *"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+									required: true,
+									value: editingProject.clientLocation,
+									onChange: (e) => setEditingProject({
+										...editingProject,
+										clientLocation: e.target.value
+									}),
+									placeholder: "e.g. Jaipur, India or Austin, TX",
+									className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+									className: "block text-slate-400 mb-1",
+									children: "Client Phone (Internal / Optional)"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+									value: editingProject.clientPhone,
+									onChange: (e) => setEditingProject({
+										...editingProject,
+										clientPhone: e.target.value
+									}),
+									placeholder: "+91 8003469293",
+									className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+								})] })]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+								className: "block text-slate-400 mb-1",
+								children: "Cover Image URL *"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+								required: true,
+								value: editingProject.coverImage,
+								onChange: (e) => setEditingProject({
+									...editingProject,
+									coverImage: e.target.value
+								}),
+								placeholder: "https://...image-url.jpg",
+								className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-3 gap-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+									className: "block text-slate-400 mb-1",
+									children: "Deployment Type"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("select", {
+									value: editingProject.deploymentType,
+									onChange: (e) => setEditingProject({
+										...editingProject,
+										deploymentType: e.target.value
+									}),
+									className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+											value: "website",
+											children: "Live Website URL"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+											value: "pdf",
+											children: "Architecture PDF"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("option", {
+											value: "video",
+											children: "Client Video Walkthrough"
+										})
+									]
+								})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "col-span-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+										className: "block text-slate-400 mb-1",
+										children: "Deployment URL / Link *"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										required: true,
+										value: editingProject.deploymentUrl,
+										onChange: (e) => setEditingProject({
+											...editingProject,
+											deploymentUrl: e.target.value
+										}),
+										placeholder: "https://urbannestproperties.lovable.app",
+										className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+								className: "block text-slate-400 mb-1",
+								children: "Project Description & Results *"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", {
+								required: true,
+								rows: 3,
+								value: editingProject.description,
+								onChange: (e) => setEditingProject({
+									...editingProject,
+									description: e.target.value
+								}),
+								placeholder: "Automated after-hours patient inquiry intake with zero human drop-off...",
+								className: "w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex justify-end gap-3 pt-3 border-t border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+									type: "button",
+									onClick: () => setIsModalOpen(false),
+									className: "px-4 py-2 rounded-lg bg-slate-800 text-slate-300 font-semibold text-xs cursor-pointer",
+									children: "Cancel"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									type: "submit",
+									className: "px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { className: "w-3.5 h-3.5" }), " Save Project"]
+								})]
+							})
+						]
+					})]
+				})
+			})
+		]
+	});
+}
 var Route$3 = createFileRoute("/real-estate")({ component: RealEstateFunnel });
 function RealEstateFunnel() {
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);

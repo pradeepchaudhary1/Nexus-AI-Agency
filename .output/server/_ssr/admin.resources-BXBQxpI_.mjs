@@ -1,6 +1,6 @@
-import { $ as Clapperboard, A as Megaphone, U as FileText, V as FolderLock, ut as Briefcase, z as GraduationCap } from "../_libs/lucide-react.mjs";
+import { U as FolderLock, V as GraduationCap, W as FileText, et as Clapperboard, j as Megaphone, ut as Briefcase } from "../_libs/lucide-react.mjs";
 import { _ as lazyRouteComponent, v as createFileRoute } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-DrwCE_TL.js
+//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-BXBQxpI_.js
 var categories = [
 	{
 		value: "update",
@@ -64,7 +64,7 @@ function formatSize(bytes) {
 	if (bytes < 1048576) return `${(bytes / 1024).toFixed(0)} KB`;
 	return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
-var $$splitComponentImporter = () => import("./admin.resources-BicaLNq_.mjs");
+var $$splitComponentImporter = () => import("./admin.resources-hx1wl35L.mjs");
 var Route = createFileRoute("/_authenticated/admin/resources")({
 	head: () => ({ meta: [
 		{ title: "Resource Admin — NexusAIAgency" },

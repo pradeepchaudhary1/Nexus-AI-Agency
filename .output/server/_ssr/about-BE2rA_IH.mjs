@@ -1,7 +1,7 @@
-import { _ as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { l as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
 import { t as Badge } from "./badge--9ZMeBB2.mjs";
-import { F as Linkedin, S as Phone, gt as ArrowRight, ht as Award, j as Mail, m as ShieldCheck } from "../_libs/lucide-react.mjs";
+import { C as Phone, L as Linkedin, N as Mail, gt as ArrowRight, ht as Award, m as ShieldCheck } from "../_libs/lucide-react.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/about-BE2rA_IH.js
 var import_jsx_runtime = require_jsx_runtime();
 var founder_pradeep_default = "/assets/founder-pradeep-Dp1Pnjpv.png";

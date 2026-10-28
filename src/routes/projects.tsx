@@ -1,307 +1,459 @@
-import { createFileRoute, useSearch } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { FolderGit2, ExternalLink, Star, PlusCircle, Trash2, MessageSquarePlus, CheckCircle2 } from "lucide-react";
+import { createFileRoute } from '@tanstack/react-router'
+import { useState, useEffect } from 'react'
+import { ExternalLink, Plus, Edit2, Trash2, Shield, Save, X, Sparkles, Filter, Globe, FileText, Video, Phone, MapPin, Building2, CheckCircle2 } from 'lucide-react'
 
-export const Route = createFileRoute("/projects")({
-  head: () => ({
-    meta: [
-      { title: "Our Projects & Verified Reviews — NexusAIAgency" },
-      { name: "description", content: "Explore real AI client deliverables, sheets, demos, and authentic client feedback for Nexus AI." },
-    ],
-  }),
+export const Route = createFileRoute('/projects')({
   component: ProjectsPage,
-});
+})
 
-interface CustomProject {
-  id: string;
-  title: string;
-  type: string;
-  link: string;
-  notes: string;
+interface Project {
+  id: string
+  title: string
+  category: string
+  clientBusiness: string
+  clientLocation: string
+  clientPhone: string
+  coverImage: string
+  description: string
+  deploymentType: 'website' | 'pdf' | 'video'
+  deploymentUrl: string
 }
 
-interface ClientReview {
-  id: string;
-  name: string;
-  business: string;
-  rating: number;
-  comment: string;
-  date: string;
-}
-
-const DEFAULT_PROJECTS: CustomProject[] = [
+const DEFAULT_PROJECTS: Project[] = [
   {
-    id: "p1",
-    title: "Dental Clinic 24/7 AI Receptionist (Sofia)",
-    type: "Voice AI System",
-    link: "https://www.nexusaiagency.in/book-audit",
-    notes: "Automated after-hours patient inquiry intake and calendar rescheduling with zero human drop-off."
+    id: 'proj-1',
+    title: 'Dental Clinic 24/7 AI Receptionist (Sofia)',
+    category: 'Voice AI System',
+    clientBusiness: 'Apex Healthcare & Dental Clinic',
+    clientLocation: 'Jaipur, Rajasthan, India',
+    clientPhone: '+91 9876543210',
+    coverImage: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80',
+    description: 'Automated after-hours patient inquiry intake, medical triage guardrails, and calendar rescheduling with zero human drop-off.',
+    deploymentType: 'pdf',
+    deploymentUrl: 'https://docs.google.com/document/d/1kzX_D2Z3TBfQmJ9Mw6xqDX4RYlXlfFSyv-9NcO34eX8/edit?usp=sharing',
   },
   {
-    id: "p2",
-    title: "Real Estate Buyer Qualification & WhatsApp Dispatch",
-    type: "Automation Workflow",
-    link: "https://www.nexusaiagency.in/book-audit",
-    notes: "Instant webhook triage connecting inbound portal inquiries directly to agent phone and Google CRM."
-  }
-];
-
-const DEFAULT_REVIEWS: ClientReview[] = [
+    id: 'proj-2',
+    title: 'UrbanNest Luxury Real Estate AI Portal',
+    category: 'Website & AEO',
+    clientBusiness: 'UrbanNest Properties & Builders',
+    clientLocation: 'Mumbai & Austin, TX',
+    clientPhone: '+91 8003469293',
+    coverImage: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
+    description: 'Sub-second real estate search engine pre-configured with AEO schema, automated WhatsApp brochures, and buyer budget qualification.',
+    deploymentType: 'website',
+    deploymentUrl: 'https://urbannestproperties.lovable.app',
+  },
   {
-    id: "r1",
-    name: "Dr. Rohit Verma",
-    business: "SmileCraft Clinics",
-    rating: 5,
-    comment: "Nexus AI automated our missed calls during lunch hours and night shifts. Patient bookings increased within 10 days.",
-    date: "14 Oct 2026"
-  }
-];
+    id: 'proj-3',
+    title: 'Glow & Go Studio 24/7 Booking Assistant',
+    category: 'Voice AI & WhatsApp',
+    clientBusiness: 'Glow & Go Salons & Spa',
+    clientLocation: 'Delhi NCR, India',
+    clientPhone: '+91 9166516942',
+    coverImage: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
+    description: 'Automated appointment scheduler handling phone calls while stylists attend in-store clients, with automated WhatsApp reminders.',
+    deploymentType: 'website',
+    deploymentUrl: 'https://glow-go-studio.lovable.app',
+  },
+  {
+    id: 'proj-4',
+    title: 'NextRank Academy Counselling & Admission Engine',
+    category: 'WhatsApp CRM & Voice',
+    clientBusiness: 'NextRank Coaching Institute',
+    clientLocation: 'Kota, Rajasthan, India',
+    clientPhone: '+91 8003469293',
+    coverImage: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+    description: 'Multi-channel speed-to-lead qualification system connecting incoming student inquiries to Google Sheets CRM with 60-second follow-up.',
+    deploymentType: 'website',
+    deploymentUrl: 'https://nextrankguide.lovable.app',
+  },
+]
 
 function ProjectsPage() {
-  const [items, setItems] = useState<CustomProject[]>(DEFAULT_PROJECTS);
-  const [reviews, setReviews] = useState<ClientReview[]>(DEFAULT_REVIEWS);
+  const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS)
+  const [activeCategory, setActiveCategory] = useState<string>('All')
+  const [isAdmin, setIsAdmin] = useState(false)
+  const [isUnlocked, setIsUnlocked] = useState(false)
+  const [pin, setPin] = useState('')
+  const [editingProject, setEditingProject] = useState<Project | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Admin visibility check via URL parameter: ?admin=nexus2026
-  const [isAdmin, setIsAdmin] = useState(false);
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get("admin") === "nexus2026" || localStorage.getItem("nexus_is_admin") === "true") {
-        setIsAdmin(true);
-        localStorage.setItem("nexus_is_admin", "true");
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search)
+      if (p.get('admin') === 'true') setIsAdmin(true)
+      const saved = localStorage.getItem('nexus_projects_db')
+      if (saved) {
+        try { setProjects(JSON.parse(saved)) } catch {}
       }
     }
-  }, []);
+  }, [])
 
-  // Project Modal State
-  const [title, setTitle] = useState("");
-  const [type, setType] = useState("Video / Demo Call");
-  const [link, setLink] = useState("");
-  const [notes, setNotes] = useState("");
-  const [openProjectModal, setOpenProjectModal] = useState(false);
-
-  // Review Modal State
-  const [revName, setRevName] = useState("");
-  const [revBusiness, setRevBusiness] = useState("");
-  const [revRating, setRevRating] = useState(5);
-  const [revComment, setRevComment] = useState("");
-  const [openReviewModal, setOpenReviewModal] = useState(false);
-  const [reviewSubmitted, setReviewSubmitted] = useState(false);
-
-  useEffect(() => {
-    const savedProjects = localStorage.getItem("nexus_client_projects");
-    if (savedProjects) {
-      try { setItems(JSON.parse(savedProjects)); } catch (e) {}
+  const saveProjectsToStorage = (updated: Project[]) => {
+    setProjects(updated)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('nexus_projects_db', JSON.stringify(updated))
     }
-    const savedReviews = localStorage.getItem("nexus_client_reviews");
-    if (savedReviews) {
-      try { setReviews(JSON.parse(savedReviews)); } catch (e) {}
+  }
+
+  const handleDelete = (id: string) => {
+    if (confirm('Are you sure you want to delete this project?')) {
+      const updated = projects.filter((p) => p.id !== id)
+      saveProjectsToStorage(updated)
     }
-  }, []);
+  }
 
-  const handleAddProject = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!title.trim() || !link.trim()) return;
-    const newItem: CustomProject = { id: Date.now().toString(), title, type, link, notes };
-    const updated = [newItem, ...items];
-    setItems(updated);
-    localStorage.setItem("nexus_client_projects", JSON.stringify(updated));
-    setTitle(""); setLink(""); setNotes(""); setOpenProjectModal(false);
-  };
+  const handleOpenAdd = () => {
+    setEditingProject({
+      id: 'proj-' + Date.now(),
+      title: '',
+      category: 'Voice AI System',
+      clientBusiness: '',
+      clientLocation: 'Jaipur, India',
+      clientPhone: '',
+      coverImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+      description: '',
+      deploymentType: 'website',
+      deploymentUrl: '',
+    })
+    setIsModalOpen(true)
+  }
 
-  const handleDeleteProject = (id: string) => {
-    const updated = items.filter((x) => x.id !== id);
-    setItems(updated);
-    localStorage.setItem("nexus_client_projects", JSON.stringify(updated));
-  };
+  const handleOpenEdit = (proj: Project) => {
+    setEditingProject(proj)
+    setIsModalOpen(true)
+  }
 
-  const handleAddReview = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!revName.trim() || !revComment.trim()) return;
+  const handleSaveModal = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editingProject) return
+    const exists = projects.some((p) => p.id === editingProject.id)
+    let updated: Project[]
+    if (exists) {
+      updated = projects.map((p) => (p.id === editingProject.id ? editingProject : p))
+    } else {
+      updated = [editingProject, ...projects]
+    }
+    saveProjectsToStorage(updated)
+    setIsModalOpen(false)
+    setEditingProject(null)
+  }
 
-    const newRev: ClientReview = {
-      id: Date.now().toString(),
-      name: revName.trim(),
-      business: revBusiness.trim() || "Verified Business",
-      rating: revRating,
-      comment: revComment.trim(),
-      date: "Just now"
-    };
+  const categories = ['All', 'Voice AI System', 'Website & AEO', 'WhatsApp CRM & Voice', 'Voice AI & WhatsApp']
+  const filteredProjects = activeCategory === 'All' ? projects : projects.filter((p) => p.category === activeCategory)
 
-    const updated = [newRev, ...reviews];
-    setReviews(updated);
-    localStorage.setItem("nexus_client_reviews", JSON.stringify(updated));
-
-    setReviewSubmitted(true);
-    setTimeout(() => {
-      setRevName(""); setRevBusiness(""); setRevComment("");
-      setOpenReviewModal(false); setReviewSubmitted(false);
-    }, 1800);
-  };
+  const getDeploymentIcon = (type: string) => {
+    if (type === 'pdf') return <FileText className="w-4 h-4 text-amber-400" />
+    if (type === 'video') return <Video className="w-4 h-4 text-red-400" />
+    return <Globe className="w-4 h-4 text-cyan-400" />
+  }
 
   return (
-    <div className="site-container py-12 max-w-6xl">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-10 pb-6 border-b border-border">
-        <div>
-          <Badge className="mb-2 bg-primary/10 text-primary border-primary/20">
-            <FolderGit2 className="w-3.5 h-3.5 mr-1 inline" /> Agency Deliverables &amp; Proof
-          </Badge>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
-            Our Projects &amp; Deployments
-          </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Live architectures, client demonstrations, and authenticated performance reviews.
-          </p>
-        </div>
-
-        {/* Admin-Only Button */}
-        {isAdmin && (
-          <Dialog open={openProjectModal} onOpenChange={setOpenProjectModal}>
-            <DialogTrigger asChild>
-              <Button className="bg-primary text-primary-foreground text-xs gap-1.5 h-9">
-                <PlusCircle className="w-4 h-4" /> Add Project / Sheet (Admin Only)
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-base font-bold">Add Deliverable or Case Study</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleAddProject} className="space-y-3 mt-2">
-                <div>
-                  <label className="text-xs font-semibold">Project Title</label>
-                  <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Real Estate WhatsApp Agent" className="h-9 text-xs mt-1" required />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold">Deliverable Type</label>
-                  <select value={type} onChange={(e) => setType(e.target.value)} className="w-full h-9 text-xs rounded-md border border-input bg-background px-3 mt-1">
-                    <option value="Voice AI System">Voice AI System</option>
-                    <option value="Automation Workflow">Automation Workflow</option>
-                    <option value="CRM Integration">CRM Integration</option>
-                    <option value="Website AEO Setup">Website AEO Setup</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-xs font-semibold">Link (Demo URL / Google Sheet / Case Study)</label>
-                  <Input value={link} onChange={(e) => setLink(e.target.value)} placeholder="https://..." className="h-9 text-xs mt-1" required />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold">Description</label>
-                  <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Short notes about results achieved..." className="text-xs mt-1 min-h-[60px]" />
-                </div>
-                <Button type="submit" className="w-full h-9 text-xs font-medium mt-2">Save Deliverable</Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        )}
-      </div>
-
-      {/* Projects Display */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-        {items.map((item) => (
-          <Card key={item.id} className="border flex flex-col justify-between hover:border-primary/50 transition-colors">
-            <CardHeader className="pb-2">
-              <Badge variant="outline" className="w-fit text-[10px] mb-1">{item.type}</Badge>
-              <CardTitle className="text-base font-bold">{item.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 pt-0">
-              {item.notes && <p className="text-xs text-muted-foreground leading-relaxed">{item.notes}</p>}
-              <div className="pt-2 border-t flex items-center justify-between gap-2">
-                <a href={item.link} target="_blank" rel="noreferrer" className="flex-1">
-                  <Button variant="default" size="sm" className="w-full text-xs h-8 gap-1.5">
-                    <ExternalLink className="w-3.5 h-3.5" /> View Deployment
-                  </Button>
-                </a>
-                {isAdmin && (
-                  <Button variant="ghost" size="sm" className="h-8 px-2 text-destructive" onClick={() => handleDeleteProject(item.id)}>
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </Button>
-                )}
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-black">
+      {/* Owner Admin Header Bar */}
+      {isAdmin && (
+        <div className="bg-amber-950/90 border-b border-amber-600/50 p-3 sticky top-0 z-50 text-xs backdrop-blur-md">
+          <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+            <span className="font-bold text-amber-400 flex items-center gap-1.5">
+              <Shield className="w-4 h-4" /> Owner Portfolio Manager
+            </span>
+            {!isUnlocked ? (
+              <div className="flex gap-2">
+                <input
+                  type="password"
+                  placeholder="Enter PIN"
+                  value={pin}
+                  onChange={(e) => setPin(e.target.value)}
+                  className="bg-black/80 px-2.5 py-1 rounded border border-amber-600 text-white text-xs w-24 outline-none"
+                />
+                <button
+                  onClick={() => {
+                    if (pin === '2026') setIsUnlocked(true)
+                    else alert('Incorrect PIN')
+                  }}
+                  className="bg-amber-600 px-3 py-1 rounded font-bold text-black"
+                >
+                  Unlock
+                </button>
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Verified Reviews Section with Public Add Option */}
-      <section className="p-6 md:p-8 rounded-2xl bg-muted/20 border border-border">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-          <div>
-            <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-              <Star className="text-amber-500 fill-amber-500 w-5 h-5" /> Verified Client Reviews
-            </h2>
-            <p className="text-xs text-muted-foreground mt-0.5">Real feedback from clients who deployed Nexus AI systems.</p>
+            ) : (
+              <div className="flex items-center gap-3">
+                <span className="text-emerald-400 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> Admin Active
+                </span>
+                <button
+                  onClick={handleOpenAdd}
+                  className="bg-cyan-600 hover:bg-cyan-500 px-3.5 py-1.5 rounded-lg font-bold text-white flex items-center gap-1.5 transition cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" /> Add New Project
+                </button>
+              </div>
+            )}
           </div>
-
-          {/* Public Add Review Button */}
-          <Dialog open={openReviewModal} onOpenChange={setOpenReviewModal}>
-            <DialogTrigger asChild>
-              <Button variant="outline" size="sm" className="text-xs gap-1.5 h-9 border-amber-500/30 hover:border-amber-500 text-amber-500 hover:text-amber-400">
-                <MessageSquarePlus className="w-4 h-4" /> Leave a Review
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-md">
-              <DialogHeader>
-                <DialogTitle className="text-base font-bold">Write a Client Review</DialogTitle>
-              </DialogHeader>
-
-              {reviewSubmitted ? (
-                <div className="py-8 text-center">
-                  <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-                  <h4 className="font-bold text-foreground">Review Published!</h4>
-                  <p className="text-xs text-muted-foreground mt-1">Thank you for sharing your experience with Nexus AI.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleAddReview} className="space-y-3 mt-2">
-                  <div>
-                    <label className="text-xs font-semibold">Your Full Name *</label>
-                    <Input value={revName} onChange={(e) => setRevName(e.target.value)} placeholder="e.g. Dr. Amit Sharma" className="h-9 text-xs mt-1" required />
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold">Business / Practice Name</label>
-                    <Input value={revBusiness} onChange={(e) => setRevBusiness(e.target.value)} placeholder="e.g. Apex Diagnostics" className="h-9 text-xs mt-1" />
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold">Rating</label>
-                    <select value={revRating} onChange={(e) => setRevRating(Number(e.target.value))} className="w-full h-9 text-xs rounded-md border border-input bg-background px-3 mt-1">
-                      <option value={5}>⭐⭐⭐⭐⭐ (5/5 Excellent)</option>
-                      <option value={4}>⭐⭐⭐⭐ (4/5 Very Good)</option>
-                      <option value={3}>⭐⭐⭐ (3/5 Good)</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="text-xs font-semibold">Your Experience &amp; Results *</label>
-                    <Textarea value={revComment} onChange={(e) => setRevComment(e.target.value)} placeholder="How did Nexus AI help your business?" className="text-xs mt-1 min-h-[80px]" required />
-                  </div>
-                  <Button type="submit" className="w-full h-9 text-xs font-medium mt-2 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold">Submit Review</Button>
-                </form>
-              )}
-            </DialogContent>
-          </Dialog>
         </div>
+      )}
 
-        {/* Dynamic Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {reviews.map((rev) => (
-            <div key={rev.id} className="p-4 rounded-xl bg-card border text-xs space-y-2">
-              <div className="flex justify-between items-center">
-                <div className="flex text-amber-500">
-                  {[...Array(rev.rating)].map((_, i) => (<Star key={i} className="w-3.5 h-3.5 fill-amber-500" />))}
+      {/* Main Header */}
+      <section className="pt-24 pb-12 px-4 text-center max-w-4xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6">
+          <Sparkles className="w-4 h-4" /> Production Deployments & Case Studies
+        </div>
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-4">
+          Autonomous Systems <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">In Action</span>
+        </h1>
+        <p className="text-slate-300 max-w-2xl mx-auto text-sm md:text-base mb-8">
+          Explore real-world voice agents, AEO-ready websites, and autonomous CRM pipelines deployed for healthcare, real estate, and service businesses worldwide.
+        </p>
+
+        {/* Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                activeCategory === cat
+                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-lg shadow-cyan-500/20'
+                  : 'bg-slate-900 border border-slate-800 text-slate-400 hover:border-slate-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Project Grid */}
+      <section className="pb-24 px-4 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/40 hover:shadow-2xl hover:shadow-cyan-500/10 transition group flex flex-col justify-between"
+            >
+              <div>
+                {/* Image Cover */}
+                <div className="relative h-52 w-full overflow-hidden bg-slate-950">
+                  <img
+                    src={project.coverImage}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-black/30" />
+                  
+                  {/* Category Badge */}
+                  <span className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-md border border-cyan-500/30 text-cyan-300 text-[11px] font-bold px-3 py-1 rounded-full">
+                    {project.category}
+                  </span>
+
+                  {/* Owner Controls */}
+                  {isAdmin && isUnlocked && (
+                    <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-black/80 backdrop-blur-md p-1.5 rounded-lg border border-slate-700">
+                      <button
+                        onClick={() => handleOpenEdit(project)}
+                        className="p-1 hover:text-cyan-400 text-slate-300 transition cursor-pointer"
+                        title="Edit Project"
+                      >
+                        <Edit2 className="w-3.5 h-3.5" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(project.id)}
+                        className="p-1 hover:text-red-400 text-slate-300 transition cursor-pointer"
+                        title="Delete Project"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-                <span className="text-[10px] text-muted-foreground">{rev.date}</span>
+
+                {/* Content */}
+                <div className="p-6">
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 mb-2">
+                    <span className="flex items-center gap-1 text-slate-300 font-medium">
+                      <Building2 className="w-3.5 h-3.5 text-cyan-400" /> {project.clientBusiness}
+                    </span>
+                    <span className="flex items-center gap-1 text-slate-400">
+                      <MapPin className="w-3.5 h-3.5 text-amber-400" /> {project.clientLocation}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+                </div>
               </div>
-              <p className="italic text-muted-foreground leading-relaxed">"{rev.comment}"</p>
-              <p className="font-bold text-foreground pt-1">— {rev.name}, <span className="font-normal text-muted-foreground">{rev.business}</span></p>
+
+              {/* Action Button */}
+              <div className="p-6 pt-0 border-t border-slate-800/80 mt-2 flex items-center justify-between">
+                <span className="text-[11px] text-slate-500 capitalize flex items-center gap-1.5">
+                  {getDeploymentIcon(project.deploymentType)}
+                  {project.deploymentType === 'pdf' ? 'Architecture PDF' : project.deploymentType === 'video' ? 'Walkthrough Video' : 'Live Platform'}
+                </span>
+                <a
+                  href={project.deploymentUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-500/40 text-cyan-300 hover:text-slate-950 font-bold text-xs transition duration-200"
+                >
+                  View Deployment <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Edit / Add Modal (Only for Owner) */}
+      {isModalOpen && editingProject && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 text-left shadow-2xl my-8">
+            <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                <Edit2 className="w-4 h-4 text-cyan-400" /> Manage Project Deployment
+              </h3>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="text-slate-400 hover:text-white cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveModal} className="space-y-4 text-xs">
+              <div>
+                <label className="block text-slate-400 mb-1">Project Title *</label>
+                <input
+                  required
+                  value={editingProject.title}
+                  onChange={(e) => setEditingProject({ ...editingProject, title: e.target.value })}
+                  placeholder="e.g. Dental Clinic 24/7 AI Receptionist (Sofia)"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-400 mb-1">Category / Project Type *</label>
+                  <select
+                    value={editingProject.category}
+                    onChange={(e) => setEditingProject({ ...editingProject, category: e.target.value })}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  >
+                    <option>Voice AI System</option>
+                    <option>Website & AEO</option>
+                    <option>WhatsApp CRM & Voice</option>
+                    <option>Voice AI & WhatsApp</option>
+                    <option>Full Autonomous Suite</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-slate-400 mb-1">Client Business Name *</label>
+                  <input
+                    required
+                    value={editingProject.clientBusiness}
+                    onChange={(e) => setEditingProject({ ...editingProject, clientBusiness: e.target.value })}
+                    placeholder="e.g. Apex Dental Care"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-slate-400 mb-1">Client Location *</label>
+                  <input
+                    required
+                    value={editingProject.clientLocation}
+                    onChange={(e) => setEditingProject({ ...editingProject, clientLocation: e.target.value })}
+                    placeholder="e.g. Jaipur, India or Austin, TX"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  />
+                </div>
+                <div>
+                  <label className="block text-slate-400 mb-1">Client Phone (Internal / Optional)</label>
+                  <input
+                    value={editingProject.clientPhone}
+                    onChange={(e) => setEditingProject({ ...editingProject, clientPhone: e.target.value })}
+                    placeholder="+91 8003469293"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-slate-400 mb-1">Cover Image URL *</label>
+                <input
+                  required
+                  value={editingProject.coverImage}
+                  onChange={(e) => setEditingProject({ ...editingProject, coverImage: e.target.value })}
+                  placeholder="https://...image-url.jpg"
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                />
+              </div>
+
+              <div className="grid grid-cols-3 gap-3">
+                <div>
+                  <label className="block text-slate-400 mb-1">Deployment Type</label>
+                  <select
+                    value={editingProject.deploymentType}
+                    onChange={(e) => setEditingProject({ ...editingProject, deploymentType: e.target.value as any })}
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  >
+                    <option value="website">Live Website URL</option>
+                    <option value="pdf">Architecture PDF</option>
+                    <option value="video">Client Video Walkthrough</option>
+                  </select>
+                </div>
+                <div className="col-span-2">
+                  <label className="block text-slate-400 mb-1">Deployment URL / Link *</label>
+                  <input
+                    required
+                    value={editingProject.deploymentUrl}
+                    onChange={(e) => setEditingProject({ ...editingProject, deploymentUrl: e.target.value })}
+                    placeholder="https://urbannestproperties.lovable.app"
+                    className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-slate-400 mb-1">Project Description & Results *</label>
+                <textarea
+                  required
+                  rows={3}
+                  value={editingProject.description}
+                  onChange={(e) => setEditingProject({ ...editingProject, description: e.target.value })}
+                  placeholder="Automated after-hours patient inquiry intake with zero human drop-off..."
+                  className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-white outline-none focus:border-cyan-500 text-xs"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-3 border-t border-slate-800">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 font-semibold text-xs cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+                >
+                  <Save className="w-3.5 h-3.5" /> Save Project
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
-  );
+  )
 }
+
+export default ProjectsPage

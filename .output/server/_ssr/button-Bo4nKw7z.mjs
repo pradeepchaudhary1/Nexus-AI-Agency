@@ -1,5 +1,5 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { _ as require_jsx_runtime, m as Slot, v as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { c as Slot, l as require_jsx_runtime, u as require_react } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { n as clsx, t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/button-Bo4nKw7z.js
