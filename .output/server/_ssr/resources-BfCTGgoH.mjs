@@ -1,7 +1,7 @@
 import { _ as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
 import { t as Badge } from "./badge--9ZMeBB2.mjs";
-import { L as FileText, st as BookOpen } from "../_libs/lucide-react.mjs";
+import { lt as BookOpen, z as FileText } from "../_libs/lucide-react.mjs";
 import { i as CardTitle, n as CardContent, r as CardHeader, t as Card } from "./card-Dwbi87Uj.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/resources-BfCTGgoH.js
 var import_jsx_runtime = require_jsx_runtime();

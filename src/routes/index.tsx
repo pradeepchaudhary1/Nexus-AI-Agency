@@ -109,5 +109,22 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <HomePage />;
+  return (
+    <>
+      {/* Hide third-party Netlify / Lovable badges cleanly via React style */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        [data-lovable-badge],
+        div[class*="netlify-drawer"],
+        iframe[src*="app.netlify.com"],
+        a[href*="netlify.com"][target="_blank"]:not(footer a) {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+      `}} />
+      <HomePage />
+    </>
+  );
 }
+export default Index;

@@ -17,8 +17,10 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookAuditRouteImport } from './routes/book-audit'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as RealEstateRouteImport } from './routes/real-estate'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
@@ -62,6 +64,11 @@ const IndustriesRoute = IndustriesRouteImport.update({
   path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -70,6 +77,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealEstateRoute = RealEstateRouteImport.update({
+  id: '/real-estate',
+  path: '/real-estate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -97,8 +109,10 @@ export interface FileRoutesByFullPath {
   '/book-audit': typeof BookAuditRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
+  '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -111,8 +125,10 @@ export interface FileRoutesByTo {
   '/book-audit': typeof BookAuditRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
+  '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -127,8 +143,10 @@ export interface FileRoutesById {
   '/book-audit': typeof BookAuditRoute
   '/how-it-works': typeof HowItWorksRoute
   '/industries': typeof IndustriesRoute
+  '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
+  '/real-estate': typeof RealEstateRoute
   '/resources': typeof ResourcesRoute
   '/solutions': typeof SolutionsRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
@@ -143,8 +161,10 @@ export interface FileRouteTypes {
     | '/book-audit'
     | '/how-it-works'
     | '/industries'
+    | '/onboarding'
     | '/privacy'
     | '/projects'
+    | '/real-estate'
     | '/resources'
     | '/solutions'
     | '/admin/resources'
@@ -157,8 +177,10 @@ export interface FileRouteTypes {
     | '/book-audit'
     | '/how-it-works'
     | '/industries'
+    | '/onboarding'
     | '/privacy'
     | '/projects'
+    | '/real-estate'
     | '/resources'
     | '/solutions'
     | '/admin/resources'
@@ -172,8 +194,10 @@ export interface FileRouteTypes {
     | '/book-audit'
     | '/how-it-works'
     | '/industries'
+    | '/onboarding'
     | '/privacy'
     | '/projects'
+    | '/real-estate'
     | '/resources'
     | '/solutions'
     | '/_authenticated/admin/resources'
@@ -188,8 +212,10 @@ export interface RootRouteChildren {
   BookAuditRoute: typeof BookAuditRoute
   HowItWorksRoute: typeof HowItWorksRoute
   IndustriesRoute: typeof IndustriesRoute
+  OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
+  RealEstateRoute: typeof RealEstateRoute
   ResourcesRoute: typeof ResourcesRoute
   SolutionsRoute: typeof SolutionsRoute
 }
@@ -252,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -264,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/real-estate': {
+      id: '/real-estate'
+      path: '/real-estate'
+      fullPath: '/real-estate'
+      preLoaderRoute: typeof RealEstateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -310,8 +350,10 @@ const rootRouteChildren: RootRouteChildren = {
   BookAuditRoute: BookAuditRoute,
   HowItWorksRoute: HowItWorksRoute,
   IndustriesRoute: IndustriesRoute,
+  OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
+  RealEstateRoute: RealEstateRoute,
   ResourcesRoute: ResourcesRoute,
   SolutionsRoute: SolutionsRoute,
 }
