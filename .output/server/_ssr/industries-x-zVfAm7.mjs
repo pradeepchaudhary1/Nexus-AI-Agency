@@ -1,6 +1,6 @@
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { mt as ArrowRight } from "../_libs/lucide-react.mjs";
+import { ht as ArrowRight } from "../_libs/lucide-react.mjs";
 import { b as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { r as industries } from "./lead-forms-EP1Aq0So.mjs";
 import { i as PageHero, o as SectionHeading, r as FeatureGrid } from "./page-sections-Beksqh_K.mjs";

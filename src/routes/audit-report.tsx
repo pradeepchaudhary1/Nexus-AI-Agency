@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { CheckCircle2, AlertTriangle, XCircle, Copy, Check, Code, Sparkles, Zap, Shield, Search, FileText, ArrowRight, Layers, PhoneCall } from 'lucide-react'
+import { CheckCircle2, AlertTriangle, XCircle, Copy, Check, Code, Sparkles, Zap, Shield, Search, FileText, ArrowRight, Layers, PhoneCall, QrCode, CreditCard, Clock, CheckSquare } from 'lucide-react'
 
 export const Route = createFileRoute('/audit-report')({
   validateSearch: (search: Record<string, unknown>) => {
@@ -14,17 +14,22 @@ export const Route = createFileRoute('/audit-report')({
 function AuditReportPage() {
   const { url } = Route.useSearch()
   const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
+  const brandName = cleanDomain.split('.')[0].toUpperCase()
+
   const [copiedSchema, setCopiedSchema] = useState(false)
   const [copiedLlms, setCopiedLlms] = useState(false)
+  const [copiedCopy, setCopiedCopy] = useState(false)
+  const [paymentTab, setPaymentTab] = useState<'upi' | 'razorpay' | 'stripe'>('upi')
+  const [copiedUpi, setCopiedUpi] = useState(false)
 
-  // Live Auto-Generated Schema for this exact domain
+  // 1. Auto-Generated Schema.org JSON-LD (Tailored to Domain)
   const generatedSchema = `{
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "LocalBusiness",
       "@id": "https://${cleanDomain}/#business",
-      "name": "${cleanDomain.split('.')[0].toUpperCase()}",
+      "name": "${brandName}",
       "url": "https://${cleanDomain}/",
       "telephone": "+91-8003469293",
       "priceRange": "$$",
@@ -49,7 +54,7 @@ function AuditReportPage() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does appointment booking work at ${cleanDomain}?",
+          "name": "How does appointment booking work at ${brandName}?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Inquiries are attended 24/7 with instant confirmation and automated calendar scheduling."
@@ -60,200 +65,315 @@ function AuditReportPage() {
   ]
 }`
 
-  // Live Auto-Generated /llms.txt for this exact domain
-  const generatedLlmsTxt = `# ${cleanDomain.toUpperCase()}
+  // 2. Auto-Generated /llms.txt Map for AI Crawlers
+  const generatedLlmsTxt = `# ${brandName}
 > Official Machine-Readable Knowledge Map for AI Search Engines.
 
 ## Core Services & Solutions
 - 24/7 Customer Inbound Answering & Qualified Appointment Booking.
-- Direct WhatsApp Confirmation & CRM Synchronization.
+- Direct WhatsApp Confirmation & Google Sheets CRM Synchronization.
 
 ## Canonical Verification
 - Website: https://${cleanDomain}/
 - Verified Schema: https://${cleanDomain}/#business
+- Crawler Access: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
 `
 
-  const copyToClipboard = (text: string, type: 'schema' | 'llms') => {
+  // 3. AI Generated High-Converting Copy
+  const heroHeadline = `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead Follow-Up"`
+  const subHeadline = `"Automate customer inquiries with intelligent voice calling, instant WhatsApp confirmations, and zero human drop-off."`
+
+  const copyToClipboard = (text: string, type: 'schema' | 'llms' | 'copy') => {
     navigator.clipboard.writeText(text)
     if (type === 'schema') {
       setCopiedSchema(true)
       setTimeout(() => setCopiedSchema(false), 2000)
-    } else {
+    } else if (type === 'llms') {
       setCopiedLlms(true)
       setTimeout(() => setCopiedLlms(false), 2000)
+    } else {
+      setCopiedCopy(true)
+      setTimeout(() => setCopiedCopy(false), 2000)
     }
   }
+
+  const copyUpiId = () => {
+    navigator.clipboard.writeText('8003469293@ybl')
+    setCopiedUpi(true)
+    setTimeout(() => setCopiedUpi(false), 2000)
+  }
+
+  // Live Dynamic UPI QR Code URL for ₹999
+  const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent('upi://pay?pa=8003469293@ybl&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit')}`
 
   return (
     <div className="min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black">
       <div className="max-w-5xl mx-auto space-y-12">
-        {/* Header Title */}
+        {/* Header */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" /> 5-Pillar Comprehensive Technical & AI Audit Report
+            <Sparkles className="w-3.5 h-3.5" /> Autonomous AI Solution & Auto-Fix Engine
           </div>
           <h1 className="text-3xl md:text-5xl font-extrabold text-white">
-            Diagnostic & Optimization Report for <span className="text-cyan-400">{cleanDomain}</span>
+            AI Auto-Fix & Optimization Suite for <span className="text-cyan-400">{cleanDomain}</span>
           </h1>
           <p className="text-sm text-slate-400 max-w-2xl mx-auto">
-            Screaming Frog crawl diagnostics, auto-generated Schema.org markup, high-converting copywriting frameworks, and /llms.txt AI citation directives.
+            Ye system sirf issues nahi batata, balki aapki website ke liye ready-made Schema code, high-converting copy, /llms.txt, aur AI prompt ranking suggestions auto-generate karke deta hai.
           </p>
         </div>
 
-        {/* Pillar 1: On-Page SEO Issues */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Search className="w-5 h-5 text-cyan-400" /> Pillar 1: On-Page SEO Audit
-            </h2>
-            <span className="text-xs bg-amber-500/10 border border-amber-500/30 text-amber-400 px-3 py-1 rounded-full font-semibold">
-              3 Optimization Gaps Found
-            </span>
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-3 text-xs">
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-slate-200">Missing Meta Descriptions</p>
-                <p className="text-slate-400 text-[11px]">Sub-pages lack 155-character CTR-optimized meta tags, reducing Google search click-through rate by 22%.</p>
-              </div>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
-              <XCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-slate-200">Duplicate Title Tags</p>
-                <p className="text-slate-400 text-[11px]">Multiple pages share identical H1 titles, confusing Googlebot on canonical priority.</p>
-              </div>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-slate-200">Internal Linking Structure</p>
-                <p className="text-slate-400 text-[11px]">Primary navigation links resolve cleanly without 404 broken redirect loops.</p>
-              </div>
-            </div>
-            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-slate-200">Thin Content Sections</p>
-                <p className="text-slate-400 text-[11px]">Key service sections contain under 150 words without structured FAQ comparison tables.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Pillar 2: Technical SEO (Screaming Frog Replacement) */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Layers className="w-5 h-5 text-indigo-400" /> Pillar 2: Technical SEO & Core Web Vitals
-            </h2>
-            <span className="text-xs bg-indigo-500/10 border border-indigo-500/30 text-indigo-400 px-3 py-1 rounded-full font-semibold">
-              Screaming Frog Diagnostic
-            </span>
-          </div>
-
-          <div className="grid sm:grid-cols-3 gap-3 text-xs text-center">
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="text-slate-500 text-[11px] mb-1">Indexability Status</p>
-              <p className="text-base font-bold text-emerald-400">200 OK (Crawlable)</p>
-              <p className="text-[10px] text-slate-500 mt-1">Robots.txt allows standard crawlers</p>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="text-slate-500 text-[11px] mb-1">Largest Contentful Paint (LCP)</p>
-              <p className="text-base font-bold text-amber-400">3.2 Seconds</p>
-              <p className="text-[10px] text-slate-500 mt-1">Render-blocking scripts delay interaction</p>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="text-slate-500 text-[11px] mb-1">Cumulative Layout Shift (CLS)</p>
-              <p className="text-base font-bold text-emerald-400">0.02 (Good)</p>
-              <p className="text-[10px] text-slate-500 mt-1">No disruptive visual shifting</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Pillar 3: Auto-Generated Schema Builder */}
+        {/* Fix 1: Auto-Generated Schema.org Builder */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Code className="w-5 h-5 text-emerald-400" /> Pillar 3: Auto-Generated JSON-LD Schema
+                <Code className="w-5 h-5 text-emerald-400" /> Solution 1: Auto-Generated Schema.org JSON-LD
               </h2>
-              <p className="text-xs text-slate-400 mt-1">Aapko schema par dimaag lagane ki zaroorat nahi hai. Ye ready code aapki site ke liye generate ho chuka hai:</p>
+              <p className="text-xs text-slate-400 mt-1">
+                Aapko schema par dimaag lagane ki zaroorat nahi hai. Humne aapke domain ke hisaab se complete rich snippet schema auto-build kar diya hai:
+              </p>
             </div>
             <button
               onClick={() => copyToClipboard(generatedSchema, 'schema')}
               className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
             >
               {copiedSchema ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedSchema ? 'Copied to Clipboard!' : 'Copy JSON-LD Schema'}
+              {copiedSchema ? 'Copied to Clipboard!' : 'Copy Schema Code'}
             </button>
           </div>
-
           <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-60">
             {generatedSchema}
           </pre>
         </div>
 
-        {/* Pillar 4: High-Converting AI Copywriting Engine */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <FileText className="w-5 h-5 text-blue-400" /> Pillar 4: High-Converting AI Copywriting Re-Write
-          </h2>
-          <p className="text-xs text-slate-400">Aapki website ke purane generic text ko conversion-focused copy mein convert kiya gaya hai:</p>
-
-          <div className="space-y-3 text-xs">
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-              <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">Recommended Hero Headline</span>
-              <p className="text-sm font-bold text-white">"Never Lose Another Customer to a Busy Tone — 24/7 Automated Booking & Instant Follow-Up"</p>
-              <p className="text-[11px] text-slate-400">Replaces weak headlines like 'Welcome to our business' with an immediate pain-point hook.</p>
-            </div>
-            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Recommended Call To Action (CTA)</span>
-              <p className="text-sm font-bold text-white">"Test Live Voice Agent in 60 Seconds (No Sales Call Required)"</p>
-              <p className="text-[11px] text-slate-400">Generates 3.4x higher click-throughs compared to generic 'Contact Us' buttons.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Pillar 5: GEO & /llms.txt AI Search Visibility */}
+        {/* Fix 2: High-Converting AI Copywriting Engine */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Globe className="w-5 h-5 text-cyan-400" /> Pillar 5: GEO & /llms.txt AI Citation Engine
+                <FileText className="w-5 h-5 text-blue-400" /> Solution 2: High-Converting AI Copywriting
               </h2>
-              <p className="text-xs text-slate-400 mt-1">ChatGPT, Perplexity aur Gemini ko aapki site recommend karne ke liye ye file aapke domain root par save honi chahiye:</p>
+              <p className="text-xs text-slate-400 mt-1">
+                Aapki website ke visitors ko paying customers mein convert karne ke liye optimized headline aur copy:
+              </p>
+            </div>
+            <button
+              onClick={() => copyToClipboard(`${heroHeadline}\n${subHeadline}`, 'copy')}
+              className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
+            >
+              {copiedCopy ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+              {copiedCopy ? 'Copied Copy!' : 'Copy Rewritten Copy'}
+            </button>
+          </div>
+
+          <div className="space-y-3 text-xs">
+            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+              <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">High-Converting Hero Headline</span>
+              <p className="text-sm font-bold text-white">{heroHeadline}</p>
+              <p className="text-[11px] text-slate-400">{subHeadline}</p>
+            </div>
+            <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">3 Irresistible Feature Bullets</span>
+              <ul className="space-y-1 text-slate-300">
+                <li>• <b>Zero Missed Leads:</b> Attends calls in &lt;800ms when your team is busy or after hours.</li>
+                <li>• <b>Instant WhatsApp Slips:</b> Delivers booking confirmations & location pins automatically.</li>
+                <li>• <b>Live Sheet Sync:</b> Automatically records caller name, requirement & date in real time.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Fix 3: Automated GEO & /llms.txt AI Bot Permission */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+                <Globe className="w-5 h-5 text-cyan-400" /> Solution 3: Automated GEO & /llms.txt Permissions
+              </h2>
+              <p className="text-xs text-slate-400 mt-1">
+                ChatGPT, Perplexity aur Claude crawler bots ko website par access dene ke liye ye file domain root par save honi chahiye:
+              </p>
             </div>
             <button
               onClick={() => copyToClipboard(generatedLlmsTxt, 'llms')}
               className="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
             >
               {copiedLlms ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedLlms ? 'Copied to Clipboard!' : 'Copy /llms.txt'}
+              {copiedLlms ? 'Copied /llms.txt' : 'Copy /llms.txt'}
             </button>
           </div>
-
           <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-48">
             {generatedLlmsTxt}
           </pre>
         </div>
 
-        {/* Turnkey Implementation CTA */}
-        <div className="bg-gradient-to-r from-cyan-950/80 via-slate-900 to-blue-950/80 border border-cyan-500/40 rounded-3xl p-8 text-center space-y-4 shadow-2xl">
-          <h3 className="text-2xl font-bold text-white">Want Nexus AI Agency to Deploy All 5 Fixes in 3 Days?</h3>
-          <p className="text-xs text-slate-300 max-w-lg mx-auto">
-            Hum aapki website par Auto-Schema, /llms.txt, PageSpeed Core Web Vitals, aur 24/7 AI Voice Receptionist completely turnkey configure karke dete hain.
+        {/* Fix 4: AI Prompt Discovery & Ranking Blueprint */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-amber-400" /> Solution 4: Top 5 AI Search Prompts to Rank In (ChatGPT & Perplexity)
+          </h2>
+          <p className="text-xs text-slate-400">
+            Jab potential buyers AI mein ye prompts puchenge, to aapki website kaise top recommend hogi:
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+
+          <div className="grid sm:grid-cols-2 gap-3 text-xs">
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <p className="font-semibold text-cyan-300">1. "Best {brandName} services near me with 24/7 phone support"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Add geo-targeted schema with exact business openingHoursSpecification.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <p className="font-semibold text-cyan-300">2. "How much does {brandName} consultation or booking cost?"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Include clean priceRange and transparent package FAQs directly on homepage.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <p className="font-semibold text-cyan-300">3. "Top rated verified alternatives to competitors in my city"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Embed comparison table (Pillar 4) highlighting speed & pricing advantages.</p>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
+              <p className="font-semibold text-cyan-300">4. "How to book an instant appointment with {brandName} on WhatsApp"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Connect official WhatsApp Cloud API click-to-chat webhook.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Fix 5: Site Hygiene & Legal Disclaimers */}
+        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3">
+          <h2 className="text-lg font-bold text-white flex items-center gap-2">
+            <Shield className="w-5 h-5 text-indigo-400" /> Solution 5: Site Hygiene & Legal Verification
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-3 text-xs">
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
+              <CheckSquare className="w-4 h-4 text-emerald-400 mt-0.5" />
+              <div>
+                <p className="font-semibold text-white">Privacy Policy & Terms of Service</p>
+                <p className="text-slate-400 text-[11px]">Meta Ads aur Google crawlers ke liye mandatory footer links include hone chahiye.</p>
+              </div>
+            </div>
+            <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
+              <CheckSquare className="w-4 h-4 text-emerald-400 mt-0.5" />
+              <div>
+                <p className="font-semibold text-white">Title Tag & Meta Description Health</p>
+                <p className="text-slate-400 text-[11px]">Har page ka unique H1 title hona chahiye taaki duplicate content penalty na lage.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Multi-Gateway Integrated Payment System (₹999 / $19) */}
+        <div className="bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/40 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.15)] text-center space-y-6">
+          <span className="px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider">
+            Turnkey Deployment & Fix Activation
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white">
+            Activate All 5 AI Solutions for Your Website
+          </h2>
+          <p className="text-xs md:text-sm text-slate-400 max-w-lg mx-auto">
+            Aapko ye code khud paste karne ki zaroorat nahi hai. Hum aapke domain par Auto-Schema, /llms.txt, PageSpeed Core Web Vitals, aur 24/7 AI Voice Receptionist completely turnkey configure karke denge.
+          </p>
+
+          {/* Pricing Tag */}
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-slate-500 line-through text-lg font-bold">₹4,999 ($79)</span>
+            <span className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+              ₹999 <span className="text-sm text-slate-400 font-normal">/ $19 USD</span>
+            </span>
+            <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">
+              80% OFF Launch
+            </span>
+          </div>
+
+          {/* Payment Tabs: UPI | Razorpay | Stripe */}
+          <div className="max-w-md mx-auto">
+            <div className="flex p-1 rounded-xl bg-slate-950 border border-slate-800 mb-6 text-xs font-bold">
+              <button
+                onClick={() => setPaymentTab('upi')}
+                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'upi' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+              >
+                <QrCode className="w-3.5 h-3.5" /> UPI / QR (India)
+              </button>
+              <button
+                onClick={() => setPaymentTab('razorpay')}
+                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'razorpay' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+              >
+                <CreditCard className="w-3.5 h-3.5" /> Razorpay
+              </button>
+              <button
+                onClick={() => setPaymentTab('stripe')}
+                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'stripe' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+              >
+                <Clock className="w-3.5 h-3.5" /> Stripe (USD)
+              </button>
+            </div>
+
+            {/* Tab 1: UPI / QR Code */}
+            {paymentTab === 'upi' && (
+              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                <p className="text-xs font-semibold text-slate-300">Scan QR Code via PhonePe / GPay / Paytm</p>
+                <div className="w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center">
+                  <img src={upiQrUrl} alt="UPI Payment QR Code" className="w-full h-full object-contain" />
+                </div>
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <span className="text-xs text-slate-400">UPI ID:</span>
+                  <code className="text-xs bg-slate-900 border border-slate-800 px-2 py-1 rounded text-cyan-400 font-mono">
+                    8003469293@ybl
+                  </code>
+                  <button
+                    onClick={copyUpiId}
+                    className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 cursor-pointer"
+                    title="Copy UPI ID"
+                  >
+                    {copiedUpi ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500">Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation.</p>
+              </div>
+            )}
+
+            {/* Tab 2: Razorpay */}
+            {paymentTab === 'razorpay' && (
+              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                <CreditCard className="w-10 h-10 text-cyan-400 mx-auto" />
+                <h4 className="text-sm font-bold text-white">Razorpay Secure Online Checkout</h4>
+                <p className="text-xs text-slate-400">Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets.</p>
+                <a
+                  href={`https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay ₹999 via Razorpay link for ${cleanDomain} AI setup.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition"
+                >
+                  Pay ₹999 via Razorpay Gateway &rarr;
+                </a>
+              </div>
+            )}
+
+            {/* Tab 3: Stripe International */}
+            {paymentTab === 'stripe' && (
+              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold">
+                  <Clock className="w-3.5 h-3.5" /> Coming Soon / Account In Setup
+                </div>
+                <h4 className="text-sm font-bold text-white">Stripe USD Card Gateway ($19 USD)</h4>
+                <p className="text-xs text-slate-400">Stripe international checkout is undergoing merchant onboarding. For international credit card payments, connect via WhatsApp for an instant payment invoice link.</p>
+                <a
+                  href={`https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition"
+                >
+                  <PhoneCall className="w-3.5 h-3.5" /> Request $19 USD Invoice on WhatsApp &rarr;
+                </a>
+              </div>
+            )}
+          </div>
+
+          <div className="pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={`https://wa.me/918003469293?text=Hi%20Pradeep%2C%20maine%20${cleanDomain}%20ka%20audit%20report%20dekha%20hai%20aur%20ise%20implement%20karwana%20chahta%20hoon.`}
+              href={`https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine report dekha hai aur ise deploy karwana chahta hoon.`)}`}
               target="_blank"
               rel="noreferrer"
-              className="px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition"
+              className="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition"
             >
-              <PhoneCall className="w-4 h-4" /> Deploy All 5 Fixes with Founder Pradeep &rarr;
+              <PhoneCall className="w-4 h-4" /> Message Founder Pradeep Directly on WhatsApp &rarr;
             </a>
           </div>
         </div>
