@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-B5ZtlZle.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-GNBls_HN.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "F:/Nexus-ai-agency/src/routes/__root.tsx",
@@ -23,10 +23,10 @@ var tsrStartManifest = () => ({ routes: {
 			"/solutions-engine"
 		],
 		preloads: [
-			"/assets/index-D5xkwXrP.js",
+			"/assets/index-BdM9IoAC.js",
 			"/assets/jsx-runtime-Dk72oS4N.js",
 			"/assets/input-Bvqix4sk.js",
-			"/assets/admin.resources-D_bO0lBR.js",
+			"/assets/admin.resources-CBuZaSgz.js",
 			"/assets/matchContext-XPI5x9M_.js",
 			"/assets/link-CtBJQz2G.js",
 			"/assets/useSelector--FWu1dVt.js",
@@ -37,23 +37,23 @@ var tsrStartManifest = () => ({ routes: {
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-D5xkwXrP.js"
+			src: "/assets/index-BdM9IoAC.js"
 		} }]
 	},
 	"/_authenticated": {
 		filePath: "F:/Nexus-ai-agency/src/routes/_authenticated/route.tsx",
 		children: ["/_authenticated/admin/resources"],
-		preloads: ["/assets/route-DAieHRly.js"]
+		preloads: ["/assets/route-CiRzB8lq.js"]
 	},
 	"/about": {
 		filePath: "F:/Nexus-ai-agency/src/routes/about.tsx",
 		children: void 0,
-		preloads: ["/assets/about-DnNXEHzB.js"]
+		preloads: ["/assets/about-CEQzsTJh.js"]
 	},
 	"/agent-demos": {
 		filePath: "F:/Nexus-ai-agency/src/routes/agent-demos.tsx",
 		children: void 0,
-		preloads: ["/assets/agent-demos-CnkGArj4.js", "/assets/page-sections-Bav07X6c.js"]
+		preloads: ["/assets/agent-demos-WyDma2Di.js", "/assets/page-sections-D0nukCu3.js"]
 	},
 	"/auth": {
 		filePath: "F:/Nexus-ai-agency/src/routes/auth.tsx",
@@ -63,27 +63,27 @@ var tsrStartManifest = () => ({ routes: {
 	"/how-it-works": {
 		filePath: "F:/Nexus-ai-agency/src/routes/how-it-works.tsx",
 		children: void 0,
-		preloads: ["/assets/how-it-works-y6thadZP.js", "/assets/page-sections-Bav07X6c.js"]
+		preloads: ["/assets/how-it-works-C133YiJZ.js", "/assets/page-sections-D0nukCu3.js"]
 	},
 	"/industries": {
 		filePath: "F:/Nexus-ai-agency/src/routes/industries.tsx",
 		children: void 0,
-		preloads: ["/assets/industries-Br0YwHSo.js", "/assets/page-sections-Bav07X6c.js"]
+		preloads: ["/assets/industries-CBkCno-U.js", "/assets/page-sections-D0nukCu3.js"]
 	},
 	"/privacy": {
 		filePath: "F:/Nexus-ai-agency/src/routes/privacy.tsx",
 		children: void 0,
-		preloads: ["/assets/privacy-DDoysF3l.js", "/assets/page-sections-Bav07X6c.js"]
+		preloads: ["/assets/privacy-DMTHNZJI.js", "/assets/page-sections-D0nukCu3.js"]
 	},
 	"/solutions": {
 		filePath: "F:/Nexus-ai-agency/src/routes/solutions.tsx",
 		children: void 0,
-		preloads: ["/assets/solutions-D1mMsq4B.js", "/assets/page-sections-Bav07X6c.js"]
+		preloads: ["/assets/solutions-DLyq6_Z5.js", "/assets/page-sections-D0nukCu3.js"]
 	},
 	"/_authenticated/admin/resources": {
 		filePath: "F:/Nexus-ai-agency/src/routes/_authenticated/admin.resources.tsx",
 		children: void 0,
-		preloads: ["/assets/admin.resources-BarRRdzW.js", "/assets/label-Dbics62x.js"]
+		preloads: ["/assets/admin.resources-CzVphE2X.js", "/assets/label-Dbics62x.js"]
 	}
 } });
 //#endregion

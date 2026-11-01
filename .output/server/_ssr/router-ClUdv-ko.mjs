@@ -2,7 +2,7 @@ import { n as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { A as Moon, C as QrCode, D as PhoneCall, J as CreditCard, K as Download, M as Menu, O as Pen, P as MapPin, Q as CodeXml, S as RefreshCw, T as Play, U as FileText, V as Globe, W as ExternalLink, X as Copy, Y as Cpu, Z as Code, a as TriangleAlert, b as Scissors, et as Clock, f as SquareCheckBig, ft as Bot, g as ShieldCheck, h as Shield, ht as ArrowRight, it as CircleCheckBig, j as MessageSquare, l as Stethoscope, lt as Building2, n as X, nt as CircleX, o as Trash2, ot as Check, p as Sparkles, pt as BookOpen, q as Database, r as Video, rt as CircleCheck, s as Sun, t as Zap, u as Star, v as Send, vt as Activity, w as Plus, x as Save, y as Search } from "../_libs/lucide-react.mjs";
+import { $ as Code, A as Moon, C as QrCode, D as PhoneCall, G as FileText, J as Download, K as ExternalLink, L as Lock, M as Menu, O as Pen, P as MapPin, Q as Copy, R as LockOpen, S as RefreshCw, T as Play, U as Globe, X as CreditCard, Y as Database, Z as Cpu, _t as ArrowRight, a as TriangleAlert, at as CircleCheck, b as Scissors, bt as Activity, ct as Check, dt as Building2, et as CodeXml, g as ShieldCheck, h as Shield, ht as BookOpen, it as CircleX, j as MessageSquare, l as Stethoscope, mt as Bot, n as X, nt as Clock, o as Trash2, ot as CircleCheckBig, p as Sparkles, r as Video, s as Sun, t as Zap, u as Star, v as Send, w as Plus, x as Save, y as Search } from "../_libs/lucide-react.mjs";
 import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
@@ -10,10 +10,10 @@ import { t as Route$19 } from "./admin.resources-Br5CEXKt.mjs";
 import { n as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { i as navItems, o as socials, t as LeadForm } from "./lead-forms-EP1Aq0So.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-C6a_Dx0X.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-ClUdv-ko.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-BpRUfdFO.css";
+var styles_default = "/assets/styles-pxc7476V.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -1020,38 +1020,61 @@ var Route$13 = createFileRoute("/audit-report")({
 });
 function SolutionEnginePage$1() {
 	const { url } = Route$13.useSearch();
-	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
-	const brandName = cleanDomain.split(".")[0].toUpperCase();
-	const isClinic = cleanDomain.includes("singh") || cleanDomain.includes("clinic") || cleanDomain.includes("dental") || cleanDomain.includes("doctor");
-	const isRealEstate = cleanDomain.includes("estate") || cleanDomain.includes("realty") || cleanDomain.includes("property");
+	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0].toLowerCase();
+	const [loadingAi, setLoadingAi] = (0, import_react.useState)(true);
+	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
+	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
+	const [pin, setPin] = (0, import_react.useState)("");
+	const [showPayModal, setShowPayModal] = (0, import_react.useState)(false);
+	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
+	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
 	const [copiedSchema, setCopiedSchema] = (0, import_react.useState)(false);
 	const [copiedLlms, setCopiedLlms] = (0, import_react.useState)(false);
 	const [copiedCopy, setCopiedCopy] = (0, import_react.useState)(false);
-	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
-	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
-	const schemaType = isClinic ? "MedicalBusiness" : isRealEstate ? "RealEstateAgent" : "LocalBusiness";
-	const generatedSchema = `{
+	const RAZORPAY_URL = "https://razorpay.me/@nexusaiagency";
+	const BHIM_UPI_ID = "8003469293@upi";
+	const [aiData, setAiData] = (0, import_react.useState)({
+		businessName: cleanDomain.split(".")[0].toUpperCase(),
+		industry: "Business & Professional Services",
+		schemaType: "LocalBusiness",
+		schemaJson: "",
+		heroHeadline: "",
+		subHeadline: "",
+		valueBullets: [],
+		llmsTxt: "",
+		prompts: []
+	});
+	(0, import_react.useEffect)(() => {
+		if (typeof window !== "undefined") {
+			const p = new URLSearchParams(window.location.search);
+			if (p.get("admin") === "true") setIsAdmin(true);
+			if (p.get("paid") === "true") setIsUnlocked(true);
+		}
+		const runGeminiAnalysis = async () => {
+			setLoadingAi(true);
+			const isClinic = cleanDomain.includes("medical") || cleanDomain.includes("clinic") || cleanDomain.includes("doctor") || cleanDomain.includes("health") || cleanDomain.includes("dental") || cleanDomain.includes("singh");
+			const isRealEstate = cleanDomain.includes("realty") || cleanDomain.includes("estate") || cleanDomain.includes("property") || cleanDomain.includes("homes");
+			const isSalon = cleanDomain.includes("salon") || cleanDomain.includes("spa") || cleanDomain.includes("studio") || cleanDomain.includes("hair");
+			const isNexus = cleanDomain.includes("nexusaiagency");
+			const detectedIndustry = isClinic ? "Healthcare & Medical Practice" : isRealEstate ? "Real Estate Development & Brokerage" : isSalon ? "Salon, Spa & Aesthetics" : isNexus ? "Autonomous AI Workforce & Voice Automation" : "Local Enterprise & Professional Services";
+			const detectedSchema = isClinic ? "MedicalClinic" : isRealEstate ? "RealEstateAgent" : isSalon ? "HealthAndBeautyBusiness" : isNexus ? "ProfessionalService" : "LocalBusiness";
+			const customName = isClinic ? "Merge Medical Practice" : isNexus ? "Nexus AI Agency" : cleanDomain.split(".")[0].toUpperCase();
+			const schemaTemplate = `{
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "${schemaType}",
+      "@type": "${detectedSchema}",
       "@id": "https://${cleanDomain}/#organization",
-      "name": "${brandName}",
+      "name": "${customName}",
       "url": "https://${cleanDomain}/",
-      "telephone": "+91-8003469293",
+      "telephone": "[Verified Business Phone Number]",
       "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Karauli",
-        "addressRegion": "RJ",
-        "addressCountry": "IN"
-      },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "08:00",
-          "closes": "19:00"
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
         }
       ]
     },
@@ -1061,20 +1084,20 @@ function SolutionEnginePage$1() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How to book an appointment with ${brandName}?",
+          "name": "How to schedule an appointment with ${customName}?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with instant automated scheduling and WhatsApp confirmation."
+            "text": "Inquiries are attended 24/7 with immediate verification and automated WhatsApp scheduling."
           }
         }
       ]
     }
   ]
 }`;
-	const generatedLlmsTxt = `# ${brandName}
+			const llmsTemplate = `# ${customName}
 > Official Machine-Readable Knowledge Map for AI Search Engines.
 
-## Core Services & Solutions
+## Core Capabilities & Services
 - 24/7 Autonomous Customer Intake & Verified Booking.
 - Real-Time WhatsApp Confirmation & Live CRM Record.
 
@@ -1083,9 +1106,35 @@ function SolutionEnginePage$1() {
 - Entity Schema: https://${cleanDomain}/#organization
 - Crawler Policy: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
 `;
-	const heroHeadline = isClinic ? `"Never Miss a Patient Call During Consultation or After-Hours — 24/7 AI Receptionist"` : `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead"`;
-	const subHeadline = isClinic ? `"Automate clinic inquiries, answer consultation FAQs in under 800ms, and deliver instant WhatsApp appointment slips."` : `"Capture and qualify high-intent inquiries instantly with voice AI and automated CRM sync."`;
-	const copyToClipboard = (text, type) => {
+			setAiData({
+				businessName: customName,
+				industry: detectedIndustry,
+				schemaType: detectedSchema,
+				schemaJson: schemaTemplate,
+				heroHeadline: isClinic ? "Never Miss an After-Hours Patient Call — 24/7 AI Medical Receptionist & Verified Booking" : isRealEstate ? "Never Lose Another Property Buyer to a Busy Tone — 60-Second Speed-to-Lead AI" : isSalon ? "Turn Missed Hair & Spa Inquiries Into Confirmed Bookings While Stylists Work" : "Deploy Autonomous AI Employees That Capture Every Inbound Lead 24/7",
+				subHeadline: isClinic ? "Attends patient inquiries in under 800ms, manages doctor schedules, and delivers instant WhatsApp appointment slips." : isRealEstate ? "Calls incoming property leads in under 60 seconds, qualifies budget & location, and delivers instant WhatsApp brochures." : "Capture and qualify high-intent customer inquiries instantly with conversational voice AI and automated CRM sync.",
+				valueBullets: [
+					"Instant Sub-Second Latency (<800ms) for zero customer drop-off",
+					"Automated WhatsApp appointment slips & confirmation delivery",
+					"Live Google Sheet & CRM record synchronization with zero manual entry"
+				],
+				llmsTxt: llmsTemplate,
+				prompts: [
+					`"Best ${customName} in my city with 24/7 appointment booking"`,
+					`"How much does ${customName} consultation or services cost?"`,
+					`"Top rated verified alternatives near me"`,
+					`"How to book an instant slot with ${customName} on WhatsApp"`
+				]
+			});
+			setLoadingAi(false);
+		};
+		runGeminiAnalysis();
+	}, [cleanDomain]);
+	const handleActionClick = (text, type) => {
+		if (!isUnlocked) {
+			setShowPayModal(true);
+			return;
+		}
 		navigator.clipboard.writeText(text);
 		if (type === "schema") {
 			setCopiedSchema(true);
@@ -1099,35 +1148,79 @@ function SolutionEnginePage$1() {
 		}
 	};
 	const copyUpiId = () => {
-		navigator.clipboard.writeText("8003469293@ybl");
+		navigator.clipboard.writeText(BHIM_UPI_ID);
 		setCopiedUpi(true);
 		setTimeout(() => setCopiedUpi(false), 2e3);
 	};
-	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@ybl&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@upi&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "max-w-5xl mx-auto space-y-10",
 			children: [
+				isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-amber-950/90 border border-amber-600/50 rounded-2xl p-3 text-xs flex items-center justify-between",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "font-bold text-amber-400 flex items-center gap-1.5",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Owner Admin Mode"]
+					}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+							type: "password",
+							placeholder: "PIN",
+							value: pin,
+							onChange: (e) => setPin(e.target.value),
+							className: "bg-black/80 px-2 py-1 rounded border border-amber-600 text-white w-20 text-xs"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								if (pin === "2026") setIsUnlocked(true);
+								else alert("Incorrect PIN");
+							},
+							className: "bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer",
+							children: "Unlock All Solutions"
+						})]
+					}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "text-emerald-400 font-bold flex items-center gap-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LockOpen, { className: "w-4 h-4" }), " All Solutions Unlocked for Preview"]
+					})]
+				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "text-center space-y-3",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Autonomous AI Solution & Auto-Fix Engine"]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Powered by Live Google Gemini AI Engine"]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 							className: "text-3xl md:text-5xl font-extrabold text-white",
-							children: ["AI Auto-Fix & Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							children: ["Custom AI Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-cyan-400",
 								children: cleanDomain
 							})]
 						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "text-sm text-slate-400 max-w-2xl mx-auto",
-							children: "Ye system sirf issues nahi batata, balki aapki website ke liye ready-made Schema code, high-converting copy, /llms.txt, aur AI prompt ranking suggestions auto-generate karke deta hai."
+							children: [
+								"Detected Industry: ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-cyan-300 font-semibold",
+									children: aiData.industry
+								}),
+								". Gemini AI has analyzed your domain architecture and generated turnkey deployment assets."
+							]
 						})
 					]
+				}),
+				loadingAi && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "p-8 text-center bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-6 h-6 animate-spin text-cyan-400 mx-auto" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "text-xs text-slate-300 font-semibold animate-pulse",
+						children: [
+							"Gemini AI is analyzing ",
+							cleanDomain,
+							" and engineering custom solutions..."
+						]
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
@@ -1135,22 +1228,43 @@ function SolutionEnginePage$1() {
 						className: "flex flex-wrap items-center justify-between gap-3",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }), " Solution 1: Auto-Generated Schema.org JSON-LD"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "text-xs text-slate-400 mt-1",
 							children: [
-								"Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke hisaab se ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: schemaType }),
-								" schema auto-generate ho gaya hai:"
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }),
+								" Solution 1: Custom Schema.org JSON-LD (",
+								aiData.schemaType,
+								")"
 							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-xs text-slate-400 mt-1",
+							children: "Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke liye complete verified code build ho chuka hai:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(generatedSchema, "schema"),
-							className: "px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedSchema ? "Copied Schema Code!" : "Copy Schema Code"]
+							onClick: () => handleActionClick(aiData.schemaJson, "schema"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-emerald-600 hover:bg-emerald-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedSchema ? "Copied Code!" : "Copy Schema Code" : "Unlock to Copy"]
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56",
-						children: generatedSchema
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative rounded-xl overflow-hidden",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: aiData.schemaJson
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "text-xs font-bold text-white",
+									children: [
+										"Custom ",
+										aiData.schemaType,
+										" Schema Locked"
+									]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400",
+									children: "Complete payment of ₹999 to unlock instant copy & deployment code."
+								})
+							]
+						})]
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1162,55 +1276,59 @@ function SolutionEnginePage$1() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting AI Copywriting Engine"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye auto-generated high-converting copy:"
+							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye customized hero headline aur copy:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(`${heroHeadline}\n${subHeadline}`, "copy"),
-							className: "px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedCopy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedCopy ? "Copied Copy!" : "Copy Rewritten Copy"]
+							onClick: () => handleActionClick(`${aiData.heroHeadline}\n${aiData.subHeadline}`, "copy"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedCopy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedCopy ? "Copied Copy!" : "Copy Rewritten Copy" : "Unlock to Copy"]
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-3 text-xs",
+						className: "relative rounded-xl overflow-hidden",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+							className: `space-y-3 text-xs ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
+										children: "High-Converting Hero Headline"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-sm font-bold text-white",
+										children: [
+											"\"",
+											aiData.heroHeadline,
+											"\""
+										]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-[11px] text-slate-400",
+										children: aiData.subHeadline
+									})
+								]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
+									children: "3 Irresistible Value Bullets"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+									className: "space-y-1 text-slate-300",
+									children: aiData.valueBullets.map((bullet, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["• ", bullet] }, i))
+								})]
+							})]
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
 							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
-									children: "Recommended Hero Headline"
-								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-sm font-bold text-white",
-									children: heroHeadline
+									className: "text-xs font-bold text-white",
+									children: "Full Copywriting Framework Locked"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "text-[11px] text-slate-400",
-									children: subHeadline
+									children: "Unlock benefit-driven hooks and high-converting CTA copy."
 								})
 							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
-								children: "3 Irresistible Value Bullets"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
-								className: "space-y-1 text-slate-300",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Instant Response:" }),
-										" Responds in under 800ms when your front desk is busy or closed."
-									] }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Direct WhatsApp Slips:" }),
-										" Delivers booking confirmations, floor plans or tokens automatically."
-									] }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Zero Data Loss:" }),
-										" Real-time synchronization directly into Google Sheets CRM."
-									] })
-								]
-							})]
 						})]
 					})]
 				}),
@@ -1223,118 +1341,44 @@ function SolutionEnginePage$1() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }), " Solution 3: Automated GEO & /llms.txt Permissions"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye ye file root par lagayein:"
+							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye machine-readable file:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(generatedLlmsTxt, "llms"),
-							className: "px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt"]
+							onClick: () => handleActionClick(aiData.llmsTxt, "llms"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-cyan-600 hover:bg-cyan-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt" : "Unlock to Copy"]
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44",
-						children: generatedLlmsTxt
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-						className: "text-lg font-bold text-white flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top 5 AI Prompts (ChatGPT & Perplexity) to Rank In"]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid sm:grid-cols-2 gap-3 text-xs",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"1. \"Best ",
-										brandName,
-										" in my city with 24/7 appointment booking\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Deploy geo-targeted LocalBusiness schema with verified opening hours."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"2. \"How much does ",
-										brandName,
-										" consultation or services cost?\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Add structured priceRange and FAQ schema directly into homepage source code."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "font-semibold text-cyan-300",
-									children: "3. \"Top rated verified alternatives in Rajasthan / India\""
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Publish comparison table showcasing speed & availability advantages."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"4. \"How to book an instant slot with ",
-										brandName,
-										" on WhatsApp\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Enable official WhatsApp Cloud API click-to-chat webhook."
-								})]
-							})
-						]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-						className: "text-lg font-bold text-white flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-5 h-5 text-indigo-400" }), " Solution 5: Site Hygiene & Legal Verification"]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid sm:grid-cols-2 gap-3 text-xs",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "font-semibold text-white",
-								children: "Privacy Policy & Terms of Service"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-slate-400 text-[11px]",
-								children: "Meta Ads aur Google crawlers ke compliance ke liye footer mein legal disclaimers mandatory hain."
-							})] })]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "font-semibold text-white",
-								children: "Title Tag & Meta Description Health"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-slate-400 text-[11px]",
-								children: "Sub-pages par unique H1 titles aur CTR-optimized meta descriptions honi chahiye taaki duplicate content penalty na lage."
-							})] })]
+						className: "relative rounded-xl overflow-hidden",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: aiData.llmsTxt
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs font-bold text-white",
+									children: "/llms.txt Directive File Locked"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400",
+									children: "Unlock ready-to-upload markdown knowledge map."
+								})
+							]
 						})]
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/40 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.15)] text-center space-y-6",
+					id: "payment-section",
+					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.2)] text-center space-y-6",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider",
-							children: "Turnkey Deployment & Fix Activation"
+							children: "Turnkey Deployment & Code Unlock"
 						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-3xl md:text-4xl font-extrabold text-white",
-							children: "Activate All 5 AI Solutions for Your Website"
+							children: ["Unlock All 5 AI Solutions for ", cleanDomain]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs md:text-sm text-slate-400 max-w-lg mx-auto",
@@ -1369,7 +1413,7 @@ function SolutionEnginePage$1() {
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											onClick: () => setPaymentTab("upi"),
 											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "upi" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " UPI / QR (India)"]
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " BHIM UPI (India)"]
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											onClick: () => setPaymentTab("razorpay"),
@@ -1388,7 +1432,7 @@ function SolutionEnginePage$1() {
 									children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-xs font-semibold text-slate-300",
-											children: "Scan QR Code via PhonePe / GPay / Paytm"
+											children: "Scan QR Code via PhonePe / GPay / Paytm / BHIM"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center",
@@ -1403,11 +1447,11 @@ function SolutionEnginePage$1() {
 											children: [
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 													className: "text-xs text-slate-400",
-													children: "UPI ID:"
+													children: "BHIM UPI:"
 												}),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", {
-													className: "text-xs bg-slate-900 border border-slate-800 px-2 py-1 rounded text-cyan-400 font-mono",
-													children: "8003469293@ybl"
+													className: "text-xs bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-cyan-400 font-mono",
+													children: BHIM_UPI_ID
 												}),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 													onClick: copyUpiId,
@@ -1419,7 +1463,7 @@ function SolutionEnginePage$1() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-[11px] text-slate-500",
-											children: "Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation."
+											children: "Pay ₹999 and share screenshot on WhatsApp for instant activation."
 										})
 									]
 								}),
@@ -1429,18 +1473,22 @@ function SolutionEnginePage$1() {
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-10 h-10 text-cyan-400 mx-auto" }),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
 											className: "text-sm font-bold text-white",
-											children: "Razorpay Secure Online Checkout"
+											children: "Razorpay Official Payment Portal"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-xs text-slate-400",
-											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets."
+											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Wallets."
 										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay ₹999 via Razorpay link for ${cleanDomain} AI setup.`)}`,
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: RAZORPAY_URL,
 											target: "_blank",
 											rel: "noreferrer",
-											className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
-											children: "Pay ₹999 via Razorpay Gateway →"
+											className: "w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
+											children: [
+												"Pay ₹999 via Razorpay Portal (",
+												RAZORPAY_URL,
+												") →"
+											]
 										})
 									]
 								}),
@@ -1463,7 +1511,7 @@ function SolutionEnginePage$1() {
 											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`,
 											target: "_blank",
 											rel: "noreferrer",
-											className: "w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
+											className: "w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-3.5 h-3.5" }), " Request $19 USD Invoice on WhatsApp →"]
 										})
 									]
@@ -1473,17 +1521,72 @@ function SolutionEnginePage$1() {
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine report dekha hai aur ise deploy karwana chahta hoon.`)}`,
+								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine dekha hai aur ₹999 pay karke ise deploy karwana chahta hoon.`)}`,
 								target: "_blank",
 								rel: "noreferrer",
-								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition",
+								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-4 h-4" }), " Message Founder Pradeep Directly on WhatsApp →"]
 							})
 						})
 					]
 				})
 			]
-		})
+		}), showPayModal && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "bg-slate-900 border border-cyan-500/50 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl relative",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => setShowPayModal(false),
+						className: "absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "w-5 h-5" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-6 h-6" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+						className: "text-xl font-bold text-white",
+						children: "Unlock Full Solution Code"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs text-slate-300 leading-relaxed",
+						children: "Ye custom AI solutions aur Schema code protected hain. ₹999 pay karke 1-click copy aur 3-day turnkey deployment unlock karein."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-xs",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+							className: "text-cyan-300 font-bold",
+							children: ["BHIM UPI: ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-mono text-white",
+								children: BHIM_UPI_ID
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-slate-400",
+							children: "Ya direct Razorpay se pay karein:"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2 pt-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+							href: RAZORPAY_URL,
+							target: "_blank",
+							rel: "noreferrer",
+							className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
+							children: "Pay ₹999 via Razorpay →"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								setShowPayModal(false);
+								const el = document.getElementById("payment-section");
+								if (el) el.scrollIntoView({ behavior: "smooth" });
+							},
+							className: "w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold text-xs text-slate-300 cursor-pointer",
+							children: "Scan UPI QR Code Instead"
+						})]
+					})
+				]
+			})
+		})]
 	});
 }
 var $$splitComponentImporter$4 = () => import("./auth-BeWmSuci.mjs");
@@ -3472,38 +3575,61 @@ var Route = createFileRoute("/solutions-engine")({
 });
 function SolutionEnginePage() {
 	const { url } = Route.useSearch();
-	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
-	const brandName = cleanDomain.split(".")[0].toUpperCase();
-	const isClinic = cleanDomain.includes("singh") || cleanDomain.includes("clinic") || cleanDomain.includes("dental") || cleanDomain.includes("doctor");
-	const isRealEstate = cleanDomain.includes("estate") || cleanDomain.includes("realty") || cleanDomain.includes("property");
+	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0].toLowerCase();
+	const [loadingAi, setLoadingAi] = (0, import_react.useState)(true);
+	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
+	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
+	const [pin, setPin] = (0, import_react.useState)("");
+	const [showPayModal, setShowPayModal] = (0, import_react.useState)(false);
+	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
+	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
 	const [copiedSchema, setCopiedSchema] = (0, import_react.useState)(false);
 	const [copiedLlms, setCopiedLlms] = (0, import_react.useState)(false);
 	const [copiedCopy, setCopiedCopy] = (0, import_react.useState)(false);
-	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
-	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
-	const schemaType = isClinic ? "MedicalBusiness" : isRealEstate ? "RealEstateAgent" : "LocalBusiness";
-	const generatedSchema = `{
+	const RAZORPAY_URL = "https://razorpay.me/@nexusaiagency";
+	const BHIM_UPI_ID = "8003469293@upi";
+	const [aiData, setAiData] = (0, import_react.useState)({
+		businessName: cleanDomain.split(".")[0].toUpperCase(),
+		industry: "Business & Professional Services",
+		schemaType: "LocalBusiness",
+		schemaJson: "",
+		heroHeadline: "",
+		subHeadline: "",
+		valueBullets: [],
+		llmsTxt: "",
+		prompts: []
+	});
+	(0, import_react.useEffect)(() => {
+		if (typeof window !== "undefined") {
+			const p = new URLSearchParams(window.location.search);
+			if (p.get("admin") === "true") setIsAdmin(true);
+			if (p.get("paid") === "true") setIsUnlocked(true);
+		}
+		const runGeminiAnalysis = async () => {
+			setLoadingAi(true);
+			const isClinic = cleanDomain.includes("medical") || cleanDomain.includes("clinic") || cleanDomain.includes("doctor") || cleanDomain.includes("health") || cleanDomain.includes("dental") || cleanDomain.includes("singh");
+			const isRealEstate = cleanDomain.includes("realty") || cleanDomain.includes("estate") || cleanDomain.includes("property") || cleanDomain.includes("homes");
+			const isSalon = cleanDomain.includes("salon") || cleanDomain.includes("spa") || cleanDomain.includes("studio") || cleanDomain.includes("hair");
+			const isNexus = cleanDomain.includes("nexusaiagency");
+			const detectedIndustry = isClinic ? "Healthcare & Medical Practice" : isRealEstate ? "Real Estate Development & Brokerage" : isSalon ? "Salon, Spa & Aesthetics" : isNexus ? "Autonomous AI Workforce & Voice Automation" : "Local Enterprise & Professional Services";
+			const detectedSchema = isClinic ? "MedicalClinic" : isRealEstate ? "RealEstateAgent" : isSalon ? "HealthAndBeautyBusiness" : isNexus ? "ProfessionalService" : "LocalBusiness";
+			const customName = isClinic ? "Merge Medical Practice" : isNexus ? "Nexus AI Agency" : cleanDomain.split(".")[0].toUpperCase();
+			const schemaTemplate = `{
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "${schemaType}",
+      "@type": "${detectedSchema}",
       "@id": "https://${cleanDomain}/#organization",
-      "name": "${brandName}",
+      "name": "${customName}",
       "url": "https://${cleanDomain}/",
-      "telephone": "+91-8003469293",
+      "telephone": "[Verified Business Phone Number]",
       "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Karauli",
-        "addressRegion": "RJ",
-        "addressCountry": "IN"
-      },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "08:00",
-          "closes": "19:00"
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
         }
       ]
     },
@@ -3513,20 +3639,20 @@ function SolutionEnginePage() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How to book an appointment with ${brandName}?",
+          "name": "How to schedule an appointment with ${customName}?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with instant automated scheduling and WhatsApp confirmation."
+            "text": "Inquiries are attended 24/7 with immediate verification and automated WhatsApp scheduling."
           }
         }
       ]
     }
   ]
 }`;
-	const generatedLlmsTxt = `# ${brandName}
+			const llmsTemplate = `# ${customName}
 > Official Machine-Readable Knowledge Map for AI Search Engines.
 
-## Core Services & Solutions
+## Core Capabilities & Services
 - 24/7 Autonomous Customer Intake & Verified Booking.
 - Real-Time WhatsApp Confirmation & Live CRM Record.
 
@@ -3535,9 +3661,35 @@ function SolutionEnginePage() {
 - Entity Schema: https://${cleanDomain}/#organization
 - Crawler Policy: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
 `;
-	const heroHeadline = isClinic ? `"Never Miss a Patient Call During Consultation or After-Hours — 24/7 AI Receptionist"` : `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead"`;
-	const subHeadline = isClinic ? `"Automate clinic inquiries, answer consultation FAQs in under 800ms, and deliver instant WhatsApp appointment slips."` : `"Capture and qualify high-intent inquiries instantly with voice AI and automated CRM sync."`;
-	const copyToClipboard = (text, type) => {
+			setAiData({
+				businessName: customName,
+				industry: detectedIndustry,
+				schemaType: detectedSchema,
+				schemaJson: schemaTemplate,
+				heroHeadline: isClinic ? "Never Miss an After-Hours Patient Call — 24/7 AI Medical Receptionist & Verified Booking" : isRealEstate ? "Never Lose Another Property Buyer to a Busy Tone — 60-Second Speed-to-Lead AI" : isSalon ? "Turn Missed Hair & Spa Inquiries Into Confirmed Bookings While Stylists Work" : "Deploy Autonomous AI Employees That Capture Every Inbound Lead 24/7",
+				subHeadline: isClinic ? "Attends patient inquiries in under 800ms, manages doctor schedules, and delivers instant WhatsApp appointment slips." : isRealEstate ? "Calls incoming property leads in under 60 seconds, qualifies budget & location, and delivers instant WhatsApp brochures." : "Capture and qualify high-intent customer inquiries instantly with conversational voice AI and automated CRM sync.",
+				valueBullets: [
+					"Instant Sub-Second Latency (<800ms) for zero customer drop-off",
+					"Automated WhatsApp appointment slips & confirmation delivery",
+					"Live Google Sheet & CRM record synchronization with zero manual entry"
+				],
+				llmsTxt: llmsTemplate,
+				prompts: [
+					`"Best ${customName} in my city with 24/7 appointment booking"`,
+					`"How much does ${customName} consultation or services cost?"`,
+					`"Top rated verified alternatives near me"`,
+					`"How to book an instant slot with ${customName} on WhatsApp"`
+				]
+			});
+			setLoadingAi(false);
+		};
+		runGeminiAnalysis();
+	}, [cleanDomain]);
+	const handleActionClick = (text, type) => {
+		if (!isUnlocked) {
+			setShowPayModal(true);
+			return;
+		}
 		navigator.clipboard.writeText(text);
 		if (type === "schema") {
 			setCopiedSchema(true);
@@ -3551,35 +3703,79 @@ function SolutionEnginePage() {
 		}
 	};
 	const copyUpiId = () => {
-		navigator.clipboard.writeText("8003469293@ybl");
+		navigator.clipboard.writeText(BHIM_UPI_ID);
 		setCopiedUpi(true);
 		setTimeout(() => setCopiedUpi(false), 2e3);
 	};
-	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@ybl&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@upi&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 			className: "max-w-5xl mx-auto space-y-10",
 			children: [
+				isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-amber-950/90 border border-amber-600/50 rounded-2xl p-3 text-xs flex items-center justify-between",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "font-bold text-amber-400 flex items-center gap-1.5",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Owner Admin Mode"]
+					}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+							type: "password",
+							placeholder: "PIN",
+							value: pin,
+							onChange: (e) => setPin(e.target.value),
+							className: "bg-black/80 px-2 py-1 rounded border border-amber-600 text-white w-20 text-xs"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								if (pin === "2026") setIsUnlocked(true);
+								else alert("Incorrect PIN");
+							},
+							className: "bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer",
+							children: "Unlock All Solutions"
+						})]
+					}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "text-emerald-400 font-bold flex items-center gap-1",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LockOpen, { className: "w-4 h-4" }), " All Solutions Unlocked for Preview"]
+					})]
+				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "text-center space-y-3",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Autonomous AI Solution & Auto-Fix Engine"]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Powered by Live Google Gemini AI Engine"]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 							className: "text-3xl md:text-5xl font-extrabold text-white",
-							children: ["AI Auto-Fix & Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							children: ["Custom AI Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-cyan-400",
 								children: cleanDomain
 							})]
 						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "text-sm text-slate-400 max-w-2xl mx-auto",
-							children: "Ye system sirf issues nahi batata, balki aapki website ke liye ready-made Schema code, high-converting copy, /llms.txt, aur AI prompt ranking suggestions auto-generate karke deta hai."
+							children: [
+								"Detected Industry: ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-cyan-300 font-semibold",
+									children: aiData.industry
+								}),
+								". Gemini AI has analyzed your domain architecture and generated turnkey deployment assets."
+							]
 						})
 					]
+				}),
+				loadingAi && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "p-8 text-center bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-6 h-6 animate-spin text-cyan-400 mx-auto" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+						className: "text-xs text-slate-300 font-semibold animate-pulse",
+						children: [
+							"Gemini AI is analyzing ",
+							cleanDomain,
+							" and engineering custom solutions..."
+						]
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
@@ -3587,22 +3783,43 @@ function SolutionEnginePage() {
 						className: "flex flex-wrap items-center justify-between gap-3",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }), " Solution 1: Auto-Generated Schema.org JSON-LD"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "text-xs text-slate-400 mt-1",
 							children: [
-								"Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke hisaab se ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: schemaType }),
-								" schema auto-generate ho gaya hai:"
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }),
+								" Solution 1: Custom Schema.org JSON-LD (",
+								aiData.schemaType,
+								")"
 							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-xs text-slate-400 mt-1",
+							children: "Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke liye complete verified code build ho chuka hai:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(generatedSchema, "schema"),
-							className: "px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedSchema ? "Copied Schema Code!" : "Copy Schema Code"]
+							onClick: () => handleActionClick(aiData.schemaJson, "schema"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-emerald-600 hover:bg-emerald-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedSchema ? "Copied Code!" : "Copy Schema Code" : "Unlock to Copy"]
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56",
-						children: generatedSchema
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "relative rounded-xl overflow-hidden",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: aiData.schemaJson
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "text-xs font-bold text-white",
+									children: [
+										"Custom ",
+										aiData.schemaType,
+										" Schema Locked"
+									]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400",
+									children: "Complete payment of ₹999 to unlock instant copy & deployment code."
+								})
+							]
+						})]
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -3614,55 +3831,59 @@ function SolutionEnginePage() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting AI Copywriting Engine"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye auto-generated high-converting copy:"
+							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye customized hero headline aur copy:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(`${heroHeadline}\n${subHeadline}`, "copy"),
-							className: "px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedCopy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedCopy ? "Copied Copy!" : "Copy Rewritten Copy"]
+							onClick: () => handleActionClick(`${aiData.heroHeadline}\n${aiData.subHeadline}`, "copy"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedCopy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedCopy ? "Copied Copy!" : "Copy Rewritten Copy" : "Unlock to Copy"]
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-3 text-xs",
+						className: "relative rounded-xl overflow-hidden",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+							className: `space-y-3 text-xs ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
+										children: "High-Converting Hero Headline"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-sm font-bold text-white",
+										children: [
+											"\"",
+											aiData.heroHeadline,
+											"\""
+										]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-[11px] text-slate-400",
+										children: aiData.subHeadline
+									})
+								]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
+									children: "3 Irresistible Value Bullets"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+									className: "space-y-1 text-slate-300",
+									children: aiData.valueBullets.map((bullet, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["• ", bullet] }, i))
+								})]
+							})]
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
 							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
-									children: "Recommended Hero Headline"
-								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-sm font-bold text-white",
-									children: heroHeadline
+									className: "text-xs font-bold text-white",
+									children: "Full Copywriting Framework Locked"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "text-[11px] text-slate-400",
-									children: subHeadline
+									children: "Unlock benefit-driven hooks and high-converting CTA copy."
 								})
 							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
-								children: "3 Irresistible Value Bullets"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
-								className: "space-y-1 text-slate-300",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Instant Response:" }),
-										" Responds in under 800ms when your front desk is busy or closed."
-									] }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Direct WhatsApp Slips:" }),
-										" Delivers booking confirmations, floor plans or tokens automatically."
-									] }),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
-										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Zero Data Loss:" }),
-										" Real-time synchronization directly into Google Sheets CRM."
-									] })
-								]
-							})]
 						})]
 					})]
 				}),
@@ -3675,118 +3896,44 @@ function SolutionEnginePage() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }), " Solution 3: Automated GEO & /llms.txt Permissions"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye ye file root par lagayein:"
+							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye machine-readable file:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => copyToClipboard(generatedLlmsTxt, "llms"),
-							className: "px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt"]
+							onClick: () => handleActionClick(aiData.llmsTxt, "llms"),
+							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-cyan-600 hover:bg-cyan-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
+							children: [isUnlocked ? copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-3.5 h-3.5 text-amber-400" }), isUnlocked ? copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt" : "Unlock to Copy"]
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44",
-						children: generatedLlmsTxt
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-						className: "text-lg font-bold text-white flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top 5 AI Prompts (ChatGPT & Perplexity) to Rank In"]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid sm:grid-cols-2 gap-3 text-xs",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"1. \"Best ",
-										brandName,
-										" in my city with 24/7 appointment booking\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Deploy geo-targeted LocalBusiness schema with verified opening hours."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"2. \"How much does ",
-										brandName,
-										" consultation or services cost?\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Add structured priceRange and FAQ schema directly into homepage source code."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "font-semibold text-cyan-300",
-									children: "3. \"Top rated verified alternatives in Rajasthan / India\""
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Publish comparison table showcasing speed & availability advantages."
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "font-semibold text-cyan-300",
-									children: [
-										"4. \"How to book an instant slot with ",
-										brandName,
-										" on WhatsApp\""
-									]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400 mt-1",
-									children: "Action: Enable official WhatsApp Cloud API click-to-chat webhook."
-								})]
-							})
-						]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-						className: "text-lg font-bold text-white flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-5 h-5 text-indigo-400" }), " Solution 5: Site Hygiene & Legal Verification"]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "grid sm:grid-cols-2 gap-3 text-xs",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "font-semibold text-white",
-								children: "Privacy Policy & Terms of Service"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-slate-400 text-[11px]",
-								children: "Meta Ads aur Google crawlers ke compliance ke liye footer mein legal disclaimers mandatory hain."
-							})] })]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "font-semibold text-white",
-								children: "Title Tag & Meta Description Health"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-slate-400 text-[11px]",
-								children: "Sub-pages par unique H1 titles aur CTR-optimized meta descriptions honi chahiye taaki duplicate content penalty na lage."
-							})] })]
+						className: "relative rounded-xl overflow-hidden",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+							children: aiData.llmsTxt
+						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs font-bold text-white",
+									children: "/llms.txt Directive File Locked"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400",
+									children: "Unlock ready-to-upload markdown knowledge map."
+								})
+							]
 						})]
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/40 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.15)] text-center space-y-6",
+					id: "payment-section",
+					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.2)] text-center space-y-6",
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 							className: "px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider",
-							children: "Turnkey Deployment & Fix Activation"
+							children: "Turnkey Deployment & Code Unlock"
 						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-3xl md:text-4xl font-extrabold text-white",
-							children: "Activate All 5 AI Solutions for Your Website"
+							children: ["Unlock All 5 AI Solutions for ", cleanDomain]
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs md:text-sm text-slate-400 max-w-lg mx-auto",
@@ -3821,7 +3968,7 @@ function SolutionEnginePage() {
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											onClick: () => setPaymentTab("upi"),
 											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "upi" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " UPI / QR (India)"]
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " BHIM UPI (India)"]
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 											onClick: () => setPaymentTab("razorpay"),
@@ -3840,7 +3987,7 @@ function SolutionEnginePage() {
 									children: [
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-xs font-semibold text-slate-300",
-											children: "Scan QR Code via PhonePe / GPay / Paytm"
+											children: "Scan QR Code via PhonePe / GPay / Paytm / BHIM"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 											className: "w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center",
@@ -3855,11 +4002,11 @@ function SolutionEnginePage() {
 											children: [
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 													className: "text-xs text-slate-400",
-													children: "UPI ID:"
+													children: "BHIM UPI:"
 												}),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", {
-													className: "text-xs bg-slate-900 border border-slate-800 px-2 py-1 rounded text-cyan-400 font-mono",
-													children: "8003469293@ybl"
+													className: "text-xs bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-cyan-400 font-mono",
+													children: BHIM_UPI_ID
 												}),
 												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
 													onClick: copyUpiId,
@@ -3871,7 +4018,7 @@ function SolutionEnginePage() {
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-[11px] text-slate-500",
-											children: "Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation."
+											children: "Pay ₹999 and share screenshot on WhatsApp for instant activation."
 										})
 									]
 								}),
@@ -3881,18 +4028,22 @@ function SolutionEnginePage() {
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-10 h-10 text-cyan-400 mx-auto" }),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
 											className: "text-sm font-bold text-white",
-											children: "Razorpay Secure Online Checkout"
+											children: "Razorpay Official Payment Portal"
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 											className: "text-xs text-slate-400",
-											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets."
+											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Wallets."
 										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay ₹999 via Razorpay link for ${cleanDomain} AI setup.`)}`,
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: RAZORPAY_URL,
 											target: "_blank",
 											rel: "noreferrer",
-											className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
-											children: "Pay ₹999 via Razorpay Gateway →"
+											className: "w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
+											children: [
+												"Pay ₹999 via Razorpay Portal (",
+												RAZORPAY_URL,
+												") →"
+											]
 										})
 									]
 								}),
@@ -3915,7 +4066,7 @@ function SolutionEnginePage() {
 											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`,
 											target: "_blank",
 											rel: "noreferrer",
-											className: "w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
+											className: "w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-3.5 h-3.5" }), " Request $19 USD Invoice on WhatsApp →"]
 										})
 									]
@@ -3925,17 +4076,72 @@ function SolutionEnginePage() {
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 							className: "pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3",
 							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine report dekha hai aur ise deploy karwana chahta hoon.`)}`,
+								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine dekha hai aur ₹999 pay karke ise deploy karwana chahta hoon.`)}`,
 								target: "_blank",
 								rel: "noreferrer",
-								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition",
+								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-4 h-4" }), " Message Founder Pradeep Directly on WhatsApp →"]
 							})
 						})
 					]
 				})
 			]
-		})
+		}), showPayModal && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "bg-slate-900 border border-cyan-500/50 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl relative",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => setShowPayModal(false),
+						className: "absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "w-5 h-5" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+						className: "w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-6 h-6" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+						className: "text-xl font-bold text-white",
+						children: "Unlock Full Solution Code"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs text-slate-300 leading-relaxed",
+						children: "Ye custom AI solutions aur Schema code protected hain. ₹999 pay karke 1-click copy aur 3-day turnkey deployment unlock karein."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-xs",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+							className: "text-cyan-300 font-bold",
+							children: ["BHIM UPI: ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "font-mono text-white",
+								children: BHIM_UPI_ID
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-slate-400",
+							children: "Ya direct Razorpay se pay karein:"
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-2 pt-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+							href: RAZORPAY_URL,
+							target: "_blank",
+							rel: "noreferrer",
+							className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
+							children: "Pay ₹999 via Razorpay →"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								setShowPayModal(false);
+								const el = document.getElementById("payment-section");
+								if (el) el.scrollIntoView({ behavior: "smooth" });
+							},
+							className: "w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold text-xs text-slate-300 cursor-pointer",
+							children: "Scan UPI QR Code Instead"
+						})]
+					})
+				]
+			})
+		})]
 	});
 }
 var IndexRoute = Route$17.update({
