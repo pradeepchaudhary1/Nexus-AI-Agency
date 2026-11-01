@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from '@tanstack/react-router'
-import { Sparkles, PhoneCall, ArrowRight, ShieldCheck, CheckCircle2, Bot, Database, Zap, Cpu } from 'lucide-react'
+import { Sparkles, ArrowRight, ShieldCheck, CheckCircle2, Bot, Database, Zap, Cpu } from 'lucide-react'
 import { LeadForm } from '@/components/lead-forms'
 import { TrustReviews } from '@/components/trust-reviews'
-import { ScannerAudit } from '@/components/scanner-audit'
 
 export function HomePage() {
   return (
@@ -24,18 +23,18 @@ export function HomePage() {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-          <a
-            href="#scanner"
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+          <Link
+            to="/book-audit"
             className="px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center gap-2 shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:scale-105 transition"
           >
-            <Zap className="w-4 h-4" /> Audit Website Live
-          </a>
+            <Zap className="w-4 h-4" /> Scan Your Website Live &rarr;
+          </Link>
           <Link
             to="/real-estate"
             className="px-7 py-4 rounded-xl bg-slate-900 border border-slate-800 font-semibold text-sm text-slate-200 hover:bg-slate-800 transition"
           >
-            Explore Real Estate AI
+            Real Estate AI Funnel
           </Link>
           <Link
             to="/clinics"
@@ -46,13 +45,10 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* 1. Real-Time High-Performance Website & AEO Scanner */}
-      <ScannerAudit />
-
-      {/* 2. TrustIndex Verified 4.9/5 Reviews Section */}
+      {/* TrustIndex Verified 4.9/5 Reviews Section */}
       <TrustReviews />
 
-      {/* 3. Central Lead Capture & Requirement Form */}
+      {/* Central Lead Requirement Form */}
       <section id="contact" className="py-20 px-4 max-w-3xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-3 text-white">Get Your Custom AI Blueprint</h2>
         <p className="text-xs md:text-sm text-slate-400 mb-8 max-w-md mx-auto">

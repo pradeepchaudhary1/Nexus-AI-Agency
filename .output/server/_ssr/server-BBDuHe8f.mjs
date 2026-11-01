@@ -4,9 +4,8 @@ import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].m
 import { B as _getRenderedMatches, E as fromJSON, F as resolveManifestCssLink, G as isRedirect, H as invariant, J as rootRouteId, L as isDangerousProtocol, M as getScriptPreloadAttrs, N as getStylesheetHref, O as toCrossJSONAsync, P as resolveManifestAssetLink, R as isPromise, V as executeRewriteInput, Y as isNotFound, a as isSsrResponse, c as stripSsrResponseBody, i as disposeSsrResponse, k as toCrossJSONStream, m as RouterProvider, n as bindSsrResponseToRequest, o as normalizeSsrResponse, r as defineHandlerCallback, s as replaceSsrResponse, t as renderRouterToStream, z as waitForReason } from "../_libs/@tanstack/react-router+[...].mjs";
 import { n as createServerHistory } from "../_libs/tanstack__history.mjs";
 import { a as mergeHeaders, i as defaultSerovalDeserializerPlugins, n as getNormalizedURL, o as makeSerovalPlugin, r as createRawStreamRPCPlugin, s as createSerializationAdapter, t as attachRouterServerSsrUtils } from "../_libs/@tanstack/router-core+[...].mjs";
-import { a as TSS_SERVER_FUNCTION, c as createNullProtoObject, d as getStartContext, f as getStartOptions, i as TSS_FORMDATA_CONTEXT, m as safeObjectMerge, n as MAX_FRAME_PAYLOAD_SIZE, o as X_TSS_RAW_RESPONSE, p as runWithStartContext, r as TSS_CONTENT_TYPE_FRAMED_VERSIONED, s as X_TSS_SERIALIZED, t as MAX_FRAMED_STREAMS, u as flattenMiddlewares } from "./createServerFn-DDDJMFWM.mjs";
-import { i as requestHandler, r as getResponse } from "./request-response-ClEcl_9u.mjs";
-import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-B4U7oA_p.mjs";
+import { _ as runWithStartContext, a as TSS_SERVER_FUNCTION, c as createNullProtoObject, g as requestHandler, h as getStartOptions, i as TSS_FORMDATA_CONTEXT, m as getStartContext, n as MAX_FRAME_PAYLOAD_SIZE, o as X_TSS_RAW_RESPONSE, p as getResponse, r as TSS_CONTENT_TYPE_FRAMED_VERSIONED, s as X_TSS_SERIALIZED, t as MAX_FRAMED_STREAMS, u as flattenMiddlewares, v as safeObjectMerge } from "./createServerFn-DmZ1xxNd.mjs";
+import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-By6HiVpw.mjs";
 import { t as createCsrfMiddleware } from "./createCsrfMiddleware-jzif2P7h.mjs";
 import processModule from "node:process";
 require_react();
@@ -31,7 +30,7 @@ var HEADERS = { TSS_SHELL: "X-TSS_SHELL" };
 * the dev styles URL for route-scoped CSS collection.
 */
 async function getStartManifest(matchedRoutes) {
-	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-BQiiSG1j.mjs");
+	const { tsrStartManifest } = await import("../_tanstack-start-manifest_v-DlA7zngQ.mjs");
 	const startManifest = tsrStartManifest();
 	let routes = startManifest.routes;
 	routes[rootRouteId];
@@ -1117,7 +1116,7 @@ var getBaseManifest = getProdBaseManifest;
 var createEarlyHintsForRequest = createEarlyHintsCollector;
 async function loadEntries() {
 	const [routerEntry, startEntry, pluginAdapters] = await Promise.all([
-		import("./router-DH7OJTEs.mjs"),
+		import("./router-BIawyrbC.mjs"),
 		import("./start-B4yqOSfX.mjs"),
 		import("./empty-plugin-adapters-D9UWiqvJ.mjs")
 	]);

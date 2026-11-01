@@ -1,9 +1,26 @@
+import "../_runtime.mjs";
+import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
-import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { t as Badge } from "./badge--9ZMeBB2.mjs";
-import { F as Mail, R as Linkedin, T as Phone, g as ShieldCheck, mt as ArrowRight, pt as Award } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/about-BE2rA_IH.js
+import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
+import { n as cn, t as Button } from "./button-Bo4nKw7z.mjs";
+import { I as Linkedin, P as Mail, T as Phone, g as ShieldCheck, mt as ArrowRight, pt as Award } from "../_libs/lucide-react.mjs";
+require_react();
 var import_jsx_runtime = require_jsx_runtime();
+var badgeVariants = cva("inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", {
+	variants: { variant: {
+		default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+		secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+		destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+		outline: "text-foreground"
+	} },
+	defaultVariants: { variant: "default" }
+});
+function Badge({ className, variant, ...props }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: cn(badgeVariants({ variant }), className),
+		...props
+	});
+}
 var founder_pradeep_default = "/assets/founder-pradeep-Dp1Pnjpv.png";
 var ai_specialist_certificate_default = "/assets/ai-specialist-certificate-C6xoD2pD.jpeg";
 var founderSrc = founder_pradeep_default;

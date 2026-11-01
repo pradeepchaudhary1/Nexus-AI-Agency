@@ -1,7 +1,86 @@
+import { n as toResponse, t as H3Event } from "../_libs/h3-v2+rou3+srvx.mjs";
 import { G as isRedirect, K as parseRedirect } from "../_libs/@tanstack/react-router+[...].mjs";
 import { a as mergeHeaders } from "../_libs/@tanstack/router-core+[...].mjs";
 import { AsyncLocalStorage } from "node:async_hooks";
-//#region node_modules/.nitro/vite/services/ssr/assets/createServerFn-DDDJMFWM.js
+//#region node_modules/.nitro/vite/services/ssr/assets/createServerFn-DmZ1xxNd.js
+var GLOBAL_EVENT_STORAGE_KEY = Symbol.for("tanstack-start:event-storage");
+var globalObj$1 = globalThis;
+if (!globalObj$1[GLOBAL_EVENT_STORAGE_KEY]) globalObj$1[GLOBAL_EVENT_STORAGE_KEY] = new AsyncLocalStorage();
+var eventStorage = globalObj$1[GLOBAL_EVENT_STORAGE_KEY];
+function isPromiseLike(value) {
+	return (typeof value === "object" || typeof value === "function") && value !== null && typeof value.then === "function";
+}
+function getSetCookieValues(headers) {
+	const headersWithSetCookie = headers;
+	if (typeof headersWithSetCookie.getSetCookie === "function") return headersWithSetCookie.getSetCookie();
+	const value = headers.get("set-cookie");
+	return value ? [value] : [];
+}
+function mergeEventResponseHeaders(response, event) {
+	if (response.ok) return;
+	const eventSetCookies = getSetCookieValues(event.res.headers);
+	if (eventSetCookies.length === 0) return;
+	const responseSetCookies = getSetCookieValues(response.headers);
+	response.headers.delete("set-cookie");
+	for (const cookie of responseSetCookies) response.headers.append("set-cookie", cookie);
+	for (const cookie of eventSetCookies) response.headers.append("set-cookie", cookie);
+}
+function finalizeResponse(value, event) {
+	const response = ensureResponse(value);
+	mergeEventResponseHeaders(response, event);
+	return response;
+}
+function finalizeMaybeResponse(value, event) {
+	if (isPromiseLike(value)) return Promise.resolve(value).then((resolved) => finalizeResponse(resolved, event), (error) => finalizeResponse(handleResponseError(error), event));
+	return finalizeResponse(value, event);
+}
+function ensureResponse(value) {
+	if (value instanceof Response) return value;
+	return new Response("Internal Server Error", { status: 500 });
+}
+function handleResponseError(error) {
+	if (error instanceof Response) return error;
+	if (error instanceof Error) throw error;
+	return new Response("Internal Server Error", { status: 500 });
+}
+function requestHandler(handler) {
+	return (request, requestOpts) => {
+		let h3Event;
+		try {
+			h3Event = new H3Event(request);
+		} catch (error) {
+			if (error instanceof URIError) return new Response(null, {
+				status: 400,
+				statusText: "Bad Request"
+			});
+			throw error;
+		}
+		let response;
+		try {
+			response = eventStorage.run({ h3Event }, () => handler(request, requestOpts));
+		} catch (error) {
+			response = handleResponseError(error);
+		}
+		return toResponse(finalizeMaybeResponse(response, h3Event), h3Event);
+	};
+}
+function getH3Event() {
+	const event = eventStorage.getStore();
+	if (!event) throw new Error(`No StartEvent found in AsyncLocalStorage. Make sure you are using the function within the server runtime.`);
+	return event.h3Event;
+}
+function getRequest() {
+	return getH3Event().req;
+}
+function getRequestHeaders() {
+	return getH3Event().req.headers;
+}
+function getRequestHeader(name) {
+	return getRequestHeaders().get(name) || void 0;
+}
+function getResponse() {
+	return getH3Event().res;
+}
 var TSS_FORMDATA_CONTEXT = "__TSS_CONTEXT";
 var TSS_SERVER_FUNCTION = Symbol.for("TSS_SERVER_FUNCTION");
 var TSS_SERVER_FUNCTION_FACTORY = Symbol.for("TSS_SERVER_FUNCTION_FACTORY");
@@ -250,4 +329,4 @@ function serverFnBaseToMiddleware(options) {
 	};
 }
 //#endregion
-export { TSS_SERVER_FUNCTION as a, createNullProtoObject as c, getStartContext as d, getStartOptions as f, TSS_FORMDATA_CONTEXT as i, createServerFn as l, safeObjectMerge as m, MAX_FRAME_PAYLOAD_SIZE as n, X_TSS_RAW_RESPONSE as o, runWithStartContext as p, TSS_CONTENT_TYPE_FRAMED_VERSIONED as r, X_TSS_SERIALIZED as s, MAX_FRAMED_STREAMS as t, flattenMiddlewares as u };
+export { runWithStartContext as _, TSS_SERVER_FUNCTION as a, createNullProtoObject as c, getRequest as d, getRequestHeader as f, requestHandler as g, getStartOptions as h, TSS_FORMDATA_CONTEXT as i, createServerFn as l, getStartContext as m, MAX_FRAME_PAYLOAD_SIZE as n, X_TSS_RAW_RESPONSE as o, getResponse as p, TSS_CONTENT_TYPE_FRAMED_VERSIONED as r, X_TSS_SERIALIZED as s, MAX_FRAMED_STREAMS as t, flattenMiddlewares as u, safeObjectMerge as v };

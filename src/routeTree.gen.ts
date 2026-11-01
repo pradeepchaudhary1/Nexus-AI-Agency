@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AgentDemosRouteImport } from './routes/agent-demos'
+import { Route as AuditReportRouteImport } from './routes/audit-report'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BookAuditRouteImport } from './routes/book-audit'
 import { Route as ClinicsRouteImport } from './routes/clinics'
@@ -44,6 +45,11 @@ const AboutRoute = AboutRouteImport.update({
 const AgentDemosRoute = AgentDemosRouteImport.update({
   id: '/agent-demos',
   path: '/agent-demos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditReportRoute = AuditReportRouteImport.update({
+  id: '/audit-report',
+  path: '/audit-report',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/agent-demos': typeof AgentDemosRoute
+  '/audit-report': typeof AuditReportRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
   '/clinics': typeof ClinicsRoute
@@ -135,6 +142,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/agent-demos': typeof AgentDemosRoute
+  '/audit-report': typeof AuditReportRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
   '/clinics': typeof ClinicsRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
   '/agent-demos': typeof AgentDemosRoute
+  '/audit-report': typeof AuditReportRoute
   '/auth': typeof AuthRoute
   '/book-audit': typeof BookAuditRoute
   '/clinics': typeof ClinicsRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/agent-demos'
+    | '/audit-report'
     | '/auth'
     | '/book-audit'
     | '/clinics'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/agent-demos'
+    | '/audit-report'
     | '/auth'
     | '/book-audit'
     | '/clinics'
@@ -212,6 +223,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/about'
     | '/agent-demos'
+    | '/audit-report'
     | '/auth'
     | '/book-audit'
     | '/clinics'
@@ -232,6 +244,7 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
   AgentDemosRoute: typeof AgentDemosRoute
+  AuditReportRoute: typeof AuditReportRoute
   AuthRoute: typeof AuthRoute
   BookAuditRoute: typeof BookAuditRoute
   ClinicsRoute: typeof ClinicsRoute
@@ -274,6 +287,13 @@ declare module '@tanstack/react-router' {
       path: '/agent-demos'
       fullPath: '/agent-demos'
       preLoaderRoute: typeof AgentDemosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/audit-report': {
+      id: '/audit-report'
+      path: '/audit-report'
+      fullPath: '/audit-report'
+      preLoaderRoute: typeof AuditReportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -386,6 +406,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
   AgentDemosRoute: AgentDemosRoute,
+  AuditReportRoute: AuditReportRoute,
   AuthRoute: AuthRoute,
   BookAuditRoute: BookAuditRoute,
   ClinicsRoute: ClinicsRoute,

@@ -1,4 +1,4 @@
-//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-BQiiSG1j.js
+//#region node_modules/.nitro/vite/services/ssr/assets/_tanstack-start-manifest_v-DlA7zngQ.js
 var tsrStartManifest = () => ({ routes: {
 	__root__: {
 		filePath: "F:/Nexus-ai-agency/src/routes/__root.tsx",
@@ -7,6 +7,7 @@ var tsrStartManifest = () => ({ routes: {
 			"/_authenticated",
 			"/about",
 			"/agent-demos",
+			"/audit-report",
 			"/auth",
 			"/book-audit",
 			"/clinics",
@@ -21,14 +22,12 @@ var tsrStartManifest = () => ({ routes: {
 			"/solutions"
 		],
 		preloads: [
-			"/assets/index-M6DA41Vi.js",
+			"/assets/index-cF4yUl2s.js",
 			"/assets/jsx-runtime-Dk72oS4N.js",
-			"/assets/client-CN8BPBoL.js",
-			"/assets/createClientRpc-DgqPZYIB.js",
-			"/assets/not-found-DIgawKw1.js",
+			"/assets/input-Bvqix4sk.js",
+			"/assets/admin.resources-nUcVcC7h.js",
+			"/assets/matchContext-XPI5x9M_.js",
 			"/assets/link-CtBJQz2G.js",
-			"/assets/matchContext-DPiRwENW.js",
-			"/assets/admin.resources-D2VlbjrT.js",
 			"/assets/useSelector--FWu1dVt.js",
 			"/assets/useRouter-BWuYVZyj.js",
 			"/assets/createLucideIcon-C_LCJTxh.js",
@@ -37,67 +36,53 @@ var tsrStartManifest = () => ({ routes: {
 		scripts: [{ attrs: {
 			type: "module",
 			async: !0,
-			src: "/assets/index-M6DA41Vi.js"
+			src: "/assets/index-cF4yUl2s.js"
 		} }]
 	},
 	"/_authenticated": {
 		filePath: "F:/Nexus-ai-agency/src/routes/_authenticated/route.tsx",
 		children: ["/_authenticated/admin/resources"],
-		preloads: ["/assets/route-flXBlCX8.js"]
+		preloads: ["/assets/route-CuMNNIXy.js"]
 	},
 	"/about": {
 		filePath: "F:/Nexus-ai-agency/src/routes/about.tsx",
 		children: void 0,
-		preloads: ["/assets/about-07FEuUlC.js", "/assets/badge-BqVYJrzi.js"]
+		preloads: ["/assets/about-YaahBpLz.js"]
 	},
 	"/agent-demos": {
 		filePath: "F:/Nexus-ai-agency/src/routes/agent-demos.tsx",
 		children: void 0,
-		preloads: ["/assets/agent-demos-CSocLCTb.js", "/assets/page-sections-CRzUtXEz.js"]
+		preloads: ["/assets/agent-demos-D_W0YW8x.js", "/assets/page-sections-DJ4U3hSm.js"]
 	},
 	"/auth": {
 		filePath: "F:/Nexus-ai-agency/src/routes/auth.tsx",
 		children: void 0,
-		preloads: ["/assets/auth-BCc6-fsZ.js", "/assets/label-zEKp7jU7.js"]
-	},
-	"/book-audit": {
-		filePath: "F:/Nexus-ai-agency/src/routes/book-audit.tsx",
-		children: void 0,
-		preloads: [
-			"/assets/book-audit-Ca7E7UdY.js",
-			"/assets/createServerFn-DdnD50II.js",
-			"/assets/page-sections-CRzUtXEz.js",
-			"/assets/badge-BqVYJrzi.js"
-		]
+		preloads: ["/assets/auth-BY-ku-n7.js", "/assets/label-Dbics62x.js"]
 	},
 	"/how-it-works": {
 		filePath: "F:/Nexus-ai-agency/src/routes/how-it-works.tsx",
 		children: void 0,
-		preloads: ["/assets/how-it-works-BlhZbd4q.js", "/assets/page-sections-CRzUtXEz.js"]
+		preloads: ["/assets/how-it-works-H2xoB1ej.js", "/assets/page-sections-DJ4U3hSm.js"]
 	},
 	"/industries": {
 		filePath: "F:/Nexus-ai-agency/src/routes/industries.tsx",
 		children: void 0,
-		preloads: ["/assets/industries-DkbGaGDA.js", "/assets/page-sections-CRzUtXEz.js"]
+		preloads: ["/assets/industries-BOymKDVK.js", "/assets/page-sections-DJ4U3hSm.js"]
 	},
 	"/privacy": {
 		filePath: "F:/Nexus-ai-agency/src/routes/privacy.tsx",
 		children: void 0,
-		preloads: ["/assets/privacy-Cpcgh3Cj.js", "/assets/page-sections-CRzUtXEz.js"]
+		preloads: ["/assets/privacy-LIEgRvxj.js", "/assets/page-sections-DJ4U3hSm.js"]
 	},
 	"/solutions": {
 		filePath: "F:/Nexus-ai-agency/src/routes/solutions.tsx",
 		children: void 0,
-		preloads: ["/assets/solutions-CcTPFFro.js", "/assets/page-sections-CRzUtXEz.js"]
+		preloads: ["/assets/solutions-ByGHJPXL.js", "/assets/page-sections-DJ4U3hSm.js"]
 	},
 	"/_authenticated/admin/resources": {
 		filePath: "F:/Nexus-ai-agency/src/routes/_authenticated/admin.resources.tsx",
 		children: void 0,
-		preloads: [
-			"/assets/admin.resources-3kdg_jfI.js",
-			"/assets/createServerFn-DdnD50II.js",
-			"/assets/label-zEKp7jU7.js"
-		]
+		preloads: ["/assets/admin.resources-B9wT_Ow3.js", "/assets/label-Dbics62x.js"]
 	}
 } });
 //#endregion

@@ -1,6 +1,6 @@
 import { _ as lazyRouteComponent, v as createFileRoute } from "../_libs/@tanstack/react-router+[...].mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-uxJSuZXu.js
-var $$splitComponentImporter = () => import("./admin.resources-DtaFI3Z-.mjs");
+//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-Br5CEXKt.js
+var $$splitComponentImporter = () => import("./admin.resources-UzDU2afs.mjs");
 var Route = createFileRoute("/_authenticated/admin/resources")({
 	head: () => ({ meta: [
 		{ title: "Resource Admin — NexusAIAgency" },

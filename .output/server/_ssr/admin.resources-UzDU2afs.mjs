@@ -2,17 +2,17 @@ import { n as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { n as cn, t as Button } from "./button-Bo4nKw7z.mjs";
-import { $ as CloudUpload, G as FileText, H as GraduationCap, I as LogOut, J as Download, N as Megaphone, S as RefreshCw, W as FolderLock, et as Clapperboard, gt as ArchiveRestore, ht as Archive, lt as Briefcase, o as Trash2 } from "../_libs/lucide-react.mjs";
+import { $ as CloudUpload, B as GraduationCap, F as LogOut, H as FolderLock, K as Download, M as Megaphone, S as RefreshCw, U as FileText, et as Clapperboard, gt as ArchiveRestore, ht as Archive, lt as Briefcase, o as Trash2 } from "../_libs/lucide-react.mjs";
 import { G as isRedirect, S as useRouter, x as useNavigate } from "../_libs/@tanstack/react-router+[...].mjs";
-import { l as createServerFn } from "./createServerFn-DDDJMFWM.mjs";
-import { t as requireSupabaseAuth } from "./auth-middleware-B3V5iLmQ.mjs";
+import { a as TSS_SERVER_FUNCTION, l as createServerFn } from "./createServerFn-DmZ1xxNd.mjs";
+import { t as getServerFnById } from "../__23tanstack-start-server-fn-resolver-By6HiVpw.mjs";
+import { t as requireSupabaseAuth } from "./auth-middleware-CYV18hFB.mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
-import { t as Route } from "./admin.resources-uxJSuZXu.mjs";
+import { t as Route } from "./admin.resources-Br5CEXKt.mjs";
 import { t as Label } from "./label-DvayCU8F.mjs";
-import { t as createSsrRpc } from "./createSsrRpc-DePijWQy.mjs";
 import { r as useQueryClient, t as useQuery } from "../_libs/tanstack__react-query.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-DtaFI3Z-.js
+//#region node_modules/.nitro/vite/services/ssr/assets/admin.resources-UzDU2afs.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 function useServerFn(serverFn) {
@@ -39,6 +39,18 @@ var Textarea = import_react.forwardRef(({ className, ...props }, ref) => {
 	});
 });
 Textarea.displayName = "Textarea";
+var createSsrRpc = (functionId) => {
+	const url = "/_serverFn/" + functionId;
+	const serverFnMeta = { id: functionId };
+	const fn = async (...args) => {
+		return (await getServerFnById(functionId, { origin: "server" }))(...args);
+	};
+	return Object.assign(fn, {
+		url,
+		serverFnMeta,
+		[TSS_SERVER_FUNCTION]: true
+	});
+};
 createServerFn({ method: "POST" }).validator((input) => input).handler(createSsrRpc("e211e8c27eee0a1053129b7769a37cb2e31b3dc869a84a1c647eee19cfb57993"));
 /** Admin-only: retry Make.com delivery for leads still pending or failed. */
 var retryLeadDeliveries = createServerFn({ method: "POST" }).middleware([requireSupabaseAuth]).handler(createSsrRpc("42176c07eea664427d537ff5050dee15cf8f1a4c1142eae678e285658a891bb3"));

@@ -1,10 +1,16 @@
-import { l as createServerFn } from "./createServerFn-DDDJMFWM.mjs";
-import { n as getRequestHeader } from "./request-response-ClEcl_9u.mjs";
-import { t as requireSupabaseAuth } from "./auth-middleware-B3V5iLmQ.mjs";
-import { t as createServerRpc } from "./createServerRpc-CxD4EZ5P.mjs";
+import { a as TSS_SERVER_FUNCTION, f as getRequestHeader, l as createServerFn } from "./createServerFn-DmZ1xxNd.mjs";
+import { t as requireSupabaseAuth } from "./auth-middleware-CYV18hFB.mjs";
 import { n as objectType, r as stringType, t as enumType } from "../_libs/zod.mjs";
 import processModule from "node:process";
-//#region node_modules/.nitro/vite/services/ssr/assets/leads.functions-DFGdc1vD.js
+//#region node_modules/.nitro/vite/services/ssr/assets/leads.functions-VWGdDhCT.js
+var createServerRpc = (serverFnMeta, splitImportFn) => {
+	const url = "/_serverFn/" + serverFnMeta.id;
+	return Object.assign(splitImportFn, {
+		url,
+		serverFnMeta,
+		[TSS_SERVER_FUNCTION]: true
+	});
+};
 var opt = (max, label) => stringType().trim().max(max, `${label} must be ${max} characters or fewer`).optional();
 var leadSchema = objectType({
 	source: enumType([

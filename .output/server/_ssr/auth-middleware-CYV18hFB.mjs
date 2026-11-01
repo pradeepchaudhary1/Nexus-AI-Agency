@@ -1,8 +1,8 @@
-import { t as getRequest } from "./request-response-ClEcl_9u.mjs";
+import { d as getRequest } from "./createServerFn-DmZ1xxNd.mjs";
 import { t as createMiddleware } from "./createMiddleware-B_4t7rW1.mjs";
 import { t as createClient } from "../_libs/supabase__supabase-js.mjs";
 import processModule from "node:process";
-//#region node_modules/.nitro/vite/services/ssr/assets/auth-middleware-B3V5iLmQ.js
+//#region node_modules/.nitro/vite/services/ssr/assets/auth-middleware-CYV18hFB.js
 function isNewSupabaseApiKey(value) {
 	return value.startsWith("sb_publishable_") || value.startsWith("sb_secret_");
 }
