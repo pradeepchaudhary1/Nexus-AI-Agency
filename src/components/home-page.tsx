@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from '@tanstack/react-router'
-import { Sparkles, ArrowRight, ShieldCheck, CheckCircle2, Bot, Database, Zap, Cpu } from 'lucide-react'
+import { Sparkles, Zap } from 'lucide-react'
 import { LeadForm } from '@/components/lead-forms'
 import { TrustReviews } from '@/components/trust-reviews'
+import { LiveMetrics } from '@/components/live-metrics'
 
 export function HomePage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-black">
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 text-center max-w-5xl mx-auto">
+      <section className="pt-24 pb-12 px-4 text-center max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6">
           <Sparkles className="w-4 h-4" /> Enterprise Autonomous Workforce & Voice AI
         </div>
@@ -23,7 +24,7 @@ export function HomePage() {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
           <Link
             to="/book-audit"
             className="px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center gap-2 shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:scale-105 transition"
@@ -45,10 +46,13 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* TrustIndex Verified 4.9/5 Reviews Section */}
+      {/* Live System Activity Counter */}
+      <LiveMetrics />
+
+      {/* TrustIndex Verified Reviews */}
       <TrustReviews />
 
-      {/* Central Lead Requirement Form */}
+      {/* Lead Requirement Form */}
       <section id="contact" className="py-20 px-4 max-w-3xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-3 text-white">Get Your Custom AI Blueprint</h2>
         <p className="text-xs md:text-sm text-slate-400 mb-8 max-w-md mx-auto">

@@ -3,7 +3,7 @@ import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as cva } from "../_libs/class-variance-authority+clsx.mjs";
 import { n as cn, t as Button } from "./button-Bo4nKw7z.mjs";
-import { E as Phone, F as Mail, _t as ArrowRight, g as ShieldCheck, gt as Award, z as Linkedin } from "../_libs/lucide-react.mjs";
+import { B as Linkedin, E as Phone, I as Mail, _t as Award, g as ShieldCheck, vt as ArrowRight } from "../_libs/lucide-react.mjs";
 require_react();
 var import_jsx_runtime = require_jsx_runtime();
 var badgeVariants = cva("inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2", {

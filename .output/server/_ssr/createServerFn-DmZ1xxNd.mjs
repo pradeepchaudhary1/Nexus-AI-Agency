@@ -1,4 +1,4 @@
-import { n as toResponse, t as H3Event } from "../_libs/h3-v2+rou3+srvx.mjs";
+import { n as toResponse, t as H3Event } from "../_libs/h3-v2+rou3+srvx+unenv.mjs";
 import { G as isRedirect, K as parseRedirect } from "../_libs/@tanstack/react-router+[...].mjs";
 import { a as mergeHeaders } from "../_libs/@tanstack/router-core+[...].mjs";
 import { AsyncLocalStorage } from "node:async_hooks";
