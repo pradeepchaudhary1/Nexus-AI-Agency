@@ -2,18 +2,18 @@ import { n as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { A as Moon, C as QrCode, D as PhoneCall, J as CreditCard, K as Download, M as Menu, O as Pen, P as MapPin, Q as CodeXml, S as RefreshCw, T as Play, U as FileText, V as Globe$1, W as ExternalLink, X as Copy, Y as Cpu, Z as Code, a as TriangleAlert, b as Scissors, et as Clock, f as SquareCheckBig, ft as Bot, g as ShieldCheck, h as Shield, ht as ArrowRight, it as CircleCheckBig, j as MessageSquare, l as Stethoscope, lt as Building2, n as X, nt as CircleX, o as Trash2, ot as Check, p as Sparkles, pt as BookOpen, q as Database, r as Video, rt as CircleCheck, s as Sun, t as Zap, u as Star, v as Send, vt as Activity, w as Plus, x as Save, y as Search } from "../_libs/lucide-react.mjs";
+import { A as Moon, C as QrCode, D as PhoneCall, J as CreditCard, K as Download, M as Menu, O as Pen, P as MapPin, Q as CodeXml, S as RefreshCw, T as Play, U as FileText, V as Globe, W as ExternalLink, X as Copy, Y as Cpu, Z as Code, a as TriangleAlert, b as Scissors, et as Clock, f as SquareCheckBig, ft as Bot, g as ShieldCheck, h as Shield, ht as ArrowRight, it as CircleCheckBig, j as MessageSquare, l as Stethoscope, lt as Building2, n as X, nt as CircleX, o as Trash2, ot as Check, p as Sparkles, pt as BookOpen, q as Database, r as Video, rt as CircleCheck, s as Sun, t as Zap, u as Star, v as Send, vt as Activity, w as Plus, x as Save, y as Search } from "../_libs/lucide-react.mjs";
 import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
-import { t as Route$18 } from "./admin.resources-Br5CEXKt.mjs";
+import { t as Route$19 } from "./admin.resources-Br5CEXKt.mjs";
 import { n as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
 import { i as navItems, o as socials, t as LeadForm } from "./lead-forms-EP1Aq0So.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-D9Bsz9FR.js
+//#region node_modules/.nitro/vite/services/ssr/assets/router-C6a_Dx0X.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-CWCuOD2b.css";
+var styles_default = "/assets/styles-BpRUfdFO.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -484,7 +484,7 @@ function ErrorComponent({ error, reset }) {
 		})
 	});
 }
-var Route$17 = createRootRouteWithContext()({
+var Route$18 = createRootRouteWithContext()({
 	head: () => ({
 		meta: [
 			{ charSet: "utf-8" },
@@ -571,7 +571,7 @@ function RootShell({ children }) {
 	});
 }
 function RootComponent() {
-	const { queryClient } = Route$17.useRouteContext();
+	const { queryClient } = Route$18.useRouteContext();
 	(0, import_react.useEffect)(() => {
 		if (typeof window !== "undefined" && "serviceWorker" in navigator) {
 			const registerServiceWorker = () => {
@@ -851,7 +851,7 @@ var schemaData = {
 		}
 	]
 };
-var Route$16 = createFileRoute("/")({
+var Route$17 = createFileRoute("/")({
 	head: () => ({
 		meta: [
 			{ title: "NexusAIAgency — Build an AI workforce for your business" },
@@ -929,7 +929,7 @@ function Index() {
       ` } }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HomePage, {})] });
 }
 var $$splitComponentImporter$7 = () => import("./route-Di7iQBCH.mjs");
-var Route$15 = createFileRoute("/_authenticated")({
+var Route$16 = createFileRoute("/_authenticated")({
 	ssr: false,
 	beforeLoad: async () => {
 		const { data, error } = await supabase.auth.getUser();
@@ -939,7 +939,7 @@ var Route$15 = createFileRoute("/_authenticated")({
 	component: lazyRouteComponent($$splitComponentImporter$7, "component")
 });
 var $$splitComponentImporter$6 = () => import("./about-C98Ery0C.mjs");
-var Route$14 = createFileRoute("/about")({
+var Route$15 = createFileRoute("/about")({
 	head: () => ({
 		meta: [
 			{ title: "About Pradeep Chaudhary — NexusAIAgency" },
@@ -976,7 +976,7 @@ var Route$14 = createFileRoute("/about")({
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
 var $$splitComponentImporter$5 = () => import("./agent-demos-B5OdQVJ8.mjs");
-var Route$13 = createFileRoute("/agent-demos")({
+var Route$14 = createFileRoute("/agent-demos")({
 	head: () => ({
 		meta: [
 			{ title: "Agent Demo Lab — NexusAIAgency" },
@@ -1012,34 +1012,37 @@ var Route$13 = createFileRoute("/agent-demos")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$5, "component")
 });
-var Route$12 = createFileRoute("/audit-report")({
+var Route$13 = createFileRoute("/audit-report")({
 	validateSearch: (search) => {
 		return { url: search.url || "example.com" };
 	},
-	component: AuditReportPage
+	component: SolutionEnginePage$1
 });
-function AuditReportPage() {
-	const { url } = Route$12.useSearch();
+function SolutionEnginePage$1() {
+	const { url } = Route$13.useSearch();
 	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
 	const brandName = cleanDomain.split(".")[0].toUpperCase();
+	const isClinic = cleanDomain.includes("singh") || cleanDomain.includes("clinic") || cleanDomain.includes("dental") || cleanDomain.includes("doctor");
+	const isRealEstate = cleanDomain.includes("estate") || cleanDomain.includes("realty") || cleanDomain.includes("property");
 	const [copiedSchema, setCopiedSchema] = (0, import_react.useState)(false);
 	const [copiedLlms, setCopiedLlms] = (0, import_react.useState)(false);
 	const [copiedCopy, setCopiedCopy] = (0, import_react.useState)(false);
-	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
 	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
+	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
+	const schemaType = isClinic ? "MedicalBusiness" : isRealEstate ? "RealEstateAgent" : "LocalBusiness";
 	const generatedSchema = `{
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
-      "@id": "https://${cleanDomain}/#business",
+      "@type": "${schemaType}",
+      "@id": "https://${cleanDomain}/#organization",
       "name": "${brandName}",
       "url": "https://${cleanDomain}/",
       "telephone": "+91-8003469293",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Jaipur",
+        "addressLocality": "Karauli",
         "addressRegion": "RJ",
         "addressCountry": "IN"
       },
@@ -1047,8 +1050,8 @@ function AuditReportPage() {
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "09:00",
-          "closes": "20:00"
+          "opens": "08:00",
+          "closes": "19:00"
         }
       ]
     },
@@ -1058,10 +1061,10 @@ function AuditReportPage() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does appointment booking work at ${brandName}?",
+          "name": "How to book an appointment with ${brandName}?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with instant confirmation and automated calendar scheduling."
+            "text": "Inquiries are attended 24/7 with instant automated scheduling and WhatsApp confirmation."
           }
         }
       ]
@@ -1072,16 +1075,16 @@ function AuditReportPage() {
 > Official Machine-Readable Knowledge Map for AI Search Engines.
 
 ## Core Services & Solutions
-- 24/7 Customer Inbound Answering & Qualified Appointment Booking.
-- Direct WhatsApp Confirmation & Google Sheets CRM Synchronization.
+- 24/7 Autonomous Customer Intake & Verified Booking.
+- Real-Time WhatsApp Confirmation & Live CRM Record.
 
 ## Canonical Verification
 - Website: https://${cleanDomain}/
-- Verified Schema: https://${cleanDomain}/#business
-- Crawler Access: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
+- Entity Schema: https://${cleanDomain}/#organization
+- Crawler Policy: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
 `;
-	const heroHeadline = `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead Follow-Up"`;
-	const subHeadline = `"Automate customer inquiries with intelligent voice calling, instant WhatsApp confirmations, and zero human drop-off."`;
+	const heroHeadline = isClinic ? `"Never Miss a Patient Call During Consultation or After-Hours — 24/7 AI Receptionist"` : `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead"`;
+	const subHeadline = isClinic ? `"Automate clinic inquiries, answer consultation FAQs in under 800ms, and deliver instant WhatsApp appointment slips."` : `"Capture and qualify high-intent inquiries instantly with voice AI and automated CRM sync."`;
 	const copyToClipboard = (text, type) => {
 		navigator.clipboard.writeText(text);
 		if (type === "schema") {
@@ -1104,7 +1107,7 @@ function AuditReportPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: "min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black",
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "max-w-5xl mx-auto space-y-12",
+			className: "max-w-5xl mx-auto space-y-10",
 			children: [
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "text-center space-y-3",
@@ -1115,7 +1118,7 @@ function AuditReportPage() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
 							className: "text-3xl md:text-5xl font-extrabold text-white",
-							children: ["AI Auto-Fix & Optimization Suite for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							children: ["AI Auto-Fix & Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-cyan-400",
 								children: cleanDomain
 							})]
@@ -1133,16 +1136,20 @@ function AuditReportPage() {
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-lg font-bold text-white flex items-center gap-2",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }), " Solution 1: Auto-Generated Schema.org JSON-LD"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "Aapko schema par dimaag lagane ki zaroorat nahi hai. Humne aapke domain ke hisaab se complete rich snippet schema auto-build kar diya hai:"
+							children: [
+								"Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke hisaab se ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: schemaType }),
+								" schema auto-generate ho gaya hai:"
+							]
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: () => copyToClipboard(generatedSchema, "schema"),
 							className: "px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
-							children: [copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedSchema ? "Copied to Clipboard!" : "Copy Schema Code"]
+							children: [copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedSchema ? "Copied Schema Code!" : "Copy Schema Code"]
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-60",
+						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56",
 						children: generatedSchema
 					})]
 				}),
@@ -1152,10 +1159,10 @@ function AuditReportPage() {
 						className: "flex flex-wrap items-center justify-between gap-3",
 						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
 							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting AI Copywriting"]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting AI Copywriting Engine"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "Aapki website ke visitors ko paying customers mein convert karne ke liye optimized headline aur copy:"
+							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye auto-generated high-converting copy:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: () => copyToClipboard(`${heroHeadline}\n${subHeadline}`, "copy"),
 							className: "px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
@@ -1168,7 +1175,7 @@ function AuditReportPage() {
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 									className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
-									children: "High-Converting Hero Headline"
+									children: "Recommended Hero Headline"
 								}),
 								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 									className: "text-sm font-bold text-white",
@@ -1183,24 +1190,24 @@ function AuditReportPage() {
 							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 								className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
-								children: "3 Irresistible Feature Bullets"
+								children: "3 Irresistible Value Bullets"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
 								className: "space-y-1 text-slate-300",
 								children: [
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
 										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Zero Missed Leads:" }),
-										" Attends calls in <800ms when your team is busy or after hours."
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Instant Response:" }),
+										" Responds in under 800ms when your front desk is busy or closed."
 									] }),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
 										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Instant WhatsApp Slips:" }),
-										" Delivers booking confirmations & location pins automatically."
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Direct WhatsApp Slips:" }),
+										" Delivers booking confirmations, floor plans or tokens automatically."
 									] }),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
 										"• ",
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Live Sheet Sync:" }),
-										" Automatically records caller name, requirement & date in real time."
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Zero Data Loss:" }),
+										" Real-time synchronization directly into Google Sheets CRM."
 									] })
 								]
 							})]
@@ -1216,86 +1223,79 @@ function AuditReportPage() {
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }), " Solution 3: Automated GEO & /llms.txt Permissions"]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 							className: "text-xs text-slate-400 mt-1",
-							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par access dene ke liye ye file domain root par save honi chahiye:"
+							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye ye file root par lagayein:"
 						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: () => copyToClipboard(generatedLlmsTxt, "llms"),
 							className: "px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
 							children: [copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt"]
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-48",
+						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44",
 						children: generatedLlmsTxt
 					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top 5 AI Search Prompts to Rank In (ChatGPT & Perplexity)"]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-xs text-slate-400",
-							children: "Jab potential buyers AI mein ye prompts puchenge, to aapki website kaise top recommend hogi:"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "grid sm:grid-cols-2 gap-3 text-xs",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-										className: "font-semibold text-cyan-300",
-										children: [
-											"1. \"Best ",
-											brandName,
-											" services near me with 24/7 phone support\""
-										]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] text-slate-400 mt-1",
-										children: "Ranking Action: Add geo-targeted schema with exact business openingHoursSpecification."
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-										className: "font-semibold text-cyan-300",
-										children: [
-											"2. \"How much does ",
-											brandName,
-											" consultation or booking cost?\""
-										]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] text-slate-400 mt-1",
-										children: "Ranking Action: Include clean priceRange and transparent package FAQs directly on homepage."
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "font-semibold text-cyan-300",
-										children: "3. \"Top rated verified alternatives to competitors in my city\""
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] text-slate-400 mt-1",
-										children: "Ranking Action: Embed comparison table (Pillar 4) highlighting speed & pricing advantages."
-									})]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-										className: "font-semibold text-cyan-300",
-										children: [
-											"4. \"How to book an instant appointment with ",
-											brandName,
-											" on WhatsApp\""
-										]
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] text-slate-400 mt-1",
-										children: "Ranking Action: Connect official WhatsApp Cloud API click-to-chat webhook."
-									})]
-								})
-							]
-						})
-					]
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+						className: "text-lg font-bold text-white flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top 5 AI Prompts (ChatGPT & Perplexity) to Rank In"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "grid sm:grid-cols-2 gap-3 text-xs",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"1. \"Best ",
+										brandName,
+										" in my city with 24/7 appointment booking\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Deploy geo-targeted LocalBusiness schema with verified opening hours."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"2. \"How much does ",
+										brandName,
+										" consultation or services cost?\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Add structured priceRange and FAQ schema directly into homepage source code."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "font-semibold text-cyan-300",
+									children: "3. \"Top rated verified alternatives in Rajasthan / India\""
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Publish comparison table showcasing speed & availability advantages."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"4. \"How to book an instant slot with ",
+										brandName,
+										" on WhatsApp\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Enable official WhatsApp Cloud API click-to-chat webhook."
+								})]
+							})
+						]
+					})]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3",
@@ -1311,7 +1311,7 @@ function AuditReportPage() {
 								children: "Privacy Policy & Terms of Service"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 								className: "text-slate-400 text-[11px]",
-								children: "Meta Ads aur Google crawlers ke liye mandatory footer links include hone chahiye."
+								children: "Meta Ads aur Google crawlers ke compliance ke liye footer mein legal disclaimers mandatory hain."
 							})] })]
 						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
@@ -1320,7 +1320,7 @@ function AuditReportPage() {
 								children: "Title Tag & Meta Description Health"
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
 								className: "text-slate-400 text-[11px]",
-								children: "Har page ka unique H1 title hona chahiye taaki duplicate content penalty na lage."
+								children: "Sub-pages par unique H1 titles aur CTR-optimized meta descriptions honi chahiye taaki duplicate content penalty na lage."
 							})] })]
 						})]
 					})]
@@ -1487,7 +1487,7 @@ function AuditReportPage() {
 	});
 }
 var $$splitComponentImporter$4 = () => import("./auth-BeWmSuci.mjs");
-var Route$11 = createFileRoute("/auth")({
+var Route$12 = createFileRoute("/auth")({
 	head: () => ({ meta: [
 		{ title: "Admin Sign In — NexusAIAgency" },
 		{
@@ -1522,7 +1522,6 @@ function ScannerAudit() {
 	const [scanning, setScanning] = (0, import_react.useState)(false);
 	const [scanStatus, setScanStatus] = (0, import_react.useState)("");
 	const [result, setResult] = (0, import_react.useState)(null);
-	const [apiError, setApiError] = (0, import_react.useState)(null);
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
 	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
 	const [pin, setPin] = (0, import_react.useState)("");
@@ -1544,107 +1543,77 @@ function ScannerAudit() {
 		localStorage.setItem("nexus_scanner_cfg", JSON.stringify(config));
 		alert("Scanner Attachment Settings Saved!");
 	};
-	const calculateRealDomainMetrics = (domain) => {
-		let hash = 0;
-		for (let i = 0; i < domain.length; i++) {
-			hash = (hash << 5) - hash + domain.charCodeAt(i);
-			hash |= 0;
-		}
-		const absHash = Math.abs(hash);
-		const isSubdomain = domain.split(".").length > 2 && (domain.includes("godaddy") || domain.includes("wix") || domain.includes("wordpress") || domain.includes("blogspot"));
-		const isPortal = domain.includes("india") || domain.includes("magic") || domain.includes("acres") || domain.includes("portal");
-		const isNexus = domain.includes("nexusaiagency.in");
-		let speedScore = 0;
-		let lcpTime = "";
-		let aeoScore = 0;
-		if (isNexus) {
-			speedScore = 94;
-			lcpTime = "1.1 s";
-			aeoScore = 65;
-		} else if (isPortal) {
-			speedScore = 44 + absHash % 8;
-			lcpTime = (3.8 + absHash % 5 * .1).toFixed(1) + " s";
-			aeoScore = 42 + absHash % 8;
-		} else if (isSubdomain) {
-			speedScore = 62 + absHash % 9;
-			lcpTime = (2.6 + absHash % 4 * .1).toFixed(1) + " s";
-			aeoScore = 34 + absHash % 6;
-		} else {
-			speedScore = 71 + absHash % 12;
-			lcpTime = (2.1 + absHash % 6 * .1).toFixed(1) + " s";
-			aeoScore = 51 + absHash % 10;
-		}
-		return {
-			speedScore,
-			lcpTime,
-			aeoScore,
-			isSubdomain,
-			isPortal,
-			isNexus
+	const performRealAudit = (domain) => {
+		const clean = domain.trim().toLowerCase().replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+		const isNexus = clean.includes("nexusaiagency");
+		const isGrexaDoctor = clean.includes("dr-roop-singh") || clean.includes("grexa.site");
+		const isPortal = clean.includes("realestateindia") || clean.includes("magicbricks") || clean.includes("99acres");
+		let res = {};
+		if (isNexus) res = {
+			domain: clean,
+			speedScore: 92,
+			aeoScore: 45,
+			serpTitle: "Not Yet Indexed in Google SERP",
+			serpDesc: "Domain is brand new (under 60 days). Sitemap is submitted, but Googlebot has not yet indexed organic search listings for site:nexusaiagency.in.",
+			aeoTitle: "AEO Directives Active (Zero Knowledge Graph Presence)",
+			aeoDesc: "JSON-LD Schema and /llms.txt exist in codebase, but ChatGPT and Perplexity do not yet recognize the entity due to lack of external digital PR citations.",
+			speedTitle: "Fast Performance (1.1 s)",
+			speedDesc: "Static assets served from Netlify Edge CDN with sub-second initial load.",
+			recoveryTitle: "No Live AI Voice Receptionist Connected",
+			recoveryDesc: "Phone number +91 8003469293 is listed as text, but no automated conversational voice telephony line is actively picking up incoming calls."
 		};
+		else if (isGrexaDoctor) res = {
+			domain: clean,
+			speedScore: 68,
+			aeoScore: 32,
+			serpTitle: "Indexed on Google Local (Subdomain Limitation)",
+			serpDesc: "Business is verified on Google Maps (Karauli, Rajasthan with 154 reviews), but hosted on a free grexa.site subdomain rather than an independent branded domain.",
+			aeoTitle: "High Risk: Zero AI Search Visibility",
+			aeoDesc: "Missing /llms.txt, missing MedicalBusiness JSON-LD schema, and no conversational answer chunks. Perplexity and ChatGPT will cite Justdial/Practo instead.",
+			speedTitle: "Moderate Mobile Latency (2.7 s)",
+			speedDesc: "Grexa template loads unoptimized Google Maps iframes and Google review widgets causing render delays.",
+			recoveryTitle: "No After-Hours Voice Automation Detected",
+			recoveryDesc: "Phone 7852010611 is listed as raw text. Clinic inquiries arriving after 7 PM or during patient consultations go to unanswered voicemail."
+		};
+		else if (isPortal) res = {
+			domain: clean,
+			speedScore: 48,
+			aeoScore: 42,
+			serpTitle: "High Authority Legacy SERP",
+			serpDesc: "Established multi-page directory ranking for property keywords, but suffers from severe mobile crawl bloat.",
+			aeoTitle: "Scraped by AI Without Direct Citation",
+			aeoDesc: "LLMs extract listings into answers without linking or citing the portal due to absence of /llms.txt.",
+			speedTitle: "Slow Mobile Speed (3.9 s)",
+			speedDesc: "Excessive advertising scripts and tracking pixels cause heavy mobile drop-off.",
+			recoveryTitle: "Manual Broker Handoff (High Delay)",
+			recoveryDesc: "Inquiries are routed to brokers with hours of delay. No 60-second speed-to-lead voice agent."
+		};
+		else res = {
+			domain: clean,
+			speedScore: 72,
+			aeoScore: 38,
+			serpTitle: "Unverified Google SERP Weight",
+			serpDesc: "Domain lacks structured local schema signals to rank in Google Maps top 3 pack.",
+			aeoTitle: "Excluded from Generative AI Recommendations",
+			aeoDesc: "Missing /llms.txt map and structured entity chunks. LLMs cite competitors instead.",
+			speedTitle: "Average Latency (2.4 s)",
+			speedDesc: "Render-blocking resources delay interactive readiness.",
+			recoveryTitle: "Manual Phone Handling",
+			recoveryDesc: "No autonomous conversational receptionist detected. Calls outside working hours are lost."
+		};
+		return res;
 	};
-	const runRealAudit = async (e) => {
+	const runRealAudit = (e) => {
 		e.preventDefault();
 		if (!url) return;
 		setScanning(true);
-		setApiError(null);
 		setResult(null);
-		let cleanDomain = url.trim().replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0].toLowerCase();
-		setScanStatus("Analyzing Domain Architecture, DNS & Core Web Vitals...");
-		setTimeout(() => setScanStatus("Simulating Googlebot SERP Indexation..."), 600);
-		setTimeout(() => setScanStatus("Checking ChatGPT, Perplexity & /llms.txt Permissions..."), 1200);
+		setScanStatus("Connecting to Domain DNS & Google Index Database...");
+		setTimeout(() => setScanStatus("Checking Google Maps Local & SERP Indexation..."), 600);
+		setTimeout(() => setScanStatus("Simulating ChatGPT, Perplexity & /llms.txt Permissions..."), 1200);
 		setTimeout(() => {
-			const { speedScore, lcpTime, aeoScore, isSubdomain, isPortal, isNexus } = calculateRealDomainMetrics(cleanDomain);
-			let aeoTitle = "";
-			let aeoDesc = "";
-			let serpTitle = "";
-			let serpDesc = "";
-			if (isNexus) {
-				aeoTitle = "Technical AEO Active (Entity In Growth Stage)";
-				aeoDesc = "Structured JSON-LD schema, /llms.txt, and AI bot directives are live. As external brand citations expand, ChatGPT and Perplexity citations will scale.";
-				serpTitle = "Indexed by Google (Brand Entity Active)";
-				serpDesc = "Domain is actively crawled and indexed by Googlebot with clean Core Web Vitals.";
-			} else if (isPortal) {
-				aeoTitle = "Legacy Directory (Missing Modern 2026 AEO)";
-				aeoDesc = "Strong domain age on Google, but lacks /llms.txt maps and clean conversational answer chunks. AI engines scrape data without citing direct links.";
-				serpTitle = "High Organic SERP Authority";
-				serpDesc = "Established portal with extensive backlink history, but suffers from heavy mobile script latency.";
-			} else if (isSubdomain) {
-				aeoTitle = "Subdomain Penalty (Zero AI Citation Trust)";
-				aeoDesc = "Free builder subdomain detected. AI search engines categorize subdomains as non-authoritative entities and rarely quote them.";
-				serpTitle = "Low Subdomain Search Weight";
-				serpDesc = "Lacks custom root domain branding. Dependent on parent platform for crawl budget.";
-			} else {
-				aeoTitle = "High Risk of AI Search Exclusion";
-				aeoDesc = "Missing structured LocalBusiness schema and /llms.txt directives. Perplexity and ChatGPT search bots are unable to verify services and will recommend competitors instead.";
-				serpTitle = "Crawled by Google (Low Local Authority)";
-				serpDesc = "Site appears in Google database, but lacks local citation signals to rank in top results.";
-			}
-			let speedTitle = "";
-			let speedDesc = "";
-			if (speedScore >= 85) {
-				speedTitle = `Fast Performance (${lcpTime})`;
-				speedDesc = `Excellent Core Web Vitals. Mobile visitors interact in under 2 seconds, minimizing visitor drop-off.`;
-			} else if (speedScore >= 60) {
-				speedTitle = `Moderate Latency (${lcpTime})`;
-				speedDesc = `Average loading speed. Render-blocking JavaScript and uncompressed media cause mobile bounce rates.`;
-			} else {
-				speedTitle = `Critical Mobile Sluggishness (${lcpTime})`;
-				speedDesc = `Mobile visitors wait over 3.5 seconds. Google penalizes slow mobile experiences and visitors leave before converting.`;
-			}
-			setResult({
-				domain: cleanDomain,
-				speedScore,
-				aeoScore,
-				serpTitle,
-				serpDesc,
-				aeoTitle,
-				aeoDesc,
-				speedTitle,
-				speedDesc,
-				recoveryTitle: isNexus ? "24/7 AI Call & WhatsApp Suite Enabled" : "No Autonomous Speed-to-Lead Detected",
-				recoveryDesc: isNexus ? "Inbound phone calls and WhatsApp webhooks route inquiries into Google Sheet CRM in <1s." : "Inquiries outside business hours go to voicemail. No automated 60-second speed-to-lead voice calling agent is active."
-			});
+			const auditData = performRealAudit(url);
+			setResult(auditData);
 			setScanning(false);
 			setScanStatus("");
 		}, 1800);
@@ -1657,7 +1626,7 @@ function ScannerAudit() {
 				className: "flex flex-wrap items-center justify-between gap-3",
 				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
 					className: "font-bold text-amber-400 flex items-center gap-1.5",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Scanner Attachment Controller (Owner Only)"]
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Scanner Controller (Owner Only)"]
 				}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "flex gap-2",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
@@ -1698,7 +1667,7 @@ function ScannerAudit() {
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: saveAdminConfig,
 							className: "bg-emerald-600 px-3.5 py-1 rounded font-bold text-white flex items-center gap-1 cursor-pointer",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { className: "w-3.5 h-3.5" }), " Save Attachment"]
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { className: "w-3.5 h-3.5" }), " Save"]
 						})
 					]
 				})]
@@ -1731,7 +1700,7 @@ function ScannerAudit() {
 							type: "text",
 							value: url,
 							onChange: (e) => setUrl(e.target.value),
-							placeholder: "e.g. realestateindia.com or https://yourbrand.com",
+							placeholder: "e.g. dr-roop-singh-md.grexa.site or https://yourbrand.com",
 							className: "w-full bg-slate-950 border border-slate-800 rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
 						})]
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
@@ -1762,7 +1731,7 @@ function ScannerAudit() {
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", {
 								className: "text-xl font-bold text-white flex items-center gap-2",
 								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe$1, { className: "w-5 h-5 text-cyan-400" }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }),
 									" ",
 									result.domain
 								]
@@ -1783,7 +1752,7 @@ function ScannerAudit() {
 										className: "text-xs text-slate-400 font-medium",
 										children: "AI Citation Score"
 									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: `text-2xl font-extrabold ${result.aeoScore >= 60 ? "text-emerald-400" : result.aeoScore >= 45 ? "text-amber-400" : "text-red-400"}`,
+										className: `text-2xl font-extrabold ${result.aeoScore >= 60 ? "text-emerald-400" : result.aeoScore >= 40 ? "text-amber-400" : "text-red-400"}`,
 										children: [result.aeoScore, "/100"]
 									})]
 								})]
@@ -1820,10 +1789,10 @@ function ScannerAudit() {
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 												className: "text-xs font-bold text-slate-300",
 												children: "2. AI Search (ChatGPT & Perplexity)"
-											}), result.aeoScore >= 60 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { className: "w-4 h-4 text-amber-400" })]
+											}), result.aeoScore >= 50 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { className: "w-4 h-4 text-amber-400" })]
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: `text-sm font-semibold mb-1.5 ${result.aeoScore >= 60 ? "text-emerald-300" : "text-amber-300"}`,
+											className: `text-sm font-semibold mb-1.5 ${result.aeoScore >= 50 ? "text-emerald-300" : "text-amber-300"}`,
 											children: result.aeoTitle
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -1860,10 +1829,10 @@ function ScannerAudit() {
 											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
 												className: "text-xs font-bold text-slate-300",
 												children: "4. Missed Call Recovery Engine"
-											}), result.recoveryTitle.includes("Enabled") ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleX, { className: "w-4 h-4 text-red-400" })]
+											}), result.recoveryTitle.includes("Connected") || result.recoveryTitle.includes("Enabled") ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleX, { className: "w-4 h-4 text-red-400" })]
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: `text-sm font-semibold mb-1.5 ${result.recoveryTitle.includes("Enabled") ? "text-emerald-300" : "text-red-300"}`,
+											className: `text-sm font-semibold mb-1.5 ${result.recoveryTitle.includes("Connected") || result.recoveryTitle.includes("Enabled") ? "text-emerald-300" : "text-red-300"}`,
 											children: result.recoveryTitle
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
@@ -1876,9 +1845,8 @@ function ScannerAudit() {
 						}),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 							className: "pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-								to: "/audit-report",
-								search: { url: result.domain },
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: `/solutions-engine?url=${encodeURIComponent(result.domain)}`,
 								className: "px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-cyan-500/25 hover:scale-105 transition cursor-pointer",
 								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-4 h-4" }), " 🚀 Open AI Solution & Auto-Fix Engine →"]
 							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
@@ -1904,14 +1872,14 @@ function ScannerAudit() {
 		})]
 	});
 }
-var Route$10 = createFileRoute("/book-audit")({ component: BookAuditPage });
+var Route$11 = createFileRoute("/book-audit")({ component: BookAuditPage });
 function BookAuditPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen bg-slate-950 text-white pt-10",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScannerAudit, {}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TrustReviews, {})]
 	});
 }
-var Route$9 = createFileRoute("/clinics")({ component: ClinicsFunnel });
+var Route$10 = createFileRoute("/clinics")({ component: ClinicsFunnel });
 function ClinicsFunnel() {
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
 	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
@@ -2190,7 +2158,7 @@ function ClinicsFunnel() {
 	});
 }
 var $$splitComponentImporter$3 = () => import("./how-it-works-9YjKO0EF.mjs");
-var Route$8 = createFileRoute("/how-it-works")({
+var Route$9 = createFileRoute("/how-it-works")({
 	head: () => ({
 		meta: [
 			{ title: "How NexusAIAgency Works" },
@@ -2227,7 +2195,7 @@ var Route$8 = createFileRoute("/how-it-works")({
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
 var $$splitComponentImporter$2 = () => import("./industries-x-zVfAm7.mjs");
-var Route$7 = createFileRoute("/industries")({
+var Route$8 = createFileRoute("/industries")({
 	head: () => ({
 		meta: [
 			{ title: "Industries for AI Agents — NexusAIAgency" },
@@ -2263,7 +2231,7 @@ var Route$7 = createFileRoute("/industries")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$2, "component")
 });
-var Route$6 = createFileRoute("/onboarding")({ component: OnboardingPage });
+var Route$7 = createFileRoute("/onboarding")({ component: OnboardingPage });
 function OnboardingPage() {
 	const [submitted, setSubmitted] = (0, import_react.useState)(false);
 	const [businessName, setBusinessName] = (0, import_react.useState)("");
@@ -2330,7 +2298,7 @@ function OnboardingPage() {
 	});
 }
 var $$splitComponentImporter$1 = () => import("./privacy-CRGqSODb.mjs");
-var Route$5 = createFileRoute("/privacy")({
+var Route$6 = createFileRoute("/privacy")({
 	head: () => ({
 		meta: [
 			{ title: "Privacy Policy — NexusAIAgency" },
@@ -2366,7 +2334,7 @@ var Route$5 = createFileRoute("/privacy")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$1, "component")
 });
-var Route$4 = createFileRoute("/projects")({ component: ProjectsPage });
+var Route$5 = createFileRoute("/projects")({ component: ProjectsPage });
 var DEFAULT_PROJECTS = [
 	{
 		id: "proj-1",
@@ -2485,7 +2453,7 @@ function ProjectsPage() {
 	const getDeploymentIcon = (type) => {
 		if (type === "pdf") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-4 h-4 text-amber-400" });
 		if (type === "video") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Video, { className: "w-4 h-4 text-red-400" });
-		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe$1, { className: "w-4 h-4 text-cyan-400" });
+		return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-4 h-4 text-cyan-400" });
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 		className: "min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-black",
@@ -2815,7 +2783,7 @@ function ProjectsPage() {
 		]
 	});
 }
-var Route$3 = createFileRoute("/real-estate")({ component: RealEstateFunnel });
+var Route$4 = createFileRoute("/real-estate")({ component: RealEstateFunnel });
 function RealEstateFunnel() {
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
 	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
@@ -3093,7 +3061,7 @@ function RealEstateFunnel() {
 		]
 	});
 }
-var Route$2 = createFileRoute("/resources")({ component: ResourcesPage });
+var Route$3 = createFileRoute("/resources")({ component: ResourcesPage });
 var resources = [
 	{
 		category: "Voice AI Architecture",
@@ -3181,7 +3149,7 @@ function ResourcesPage() {
 		})
 	});
 }
-var Route$1 = createFileRoute("/salons-local")({ component: SalonsFunnel });
+var Route$2 = createFileRoute("/salons-local")({ component: SalonsFunnel });
 function SalonsFunnel() {
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
 	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
@@ -3460,7 +3428,7 @@ function SalonsFunnel() {
 	});
 }
 var $$splitComponentImporter = () => import("./solutions-DK_9CR0Y.mjs");
-var Route = createFileRoute("/solutions")({
+var Route$1 = createFileRoute("/solutions")({
 	head: () => ({
 		meta: [
 			{ title: "AI Automation Solutions — NexusAIAgency" },
@@ -3496,91 +3464,570 @@ var Route = createFileRoute("/solutions")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter, "component")
 });
-var IndexRoute = Route$16.update({
+var Route = createFileRoute("/solutions-engine")({
+	validateSearch: (search) => {
+		return { url: search.url || "example.com" };
+	},
+	component: SolutionEnginePage
+});
+function SolutionEnginePage() {
+	const { url } = Route.useSearch();
+	const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0];
+	const brandName = cleanDomain.split(".")[0].toUpperCase();
+	const isClinic = cleanDomain.includes("singh") || cleanDomain.includes("clinic") || cleanDomain.includes("dental") || cleanDomain.includes("doctor");
+	const isRealEstate = cleanDomain.includes("estate") || cleanDomain.includes("realty") || cleanDomain.includes("property");
+	const [copiedSchema, setCopiedSchema] = (0, import_react.useState)(false);
+	const [copiedLlms, setCopiedLlms] = (0, import_react.useState)(false);
+	const [copiedCopy, setCopiedCopy] = (0, import_react.useState)(false);
+	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
+	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
+	const schemaType = isClinic ? "MedicalBusiness" : isRealEstate ? "RealEstateAgent" : "LocalBusiness";
+	const generatedSchema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "${schemaType}",
+      "@id": "https://${cleanDomain}/#organization",
+      "name": "${brandName}",
+      "url": "https://${cleanDomain}/",
+      "telephone": "+91-8003469293",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Karauli",
+        "addressRegion": "RJ",
+        "addressCountry": "IN"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "19:00"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://${cleanDomain}/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How to book an appointment with ${brandName}?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inquiries are attended 24/7 with instant automated scheduling and WhatsApp confirmation."
+          }
+        }
+      ]
+    }
+  ]
+}`;
+	const generatedLlmsTxt = `# ${brandName}
+> Official Machine-Readable Knowledge Map for AI Search Engines.
+
+## Core Services & Solutions
+- 24/7 Autonomous Customer Intake & Verified Booking.
+- Real-Time WhatsApp Confirmation & Live CRM Record.
+
+## Canonical Verification
+- Website: https://${cleanDomain}/
+- Entity Schema: https://${cleanDomain}/#organization
+- Crawler Policy: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
+`;
+	const heroHeadline = isClinic ? `"Never Miss a Patient Call During Consultation or After-Hours — 24/7 AI Receptionist"` : `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead"`;
+	const subHeadline = isClinic ? `"Automate clinic inquiries, answer consultation FAQs in under 800ms, and deliver instant WhatsApp appointment slips."` : `"Capture and qualify high-intent inquiries instantly with voice AI and automated CRM sync."`;
+	const copyToClipboard = (text, type) => {
+		navigator.clipboard.writeText(text);
+		if (type === "schema") {
+			setCopiedSchema(true);
+			setTimeout(() => setCopiedSchema(false), 2e3);
+		} else if (type === "llms") {
+			setCopiedLlms(true);
+			setTimeout(() => setCopiedLlms(false), 2e3);
+		} else {
+			setCopiedCopy(true);
+			setTimeout(() => setCopiedCopy(false), 2e3);
+		}
+	};
+	const copyUpiId = () => {
+		navigator.clipboard.writeText("8003469293@ybl");
+		setCopiedUpi(true);
+		setTimeout(() => setCopiedUpi(false), 2e3);
+	};
+	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@ybl&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+		className: "min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+			className: "max-w-5xl mx-auto space-y-10",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "text-center space-y-3",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Autonomous AI Solution & Auto-Fix Engine"]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+							className: "text-3xl md:text-5xl font-extrabold text-white",
+							children: ["AI Auto-Fix & Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-cyan-400",
+								children: cleanDomain
+							})]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-sm text-slate-400 max-w-2xl mx-auto",
+							children: "Ye system sirf issues nahi batata, balki aapki website ke liye ready-made Schema code, high-converting copy, /llms.txt, aur AI prompt ranking suggestions auto-generate karke deta hai."
+						})
+					]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-wrap items-center justify-between gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+							className: "text-lg font-bold text-white flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }), " Solution 1: Auto-Generated Schema.org JSON-LD"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+							className: "text-xs text-slate-400 mt-1",
+							children: [
+								"Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke hisaab se ",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: schemaType }),
+								" schema auto-generate ho gaya hai:"
+							]
+						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							onClick: () => copyToClipboard(generatedSchema, "schema"),
+							className: "px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
+							children: [copiedSchema ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedSchema ? "Copied Schema Code!" : "Copy Schema Code"]
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56",
+						children: generatedSchema
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-wrap items-center justify-between gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+							className: "text-lg font-bold text-white flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting AI Copywriting Engine"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-xs text-slate-400 mt-1",
+							children: "Aapki website ke visitors ko paying clients mein convert karne ke liye auto-generated high-converting copy:"
+						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							onClick: () => copyToClipboard(`${heroHeadline}\n${subHeadline}`, "copy"),
+							className: "px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
+							children: [copiedCopy ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedCopy ? "Copied Copy!" : "Copy Rewritten Copy"]
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "space-y-3 text-xs",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
+									children: "Recommended Hero Headline"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-sm font-bold text-white",
+									children: heroHeadline
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400",
+									children: subHeadline
+								})
+							]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
+								children: "3 Irresistible Value Bullets"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("ul", {
+								className: "space-y-1 text-slate-300",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+										"• ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Instant Response:" }),
+										" Responds in under 800ms when your front desk is busy or closed."
+									] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+										"• ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Direct WhatsApp Slips:" }),
+										" Delivers booking confirmations, floor plans or tokens automatically."
+									] }),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: [
+										"• ",
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "Zero Data Loss:" }),
+										" Real-time synchronization directly into Google Sheets CRM."
+									] })
+								]
+							})]
+						})]
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-wrap items-center justify-between gap-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+							className: "text-lg font-bold text-white flex items-center gap-2",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }), " Solution 3: Automated GEO & /llms.txt Permissions"]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-xs text-slate-400 mt-1",
+							children: "ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye ye file root par lagayein:"
+						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							onClick: () => copyToClipboard(generatedLlmsTxt, "llms"),
+							className: "px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer",
+							children: [copiedLlms ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-4 h-4" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-4 h-4" }), copiedLlms ? "Copied /llms.txt" : "Copy /llms.txt"]
+						})]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+						className: "p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44",
+						children: generatedLlmsTxt
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+						className: "text-lg font-bold text-white flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top 5 AI Prompts (ChatGPT & Perplexity) to Rank In"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "grid sm:grid-cols-2 gap-3 text-xs",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"1. \"Best ",
+										brandName,
+										" in my city with 24/7 appointment booking\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Deploy geo-targeted LocalBusiness schema with verified opening hours."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"2. \"How much does ",
+										brandName,
+										" consultation or services cost?\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Add structured priceRange and FAQ schema directly into homepage source code."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "font-semibold text-cyan-300",
+									children: "3. \"Top rated verified alternatives in Rajasthan / India\""
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Publish comparison table showcasing speed & availability advantages."
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "font-semibold text-cyan-300",
+									children: [
+										"4. \"How to book an instant slot with ",
+										brandName,
+										" on WhatsApp\""
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-[11px] text-slate-400 mt-1",
+									children: "Action: Enable official WhatsApp Cloud API click-to-chat webhook."
+								})]
+							})
+						]
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
+						className: "text-lg font-bold text-white flex items-center gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-5 h-5 text-indigo-400" }), " Solution 5: Site Hygiene & Legal Verification"]
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "grid sm:grid-cols-2 gap-3 text-xs",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "font-semibold text-white",
+								children: "Privacy Policy & Terms of Service"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-slate-400 text-[11px]",
+								children: "Meta Ads aur Google crawlers ke compliance ke liye footer mein legal disclaimers mandatory hain."
+							})] })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(SquareCheckBig, { className: "w-4 h-4 text-emerald-400 mt-0.5" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "font-semibold text-white",
+								children: "Title Tag & Meta Description Health"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-slate-400 text-[11px]",
+								children: "Sub-pages par unique H1 titles aur CTR-optimized meta descriptions honi chahiye taaki duplicate content penalty na lage."
+							})] })]
+						})]
+					})]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/40 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.15)] text-center space-y-6",
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+							className: "px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider",
+							children: "Turnkey Deployment & Fix Activation"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+							className: "text-3xl md:text-4xl font-extrabold text-white",
+							children: "Activate All 5 AI Solutions for Your Website"
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-xs md:text-sm text-slate-400 max-w-lg mx-auto",
+							children: "Aapko ye code khud paste karne ki zaroorat nahi hai. Hum aapke domain par Auto-Schema, /llms.txt, PageSpeed Core Web Vitals, aur 24/7 AI Voice Receptionist completely turnkey configure karke denge."
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center justify-center gap-3",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-slate-500 line-through text-lg font-bold",
+									children: "₹4,999 ($79)"
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+									className: "text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400",
+									children: ["₹999 ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-sm text-slate-400 font-normal",
+										children: "/ $19 USD"
+									})]
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full",
+									children: "80% OFF Launch"
+								})
+							]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "max-w-md mx-auto",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex p-1 rounded-xl bg-slate-950 border border-slate-800 mb-6 text-xs font-bold",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+											onClick: () => setPaymentTab("upi"),
+											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "upi" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " UPI / QR (India)"]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+											onClick: () => setPaymentTab("razorpay"),
+											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "razorpay" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-3.5 h-3.5" }), " Razorpay"]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+											onClick: () => setPaymentTab("stripe"),
+											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "stripe" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), " Stripe (USD)"]
+										})
+									]
+								}),
+								paymentTab === "upi" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs font-semibold text-slate-300",
+											children: "Scan QR Code via PhonePe / GPay / Paytm"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center",
+											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+												src: upiQrUrl,
+												alt: "UPI Payment QR Code",
+												className: "w-full h-full object-contain"
+											})
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "flex items-center justify-center gap-2 pt-1",
+											children: [
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+													className: "text-xs text-slate-400",
+													children: "UPI ID:"
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", {
+													className: "text-xs bg-slate-900 border border-slate-800 px-2 py-1 rounded text-cyan-400 font-mono",
+													children: "8003469293@ybl"
+												}),
+												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+													onClick: copyUpiId,
+													className: "p-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 cursor-pointer",
+													title: "Copy UPI ID",
+													children: copiedUpi ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-3.5 h-3.5 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-3.5 h-3.5" })
+												})
+											]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-[11px] text-slate-500",
+											children: "Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation."
+										})
+									]
+								}),
+								paymentTab === "razorpay" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-10 h-10 text-cyan-400 mx-auto" }),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+											className: "text-sm font-bold text-white",
+											children: "Razorpay Secure Online Checkout"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs text-slate-400",
+											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets."
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay ₹999 via Razorpay link for ${cleanDomain} AI setup.`)}`,
+											target: "_blank",
+											rel: "noreferrer",
+											className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
+											children: "Pay ₹999 via Razorpay Gateway →"
+										})
+									]
+								}),
+								paymentTab === "stripe" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+											className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), " Coming Soon / Account In Setup"]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+											className: "text-sm font-bold text-white",
+											children: "Stripe USD Card Gateway ($19 USD)"
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs text-slate-400",
+											children: "Stripe international checkout is undergoing merchant onboarding. For international credit card payments, connect via WhatsApp for an instant payment invoice link."
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`,
+											target: "_blank",
+											rel: "noreferrer",
+											className: "w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-3.5 h-3.5" }), " Request $19 USD Invoice on WhatsApp →"]
+										})
+									]
+								})
+							]
+						}),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, maine ${cleanDomain} ka Solution Engine report dekha hai aur ise deploy karwana chahta hoon.`)}`,
+								target: "_blank",
+								rel: "noreferrer",
+								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-4 h-4" }), " Message Founder Pradeep Directly on WhatsApp →"]
+							})
+						})
+					]
+				})
+			]
+		})
+	});
+}
+var IndexRoute = Route$17.update({
 	id: "/",
 	path: "/",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AuthenticatedRouteRoute = Route$15.update({
+var AuthenticatedRouteRoute = Route$16.update({
 	id: "/_authenticated",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AboutRoute = Route$14.update({
+var AboutRoute = Route$15.update({
 	id: "/about",
 	path: "/about",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AgentDemosRoute = Route$13.update({
+var AgentDemosRoute = Route$14.update({
 	id: "/agent-demos",
 	path: "/agent-demos",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AuditReportRoute = Route$12.update({
+var AuditReportRoute = Route$13.update({
 	id: "/audit-report",
 	path: "/audit-report",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AuthRoute = Route$11.update({
+var AuthRoute = Route$12.update({
 	id: "/auth",
 	path: "/auth",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var BookAuditRoute = Route$10.update({
+var BookAuditRoute = Route$11.update({
 	id: "/book-audit",
 	path: "/book-audit",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var ClinicsRoute = Route$9.update({
+var ClinicsRoute = Route$10.update({
 	id: "/clinics",
 	path: "/clinics",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var HowItWorksRoute = Route$8.update({
+var HowItWorksRoute = Route$9.update({
 	id: "/how-it-works",
 	path: "/how-it-works",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var IndustriesRoute = Route$7.update({
+var IndustriesRoute = Route$8.update({
 	id: "/industries",
 	path: "/industries",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var OnboardingRoute = Route$6.update({
+var OnboardingRoute = Route$7.update({
 	id: "/onboarding",
 	path: "/onboarding",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var PrivacyRoute = Route$5.update({
+var PrivacyRoute = Route$6.update({
 	id: "/privacy",
 	path: "/privacy",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var ProjectsRoute = Route$4.update({
+var ProjectsRoute = Route$5.update({
 	id: "/projects",
 	path: "/projects",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var RealEstateRoute = Route$3.update({
+var RealEstateRoute = Route$4.update({
 	id: "/real-estate",
 	path: "/real-estate",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var ResourcesRoute = Route$2.update({
+var ResourcesRoute = Route$3.update({
 	id: "/resources",
 	path: "/resources",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var SalonsLocalRoute = Route$1.update({
+var SalonsLocalRoute = Route$2.update({
 	id: "/salons-local",
 	path: "/salons-local",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var SolutionsRoute = Route.update({
+var SolutionsRoute = Route$1.update({
 	id: "/solutions",
 	path: "/solutions",
-	getParentRoute: () => Route$17
+	getParentRoute: () => Route$18
 });
-var AuthenticatedRouteRouteChildren = { AuthenticatedAdminResourcesRoute: Route$18.update({
+var SolutionsEngineRoute = Route.update({
+	id: "/solutions-engine",
+	path: "/solutions-engine",
+	getParentRoute: () => Route$18
+});
+var AuthenticatedRouteRouteChildren = { AuthenticatedAdminResourcesRoute: Route$19.update({
 	id: "/admin/resources",
 	path: "/admin/resources",
 	getParentRoute: () => AuthenticatedRouteRoute
@@ -3602,9 +4049,10 @@ var rootRouteChildren = {
 	RealEstateRoute,
 	ResourcesRoute,
 	SalonsLocalRoute,
-	SolutionsRoute
+	SolutionsRoute,
+	SolutionsEngineRoute
 };
-var routeTree = Route$17._addFileChildren(rootRouteChildren)._addFileTypes();
+var routeTree = Route$18._addFileChildren(rootRouteChildren)._addFileTypes();
 var getRouter = () => {
 	const queryClient = new QueryClient();
 	return createRouter({

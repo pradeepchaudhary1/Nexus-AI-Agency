@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'
-import { CheckCircle2, AlertTriangle, XCircle, Copy, Check, Code, Sparkles, Zap, Shield, Search, FileText, ArrowRight, Layers, PhoneCall, QrCode, CreditCard, Clock, CheckSquare } from 'lucide-react'
+import { CheckCircle2, Copy, Check, Code, Sparkles, Globe, FileText, PhoneCall, QrCode, CreditCard, Clock, CheckSquare, Shield, Activity, Zap } from 'lucide-react'
 
 export const Route = createFileRoute('/audit-report')({
   validateSearch: (search: Record<string, unknown>) => {
@@ -8,34 +8,38 @@ export const Route = createFileRoute('/audit-report')({
       url: (search.url as string) || 'example.com',
     }
   },
-  component: AuditReportPage,
+  component: SolutionEnginePage,
 })
 
-function AuditReportPage() {
+function SolutionEnginePage() {
   const { url } = Route.useSearch()
   const cleanDomain = url.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]
   const brandName = cleanDomain.split('.')[0].toUpperCase()
 
+  const isClinic = cleanDomain.includes('singh') || cleanDomain.includes('clinic') || cleanDomain.includes('dental') || cleanDomain.includes('doctor')
+  const isRealEstate = cleanDomain.includes('estate') || cleanDomain.includes('realty') || cleanDomain.includes('property')
+
   const [copiedSchema, setCopiedSchema] = useState(false)
   const [copiedLlms, setCopiedLlms] = useState(false)
   const [copiedCopy, setCopiedCopy] = useState(false)
-  const [paymentTab, setPaymentTab] = useState<'upi' | 'razorpay' | 'stripe'>('upi')
   const [copiedUpi, setCopiedUpi] = useState(false)
+  const [paymentTab, setPaymentTab] = useState<'upi' | 'razorpay' | 'stripe'>('upi')
 
-  // 1. Auto-Generated Schema.org JSON-LD (Tailored to Domain)
+  // Dynamic Schema Generation
+  const schemaType = isClinic ? 'MedicalBusiness' : isRealEstate ? 'RealEstateAgent' : 'LocalBusiness'
   const generatedSchema = `{
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
-      "@id": "https://${cleanDomain}/#business",
+      "@type": "${schemaType}",
+      "@id": "https://${cleanDomain}/#organization",
       "name": "${brandName}",
       "url": "https://${cleanDomain}/",
       "telephone": "+91-8003469293",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Jaipur",
+        "addressLocality": "Karauli",
         "addressRegion": "RJ",
         "addressCountry": "IN"
       },
@@ -43,8 +47,8 @@ function AuditReportPage() {
         {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "09:00",
-          "closes": "20:00"
+          "opens": "08:00",
+          "closes": "19:00"
         }
       ]
     },
@@ -54,10 +58,10 @@ function AuditReportPage() {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How does appointment booking work at ${brandName}?",
+          "name": "How to book an appointment with ${brandName}?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with instant confirmation and automated calendar scheduling."
+            "text": "Inquiries are attended 24/7 with instant automated scheduling and WhatsApp confirmation."
           }
         }
       ]
@@ -65,23 +69,28 @@ function AuditReportPage() {
   ]
 }`
 
-  // 2. Auto-Generated /llms.txt Map for AI Crawlers
+  // Dynamic /llms.txt Generation
   const generatedLlmsTxt = `# ${brandName}
 > Official Machine-Readable Knowledge Map for AI Search Engines.
 
 ## Core Services & Solutions
-- 24/7 Customer Inbound Answering & Qualified Appointment Booking.
-- Direct WhatsApp Confirmation & Google Sheets CRM Synchronization.
+- 24/7 Autonomous Customer Intake & Verified Booking.
+- Real-Time WhatsApp Confirmation & Live CRM Record.
 
 ## Canonical Verification
 - Website: https://${cleanDomain}/
-- Verified Schema: https://${cleanDomain}/#business
-- Crawler Access: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
+- Entity Schema: https://${cleanDomain}/#organization
+- Crawler Policy: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
 `
 
-  // 3. AI Generated High-Converting Copy
-  const heroHeadline = `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead Follow-Up"`
-  const subHeadline = `"Automate customer inquiries with intelligent voice calling, instant WhatsApp confirmations, and zero human drop-off."`
+  // Conversion Copywriting
+  const heroHeadline = isClinic
+    ? `"Never Miss a Patient Call During Consultation or After-Hours — 24/7 AI Receptionist"`
+    : `"Never Lose Another Customer to a Busy Tone — 24/7 Instant Booking & Speed-to-Lead"`
+  
+  const subHeadline = isClinic
+    ? `"Automate clinic inquiries, answer consultation FAQs in under 800ms, and deliver instant WhatsApp appointment slips."`
+    : `"Capture and qualify high-intent inquiries instantly with voice AI and automated CRM sync."`
 
   const copyToClipboard = (text: string, type: 'schema' | 'llms' | 'copy') => {
     navigator.clipboard.writeText(text)
@@ -103,26 +112,25 @@ function AuditReportPage() {
     setTimeout(() => setCopiedUpi(false), 2000)
   }
 
-  // Live Dynamic UPI QR Code URL for ₹999
   const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent('upi://pay?pa=8003469293@ybl&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit')}`
 
   return (
     <div className="min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black">
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-5xl mx-auto space-y-10">
         {/* Header */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" /> Autonomous AI Solution & Auto-Fix Engine
           </div>
           <h1 className="text-3xl md:text-5xl font-extrabold text-white">
-            AI Auto-Fix & Optimization Suite for <span className="text-cyan-400">{cleanDomain}</span>
+            AI Auto-Fix & Solutions for <span className="text-cyan-400">{cleanDomain}</span>
           </h1>
           <p className="text-sm text-slate-400 max-w-2xl mx-auto">
             Ye system sirf issues nahi batata, balki aapki website ke liye ready-made Schema code, high-converting copy, /llms.txt, aur AI prompt ranking suggestions auto-generate karke deta hai.
           </p>
         </div>
 
-        {/* Fix 1: Auto-Generated Schema.org Builder */}
+        {/* Solution 1: Auto-Generated Schema.org */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -130,7 +138,7 @@ function AuditReportPage() {
                 <Code className="w-5 h-5 text-emerald-400" /> Solution 1: Auto-Generated Schema.org JSON-LD
               </h2>
               <p className="text-xs text-slate-400 mt-1">
-                Aapko schema par dimaag lagane ki zaroorat nahi hai. Humne aapke domain ke hisaab se complete rich snippet schema auto-build kar diya hai:
+                Aapko schema par dimaag lagane ki zaroorat nahi hai. Aapke domain ke hisaab se <b>{schemaType}</b> schema auto-generate ho gaya hai:
               </p>
             </div>
             <button
@@ -138,23 +146,23 @@ function AuditReportPage() {
               className="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-bold flex items-center gap-1.5 transition cursor-pointer"
             >
               {copiedSchema ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-              {copiedSchema ? 'Copied to Clipboard!' : 'Copy Schema Code'}
+              {copiedSchema ? 'Copied Schema Code!' : 'Copy Schema Code'}
             </button>
           </div>
-          <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-60">
+          <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56">
             {generatedSchema}
           </pre>
         </div>
 
-        {/* Fix 2: High-Converting AI Copywriting Engine */}
+        {/* Solution 2: High-Converting AI Copywriting */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <FileText className="w-5 h-5 text-blue-400" /> Solution 2: High-Converting AI Copywriting
+                <FileText className="w-5 h-5 text-blue-400" /> Solution 2: High-Converting AI Copywriting Engine
               </h2>
               <p className="text-xs text-slate-400 mt-1">
-                Aapki website ke visitors ko paying customers mein convert karne ke liye optimized headline aur copy:
+                Aapki website ke visitors ko paying clients mein convert karne ke liye auto-generated high-converting copy:
               </p>
             </div>
             <button
@@ -168,22 +176,22 @@ function AuditReportPage() {
 
           <div className="space-y-3 text-xs">
             <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-              <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">High-Converting Hero Headline</span>
+              <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">Recommended Hero Headline</span>
               <p className="text-sm font-bold text-white">{heroHeadline}</p>
               <p className="text-[11px] text-slate-400">{subHeadline}</p>
             </div>
             <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">3 Irresistible Feature Bullets</span>
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">3 Irresistible Value Bullets</span>
               <ul className="space-y-1 text-slate-300">
-                <li>• <b>Zero Missed Leads:</b> Attends calls in &lt;800ms when your team is busy or after hours.</li>
-                <li>• <b>Instant WhatsApp Slips:</b> Delivers booking confirmations & location pins automatically.</li>
-                <li>• <b>Live Sheet Sync:</b> Automatically records caller name, requirement & date in real time.</li>
+                <li>• <b>Instant Response:</b> Responds in under 800ms when your front desk is busy or closed.</li>
+                <li>• <b>Direct WhatsApp Slips:</b> Delivers booking confirmations, floor plans or tokens automatically.</li>
+                <li>• <b>Zero Data Loss:</b> Real-time synchronization directly into Google Sheets CRM.</li>
               </ul>
             </div>
           </div>
         </div>
 
-        {/* Fix 3: Automated GEO & /llms.txt AI Bot Permission */}
+        {/* Solution 3: GEO & /llms.txt AI Bot Permission */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
@@ -191,7 +199,7 @@ function AuditReportPage() {
                 <Globe className="w-5 h-5 text-cyan-400" /> Solution 3: Automated GEO & /llms.txt Permissions
               </h2>
               <p className="text-xs text-slate-400 mt-1">
-                ChatGPT, Perplexity aur Claude crawler bots ko website par access dene ke liye ye file domain root par save honi chahiye:
+                ChatGPT, Perplexity aur Claude crawler bots ko website par direct access dene ke liye ye file root par lagayein:
               </p>
             </div>
             <button
@@ -202,41 +210,37 @@ function AuditReportPage() {
               {copiedLlms ? 'Copied /llms.txt' : 'Copy /llms.txt'}
             </button>
           </div>
-          <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-48">
+          <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44">
             {generatedLlmsTxt}
           </pre>
         </div>
 
-        {/* Fix 4: AI Prompt Discovery & Ranking Blueprint */}
+        {/* Solution 4: Top AI Search Prompts to Rank In */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-400" /> Solution 4: Top 5 AI Search Prompts to Rank In (ChatGPT & Perplexity)
+            <Sparkles className="w-5 h-5 text-amber-400" /> Solution 4: Top 5 AI Prompts (ChatGPT & Perplexity) to Rank In
           </h2>
-          <p className="text-xs text-slate-400">
-            Jab potential buyers AI mein ye prompts puchenge, to aapki website kaise top recommend hogi:
-          </p>
-
           <div className="grid sm:grid-cols-2 gap-3 text-xs">
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="font-semibold text-cyan-300">1. "Best {brandName} services near me with 24/7 phone support"</p>
-              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Add geo-targeted schema with exact business openingHoursSpecification.</p>
+              <p className="font-semibold text-cyan-300">1. "Best {brandName} in my city with 24/7 appointment booking"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Action: Deploy geo-targeted LocalBusiness schema with verified opening hours.</p>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="font-semibold text-cyan-300">2. "How much does {brandName} consultation or booking cost?"</p>
-              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Include clean priceRange and transparent package FAQs directly on homepage.</p>
+              <p className="font-semibold text-cyan-300">2. "How much does {brandName} consultation or services cost?"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Action: Add structured priceRange and FAQ schema directly into homepage source code.</p>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="font-semibold text-cyan-300">3. "Top rated verified alternatives to competitors in my city"</p>
-              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Embed comparison table (Pillar 4) highlighting speed & pricing advantages.</p>
+              <p className="font-semibold text-cyan-300">3. "Top rated verified alternatives in Rajasthan / India"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Action: Publish comparison table showcasing speed & availability advantages.</p>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-              <p className="font-semibold text-cyan-300">4. "How to book an instant appointment with {brandName} on WhatsApp"</p>
-              <p className="text-[11px] text-slate-400 mt-1">Ranking Action: Connect official WhatsApp Cloud API click-to-chat webhook.</p>
+              <p className="font-semibold text-cyan-300">4. "How to book an instant slot with {brandName} on WhatsApp"</p>
+              <p className="text-[11px] text-slate-400 mt-1">Action: Enable official WhatsApp Cloud API click-to-chat webhook.</p>
             </div>
           </div>
         </div>
 
-        {/* Fix 5: Site Hygiene & Legal Disclaimers */}
+        {/* Solution 5: Site Hygiene & Legal Verification */}
         <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-3">
           <h2 className="text-lg font-bold text-white flex items-center gap-2">
             <Shield className="w-5 h-5 text-indigo-400" /> Solution 5: Site Hygiene & Legal Verification
@@ -246,20 +250,20 @@ function AuditReportPage() {
               <CheckSquare className="w-4 h-4 text-emerald-400 mt-0.5" />
               <div>
                 <p className="font-semibold text-white">Privacy Policy & Terms of Service</p>
-                <p className="text-slate-400 text-[11px]">Meta Ads aur Google crawlers ke liye mandatory footer links include hone chahiye.</p>
+                <p className="text-slate-400 text-[11px]">Meta Ads aur Google crawlers ke compliance ke liye footer mein legal disclaimers mandatory hain.</p>
               </div>
             </div>
             <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-start gap-2.5">
               <CheckSquare className="w-4 h-4 text-emerald-400 mt-0.5" />
               <div>
                 <p className="font-semibold text-white">Title Tag & Meta Description Health</p>
-                <p className="text-slate-400 text-[11px]">Har page ka unique H1 title hona chahiye taaki duplicate content penalty na lage.</p>
+                <p className="text-slate-400 text-[11px]">Sub-pages par unique H1 titles aur CTR-optimized meta descriptions honi chahiye taaki duplicate content penalty na lage.</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Multi-Gateway Integrated Payment System (₹999 / $19) */}
+        {/* Multi-Gateway Integrated Payment System */}
         <div className="bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/40 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.15)] text-center space-y-6">
           <span className="px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider">
             Turnkey Deployment & Fix Activation
@@ -381,4 +385,4 @@ function AuditReportPage() {
     </div>
   )
 }
-export default AuditReportPage
+export default SolutionEnginePage

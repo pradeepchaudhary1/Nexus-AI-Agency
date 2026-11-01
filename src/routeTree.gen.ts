@@ -26,6 +26,7 @@ import { Route as RealEstateRouteImport } from './routes/real-estate'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SalonsLocalRouteImport } from './routes/salons-local'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as SolutionsEngineRouteImport } from './routes/solutions-engine'
 import { Route as AuthenticatedAdminResourcesRouteImport } from './routes/_authenticated/admin.resources'
 
 const IndexRoute = IndexRouteImport.update({
@@ -112,6 +113,11 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsEngineRoute = SolutionsEngineRouteImport.update({
+  id: '/solutions-engine',
+  path: '/solutions-engine',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAdminResourcesRoute =
   AuthenticatedAdminResourcesRouteImport.update({
     id: '/admin/resources',
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
+  '/solutions-engine': typeof SolutionsEngineRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
 export interface FileRoutesByTo {
@@ -155,6 +162,7 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
+  '/solutions-engine': typeof SolutionsEngineRoute
   '/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
 export interface FileRoutesById {
@@ -176,6 +184,7 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/salons-local': typeof SalonsLocalRoute
   '/solutions': typeof SolutionsRoute
+  '/solutions-engine': typeof SolutionsEngineRoute
   '/_authenticated/admin/resources': typeof AuthenticatedAdminResourcesRoute
 }
 export interface FileRouteTypes {
@@ -197,6 +206,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/salons-local'
     | '/solutions'
+    | '/solutions-engine'
     | '/admin/resources'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/salons-local'
     | '/solutions'
+    | '/solutions-engine'
     | '/admin/resources'
   id:
     | '__root__'
@@ -236,6 +247,7 @@ export interface FileRouteTypes {
     | '/resources'
     | '/salons-local'
     | '/solutions'
+    | '/solutions-engine'
     | '/_authenticated/admin/resources'
   fileRoutesById: FileRoutesById
 }
@@ -257,6 +269,7 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   SalonsLocalRoute: typeof SalonsLocalRoute
   SolutionsRoute: typeof SolutionsRoute
+  SolutionsEngineRoute: typeof SolutionsEngineRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -380,6 +393,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions-engine': {
+      id: '/solutions-engine'
+      path: '/solutions-engine'
+      fullPath: '/solutions-engine'
+      preLoaderRoute: typeof SolutionsEngineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/admin/resources': {
       id: '/_authenticated/admin/resources'
       path: '/admin/resources'
@@ -419,6 +439,7 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   SalonsLocalRoute: SalonsLocalRoute,
   SolutionsRoute: SolutionsRoute,
+  SolutionsEngineRoute: SolutionsEngineRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
