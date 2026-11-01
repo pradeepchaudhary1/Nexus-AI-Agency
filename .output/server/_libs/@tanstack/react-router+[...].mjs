@@ -1,5 +1,6 @@
 import { n as __toESM, t as __commonJSMin } from "../../_runtime.mjs";
-import { l as require_jsx_runtime, s as require_react_dom, u as require_react } from "../@radix-ui/react-accordion+[...].mjs";
+import { n as require_react } from "../@radix-ui/react-compose-refs+[...].mjs";
+import { i as require_jsx_runtime, n as require_react_dom } from "../@radix-ui/react-label+[...].mjs";
 import { i as parseHref, r as normalizeProtocolRelative } from "../tanstack__history.mjs";
 import { n as globalthis_default } from "../supabase__realtime-js+unenv.mjs";
 import { Buffer } from "node:buffer";

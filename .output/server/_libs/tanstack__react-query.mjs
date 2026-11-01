@@ -1,5 +1,6 @@
 import { n as __toESM } from "../_runtime.mjs";
-import { l as require_jsx_runtime, u as require_react } from "./@radix-ui/react-accordion+[...].mjs";
+import { n as require_react } from "./@radix-ui/react-compose-refs+[...].mjs";
+import { i as require_jsx_runtime } from "./@radix-ui/react-label+[...].mjs";
 import { a as shouldThrowError, i as noop, n as QueryObserver, r as notifyManager } from "./tanstack__query-core.mjs";
 //#region node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js
 var import_react = /* @__PURE__ */ __toESM(require_react(), 1);
@@ -249,9 +250,4 @@ function useQuery(options, queryClient) {
 	return useBaseQuery(options, QueryObserver, queryClient);
 }
 //#endregion
-//#region node_modules/@tanstack/react-query/build/modern/queryOptions.js
-function queryOptions(options) {
-	return options;
-}
-//#endregion
-export { useQueryClient as i, useQuery as n, QueryClientProvider as r, queryOptions as t };
+export { QueryClientProvider as n, useQueryClient as r, useQuery as t };
