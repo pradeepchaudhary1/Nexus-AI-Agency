@@ -1,10 +1,10 @@
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { vt as ArrowRight } from "../_libs/lucide-react.mjs";
+import { _t as ArrowRight } from "../_libs/lucide-react.mjs";
 import { b as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { r as industries } from "./lead-forms-EP1Aq0So.mjs";
-import { i as PageHero, o as SectionHeading, r as FeatureGrid } from "./page-sections-Beksqh_K.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/industries-x-zVfAm7.js
+import { r as industries } from "./lead-forms-CCE1LWhA.mjs";
+import { i as PageHero, o as SectionHeading, r as FeatureGrid } from "./page-sections-BwJ4gF98.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/industries-8Hxmgs3w.js
 var import_jsx_runtime = require_jsx_runtime();
 function IndustriesPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PageHero, {

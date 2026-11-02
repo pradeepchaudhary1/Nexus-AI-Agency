@@ -70,50 +70,50 @@ export function LeadForm() {
         <form onSubmit={handleSubmit} className="space-y-4 text-left">
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Full Name *</label>
+              <label htmlFor="lead-name" className="block text-xs font-medium text-slate-400 mb-1.5">Full Name *</label>
               <input
                 required
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                placeholder="e.g. David Miller"
+                id="lead-name" name="name" id="lead-name" name="name" placeholder="e.g. David Miller"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Business Name *</label>
+              <label htmlFor="lead-biz" className="block text-xs font-medium text-slate-400 mb-1.5">Business Name *</label>
               <input
                 required
                 type="text"
                 value={formData.businessName}
                 onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                placeholder="e.g. Apex Health Clinic / Urban Realty"
+                id="lead-biz" name="businessName" id="lead-biz" name="businessName" placeholder="e.g. Apex Health Clinic / Urban Realty"
               />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Email Address *</label>
+              <label htmlFor="lead-email" className="block text-xs font-medium text-slate-400 mb-1.5">Email Address *</label>
               <input
                 required
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                placeholder="name@company.com"
+                id="lead-email" name="email" id="lead-email" name="email" placeholder="name@company.com"
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Phone Number (WhatsApp) *</label>
+              <label htmlFor="lead-phone" className="block text-xs font-medium text-slate-400 mb-1.5">Phone Number (WhatsApp) *</label>
               <input
                 required
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                placeholder="e.g. +91 9876543210"
+                id="lead-phone" name="phone" id="lead-phone" name="phone" placeholder="e.g. +91 9876543210"
               />
             </div>
           </div>

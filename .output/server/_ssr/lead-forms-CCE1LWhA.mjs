@@ -1,8 +1,8 @@
 import { n as __toESM } from "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
-import { D as PhoneCall, H as Headphones, U as GraduationCap, V as HeartPulse, Y as Dumbbell, Z as Database, _ as Settings2, c as Store, d as Square, dt as CalendarCheck, f as SquareCheckBig, ft as Building2, ht as Bot, i as Users, m as ShoppingBag, mt as BriefcaseBusiness, ot as CircleCheck, ut as ChartNoAxesCombined, v as Send, y as Search } from "../_libs/lucide-react.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/lead-forms-EP1Aq0So.js
+import { D as PhoneCall, H as Headphones, U as GraduationCap, V as HeartPulse, Y as Dumbbell, Z as Database, _ as Settings2, at as CircleCheck, c as Store, d as Square, dt as Building2, f as SquareCheckBig, i as Users, lt as ChartNoAxesCombined, m as ShoppingBag, mt as Bot, pt as BriefcaseBusiness, ut as CalendarCheck, v as Send, y as Search } from "../_libs/lucide-react.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/lead-forms-CCE1LWhA.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var services = [
@@ -270,6 +270,7 @@ function LeadForm() {
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "grid md:grid-cols-2 gap-4",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+						htmlFor: "lead-name",
 						className: "block text-xs font-medium text-slate-400 mb-1.5",
 						children: "Full Name *"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
@@ -281,8 +282,13 @@ function LeadForm() {
 							fullName: e.target.value
 						}),
 						className: "w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition",
+						id: "lead-name",
+						name: "name",
+						id: "lead-name",
+						name: "name",
 						placeholder: "e.g. David Miller"
 					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+						htmlFor: "lead-biz",
 						className: "block text-xs font-medium text-slate-400 mb-1.5",
 						children: "Business Name *"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
@@ -294,12 +300,17 @@ function LeadForm() {
 							businessName: e.target.value
 						}),
 						className: "w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition",
+						id: "lead-biz",
+						name: "businessName",
+						id: "lead-biz",
+						name: "businessName",
 						placeholder: "e.g. Apex Health Clinic / Urban Realty"
 					})] })]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
 					className: "grid md:grid-cols-2 gap-4",
 					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+						htmlFor: "lead-email",
 						className: "block text-xs font-medium text-slate-400 mb-1.5",
 						children: "Email Address *"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
@@ -311,8 +322,13 @@ function LeadForm() {
 							email: e.target.value
 						}),
 						className: "w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition",
+						id: "lead-email",
+						name: "email",
+						id: "lead-email",
+						name: "email",
 						placeholder: "name@company.com"
 					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("label", {
+						htmlFor: "lead-phone",
 						className: "block text-xs font-medium text-slate-400 mb-1.5",
 						children: "Phone Number (WhatsApp) *"
 					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
@@ -324,6 +340,10 @@ function LeadForm() {
 							phone: e.target.value
 						}),
 						className: "w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition",
+						id: "lead-phone",
+						name: "phone",
+						id: "lead-phone",
+						name: "phone",
 						placeholder: "e.g. +91 9876543210"
 					})] })]
 				}),

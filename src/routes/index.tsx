@@ -82,7 +82,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "NexusAIAgency — Build an AI workforce for your business" },
-      { name: "description", content: "NexusAIAgency builds AI support, sales, calling, research, CRM and automation systems for businesses." },
+      { name: "description", content: "Nexus AI Agency deploys 24/7 AI voice calling receptionists, AEO search optimization, and automated WhatsApp CRM systems for clinics and businesses." },
       { name: "keywords", content: "AI Voice Agents, Nexus AI Agency, Vapi Calling Agent, AI Receptionist, Make.com Automation, Pradeep Kumar Dagur" },
       { name: "author", content: "Pradeep Kumar Dagur" },
       { name: "robots", content: "index, follow" },
@@ -96,7 +96,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:description", content: "Deploy AI agents and automation systems around your real workflows, tools and team." },
     ],
     links: [
-      { rel: "canonical", href: "https://www.nexusaiagency.in/" }
+      { rel: "canonical", href: "https://www.nexusaiagency.in/" }, { rel: "llms-txt", href: "https://www.nexusaiagency.in/llms.txt" }
     ],
     scripts: [
       {

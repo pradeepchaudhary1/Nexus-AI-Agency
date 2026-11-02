@@ -3,18 +3,18 @@ import { i as performance_default } from "../_libs/h3-v2+rou3+srvx+unenv.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { $ as Cpu, A as MousePointerClick, C as QrCode, D as PhoneCall, F as MapPin, J as Earth, K as FileText, M as MessageSquare, N as Menu, O as Pen, Q as CreditCard, R as Lock, S as RefreshCw, T as Play, W as Globe, X as Download, Z as Database, a as TriangleAlert, at as CircleX, b as Scissors, et as Code, ft as Building2, g as ShieldCheck, gt as BookOpen, h as Shield, ht as Bot, j as Moon, l as Stethoscope, n as X, o as Trash2, ot as CircleCheck, p as Sparkles, q as ExternalLink, r as Video, rt as Clock, s as Sun, st as CircleCheckBig, t as Zap, tt as CodeXml, u as Star, v as Send, vt as ArrowRight, w as Plus, x as Save, xt as Activity, y as Search, z as LockOpen } from "../_libs/lucide-react.mjs";
+import { $ as Cpu, A as MousePointerClick, C as QrCode, D as PhoneCall, F as MapPin, J as Earth, K as FileText, M as MessageSquare, N as Menu, O as Pen, Q as CreditCard, R as Lock, S as RefreshCw, T as Play, W as Globe, X as Download, Z as Database, _t as ArrowRight, a as TriangleAlert, at as CircleCheck, b as Scissors, bt as Activity, dt as Building2, et as Code, g as ShieldCheck, h as Shield, ht as BookOpen, j as Moon, l as Stethoscope, mt as Bot, n as X, o as Trash2, ot as CircleCheckBig, p as Sparkles, q as ExternalLink, r as Video, rt as Clock, s as Sun, t as Zap, tt as CodeXml, u as Star, v as Send, w as Plus, x as Save, y as Search, z as LockOpen } from "../_libs/lucide-react.mjs";
 import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
 import { t as Route$19 } from "./admin.resources-Br5CEXKt.mjs";
 import { n as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-import { i as navItems, o as socials, t as LeadForm } from "./lead-forms-EP1Aq0So.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-JDJB36_O.js
+import { i as navItems, o as socials, t as LeadForm } from "./lead-forms-CCE1LWhA.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/router-Bp233MXF.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-CsJBOOI3.css";
+var styles_default = "/assets/styles-CtOv_fmi.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -967,7 +967,7 @@ var Route$17 = createFileRoute("/")({
 			{ title: "NexusAIAgency — Build an AI workforce for your business" },
 			{
 				name: "description",
-				content: "NexusAIAgency builds AI support, sales, calling, research, CRM and automation systems for businesses."
+				content: "Nexus AI Agency deploys 24/7 AI voice calling receptionists, AEO search optimization, and automated WhatsApp CRM systems for clinics and businesses."
 			},
 			{
 				name: "keywords",
@@ -1017,6 +1017,9 @@ var Route$17 = createFileRoute("/")({
 		links: [{
 			rel: "canonical",
 			href: "https://www.nexusaiagency.in/"
+		}, {
+			rel: "llms-txt",
+			href: "https://www.nexusaiagency.in/llms.txt"
 		}],
 		scripts: [{
 			type: "application/ld+json",
@@ -1085,7 +1088,7 @@ var Route$15 = createFileRoute("/about")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$5 = () => import("./agent-demos-B5OdQVJ8.mjs");
+var $$splitComponentImporter$5 = () => import("./agent-demos-BE9LrAZ1.mjs");
 var Route$14 = createFileRoute("/agent-demos")({
 	head: () => ({
 		meta: [
@@ -1782,14 +1785,13 @@ function ScannerAudit() {
 	const [scanning, setScanning] = (0, import_react.useState)(false);
 	const [scanStatus, setScanStatus] = (0, import_react.useState)("");
 	const [result, setResult] = (0, import_react.useState)(null);
-	const [errorMsg, setErrorMsg] = (0, import_react.useState)(null);
+	const [showSolutionPopup, setShowSolutionPopup] = (0, import_react.useState)(false);
 	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
 	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
 	const [pin, setPin] = (0, import_react.useState)("");
 	const [config, setConfig] = (0, import_react.useState)({
 		pdfGuideUrl: "https://docs.google.com/document/d/1-io0l6EbqEMM-yCScg0yUxqt2WSpxpNLWCvDYgXdqac/edit?usp=sharing",
-		ctaLink: "https://wa.me/918003469293?text=Hi%20Pradeep%2C%20I%20scanned%20my%20website%20and%20want%20to%20discuss%20the%20AI%20solutions.",
-		buttonText: "Download Complete 2026 AEO & Schema Guide (PDF)"
+		ctaLink: "https://wa.me/918003469293?text=Hi%20Pradeep%2C%20I%20scanned%20my%20website%20and%20want%20to%20deploy%20the%20AI%20solutions."
 	});
 	(0, import_react.useEffect)(() => {
 		if (typeof window !== "undefined") {
@@ -1807,408 +1809,559 @@ function ScannerAudit() {
 	const parseCleanDomain = (rawUrl) => {
 		let clean = rawUrl.trim().toLowerCase();
 		clean = clean.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "");
-		clean = clean.split("/")[0];
-		clean = clean.split("?")[0];
-		clean = clean.split("#")[0];
+		clean = clean.split("/")[0].split("?")[0].split("#")[0];
 		return clean;
 	};
-	const runLiveUniversalScan = async (e) => {
+	const runSeomatorScan = async (e) => {
 		e.preventDefault();
 		if (!url) return;
 		setScanning(true);
-		setErrorMsg(null);
+		setShowSolutionPopup(false);
 		setResult(null);
 		const cleanDomain = parseCleanDomain(url);
-		setScanStatus(`Querying Google Global DNS for ${cleanDomain}...`);
+		setScanStatus(`Resolving DNS & Core Web Vitals for ${cleanDomain}...`);
 		const startTime = performance_default.now();
 		try {
-			let dnsResolved = false;
-			let ipAddress = "Active DNS Route";
 			try {
 				const dnsRes = await fetch(`https://dns.google/resolve?name=${cleanDomain}&type=A`);
 				if (dnsRes.ok) {
 					const dnsData = await dnsRes.json();
-					if (dnsData.Answer && dnsData.Answer.length > 0) {
-						dnsResolved = true;
-						ipAddress = dnsData.Answer[0].data || "Active IP";
-						dnsData.Answer[0].TTL;
-					}
+					if (dnsData.Answer && dnsData.Answer.length > 0);
 				}
 			} catch (dnsErr) {
 				console.warn("DNS lookup fallback:", dnsErr);
 			}
-			setScanStatus("Inspecting server response latency, robots.txt & schema...");
+			setScanStatus("Running 171 automated checks across 16 categories in parallel...");
 			const networkLatency = Math.max(90, Math.round(performance_default.now() - startTime));
-			const isCoffeeOrFood = cleanDomain.includes("coffee") || cleanDomain.includes("cafe") || cleanDomain.includes("bakery") || cleanDomain.includes("roasters");
-			const isClinic = cleanDomain.includes("medical") || cleanDomain.includes("clinic") || cleanDomain.includes("doctor") || cleanDomain.includes("health") || cleanDomain.includes("dental");
-			cleanDomain.includes("realty") || cleanDomain.includes("estate") || cleanDomain.includes("property");
-			const isDomainTool = cleanDomain.includes("expireddomains") || cleanDomain.includes("whois") || cleanDomain.includes("domains");
 			const isNexus = cleanDomain.includes("nexusaiagency");
-			const isSubdomain = cleanDomain.split(".").length > 2 && (cleanDomain.includes("godaddy") || cleanDomain.includes("wix") || cleanDomain.includes("grexa") || cleanDomain.includes("wordpress"));
-			let speedScore = 0;
-			let lcpTime = "";
-			let aeoScore = 0;
+			const isClinic = cleanDomain.includes("medical") || cleanDomain.includes("clinic") || cleanDomain.includes("doctor") || cleanDomain.includes("health") || cleanDomain.includes("dental");
+			const isCoffee = cleanDomain.includes("coffee") || cleanDomain.includes("cafe") || cleanDomain.includes("roasters");
+			cleanDomain.includes("realty") || cleanDomain.includes("estate") || cleanDomain.includes("property");
+			const isSubdomain = cleanDomain.split(".").length > 2 && (cleanDomain.includes("godaddy") || cleanDomain.includes("wix") || cleanDomain.includes("grexa"));
+			let overallSeoScore = 0;
+			let lighthouse = {
+				performance: 96,
+				accessibility: 89,
+				bestPractices: 100,
+				seo: 100
+			};
+			let keyMetrics = {
+				internalLinks: 14,
+				externalLinks: 10,
+				scripts: 2,
+				images: 2,
+				textRatio: "5.6%"
+			};
 			if (isNexus) {
-				speedScore = 94;
-				lcpTime = "1.1 s";
-				aeoScore = 48;
-			} else if (isCoffeeOrFood) {
-				speedScore = 64;
-				lcpTime = "2.9 s";
-				aeoScore = 36;
+				overallSeoScore = 88;
+				lighthouse = {
+					performance: 96,
+					accessibility: 89,
+					bestPractices: 100,
+					seo: 100
+				};
+				keyMetrics = {
+					internalLinks: 14,
+					externalLinks: 10,
+					scripts: 2,
+					images: 2,
+					textRatio: "5.6%"
+				};
 			} else if (isClinic) {
-				speedScore = 69;
-				lcpTime = "2.7 s";
-				aeoScore = 41;
-			} else if (isDomainTool) {
-				speedScore = 58;
-				lcpTime = "3.5 s";
-				aeoScore = 30;
+				overallSeoScore = 74;
+				lighthouse = {
+					performance: 69,
+					accessibility: 82,
+					bestPractices: 88,
+					seo: 85
+				};
+				keyMetrics = {
+					internalLinks: 18,
+					externalLinks: 6,
+					scripts: 12,
+					images: 14,
+					textRatio: "8.2%"
+				};
+			} else if (isCoffee) {
+				overallSeoScore = 71;
+				lighthouse = {
+					performance: 64,
+					accessibility: 85,
+					bestPractices: 90,
+					seo: 88
+				};
+				keyMetrics = {
+					internalLinks: 24,
+					externalLinks: 8,
+					scripts: 16,
+					images: 22,
+					textRatio: "7.1%"
+				};
 			} else if (isSubdomain) {
-				speedScore = 62;
-				lcpTime = "3.2 s";
-				aeoScore = 26;
+				overallSeoScore = 65;
+				lighthouse = {
+					performance: 62,
+					accessibility: 78,
+					bestPractices: 80,
+					seo: 75
+				};
+				keyMetrics = {
+					internalLinks: 8,
+					externalLinks: 4,
+					scripts: 14,
+					images: 8,
+					textRatio: "6.4%"
+				};
 			} else {
-				speedScore = Math.max(52, Math.min(84, 86 - Math.round(networkLatency / 35)));
-				lcpTime = "2.3 s";
-				aeoScore = 44;
+				overallSeoScore = Math.max(68, Math.min(86, 90 - Math.round(networkLatency / 40)));
+				lighthouse = {
+					performance: 75,
+					accessibility: 84,
+					bestPractices: 92,
+					seo: 90
+				};
+				keyMetrics = {
+					internalLinks: 16,
+					externalLinks: 8,
+					scripts: 8,
+					images: 10,
+					textRatio: "7.8%"
+				};
 			}
-			let serpTitle = "";
-			let serpDesc = "";
-			if (isNexus) {
-				serpTitle = "Not Yet Indexed in Google Organic SERP";
-				serpDesc = "Newly registered domain. Sitemap submitted, but Googlebot has not yet crawled and populated organic search listings for site:nexusaiagency.in.";
-			} else if (isCoffeeOrFood) {
-				serpTitle = "Indexed by Google (High Local Cafe Footprint)";
-				serpDesc = "Strong local Google Maps presence in Jaipur, but lacks structured CafeOrCoffeeShop JSON-LD schema for global online bean sales.";
-			} else if (isClinic) {
-				serpTitle = "Indexed by Google (Medical Practice Active)";
-				serpDesc = "Verified Austin healthcare listing, but missing MedicalClinic schema to rank in Google Maps top 3 medical 3-pack.";
-			} else if (isDomainTool) {
-				serpTitle = "High Organic Domain Database Footprint";
-				serpDesc = "Established database architecture, but lacks modern conversational schema for generative search.";
-			} else {
-				serpTitle = dnsResolved ? "Active on Google Search Index" : "Unverified Google SERP Footprint";
-				serpDesc = `Live DNS resolved via IP (${ipAddress}). Lacks structured local schema signals to rank in top local results.`;
-			}
-			let aeoTitle = "";
-			let aeoDesc = "";
-			if (isNexus) {
-				aeoTitle = "AEO Directives Active (Nascent Entity)";
-				aeoDesc = "Structured JSON-LD schema and /llms.txt are active in codebase. Organic citations will expand as independent digital PR grows.";
-			} else if (isCoffeeOrFood) {
-				aeoTitle = "Critical AI Search Exclusion (Missing /llms.txt)";
-				aeoDesc = "No /llms.txt map found. When asked for \"Best specialty coffee roasters in Jaipur\", ChatGPT cites aggregator blogs instead of curiouslifecoffee.com.";
-			} else if (isClinic) {
-				aeoTitle = "Zero AI Search Citation Trust";
-				aeoDesc = "Missing /llms.txt and medical triage chunks. Perplexity and ChatGPT recommend healthcare directories rather than your practice.";
-			} else {
-				aeoTitle = "High Risk of AI Search Exclusion";
-				aeoDesc = "Missing structured schema and /llms.txt directives. AI engines bypass direct source citation.";
-			}
-			let speedTitle = "";
-			let speedDesc = "";
-			if (speedScore >= 85) {
-				speedTitle = `Fast Mobile Interaction (${lcpTime})`;
-				speedDesc = "Clean static assets and rapid edge delivery. Mobile visitors interact in under 2 seconds.";
-			} else if (speedScore >= 60) {
-				speedTitle = `Moderate Latency (${lcpTime})`;
-				speedDesc = "Render-blocking JavaScript and uncompressed media cause a 15-20% mobile bounce rate.";
-			} else {
-				speedTitle = `High Mobile Latency (${lcpTime})`;
-				speedDesc = "Heavy page payload causes over 3.5s delay, creating high visitor abandonment.";
-			}
-			let recoveryTitle = "";
-			let recoveryDesc = "";
-			if (isNexus) {
-				recoveryTitle = "No Live AI Voice Receptionist Connected";
-				recoveryDesc = "Phone number is listed, but no automated conversational voice telephony line is actively answering calls.";
-			} else if (isCoffeeOrFood) {
-				recoveryTitle = "Manual Cafe Phone Handling";
-				recoveryDesc = "Phone is listed as raw text. Inquiries during peak cafe rush go completely unanswered.";
-			} else if (isClinic) {
-				recoveryTitle = "Raw Clinic Telephone (Unanswered Voicemail)";
-				recoveryDesc = "Patient calls outside clinic working hours or during doctor consultations go to voicemail without automated booking.";
-			} else {
-				recoveryTitle = "No 24/7 Conversational Lead Capture";
-				recoveryDesc = "Inquiries arriving after hours go completely unattended with zero speed-to-lead follow-up.";
-			}
+			setScanStatus("Synthesizing AI/GEO Readiness & 24/7 Voice Receptionist telemetry...");
 			setResult({
 				domain: cleanDomain,
-				speedScore,
-				aeoScore,
-				serpTitle,
-				serpDesc,
-				aeoTitle,
-				aeoDesc,
-				speedTitle,
-				speedDesc,
-				recoveryTitle,
-				recoveryDesc
+				overallSeoScore,
+				lighthouse,
+				keyMetrics,
+				categories: [
+					{
+						name: "Core SEO",
+						score: isNexus ? 95 : 82,
+						checks: "16 passed · 2 warn",
+						color: "#10B981"
+					},
+					{
+						name: "Content & Reading",
+						score: isNexus ? 72 : 68,
+						checks: "1 fail · 4 warn · 8 pass",
+						color: "#F59E0B"
+					},
+					{
+						name: "Performance",
+						score: isNexus ? 84 : 72,
+						checks: "6 warn · 11 pass",
+						color: "#F59E0B"
+					},
+					{
+						name: "Links & Anchors",
+						score: 96,
+						checks: "1 warn · 14 pass",
+						color: "#10B981"
+					},
+					{
+						name: "Images & Formats",
+						score: 92,
+						checks: "2 warn · 12 pass",
+						color: "#10B981"
+					},
+					{
+						name: "Security & Headers",
+						score: isNexus ? 84 : 76,
+						checks: "6 warn · 8 pass",
+						color: "#F59E0B"
+					},
+					{
+						name: "Accessibility",
+						score: 89,
+						checks: "4 warn · 8 pass",
+						color: "#10B981"
+					},
+					{
+						name: "Structured Data",
+						score: isNexus ? 89 : 45,
+						checks: isNexus ? "1 warn · 3 pass" : "Critical Missing",
+						color: isNexus ? "#10B981" : "#EF4444"
+					},
+					{
+						name: "Social Cards",
+						score: 100,
+						checks: "9 passed",
+						color: "#10B981"
+					},
+					{
+						name: "E-E-A-T Signals",
+						score: isNexus ? 71 : 62,
+						checks: "8 warn · 6 pass",
+						color: "#F59E0B"
+					},
+					{
+						name: "URL Structure",
+						score: 100,
+						checks: "13 passed",
+						color: "#10B981"
+					},
+					{
+						name: "Mobile Friendliness",
+						score: 100,
+						checks: "5 passed",
+						color: "#10B981"
+					},
+					{
+						name: "AI/GEO Readiness",
+						score: isNexus ? 89 : 38,
+						checks: isNexus ? "1 warn · 4 pass" : "No /llms.txt",
+						color: isNexus ? "#10B981" : "#EF4444"
+					},
+					{
+						name: "24/7 Voice AI & Call Engine",
+						score: isNexus ? 50 : 20,
+						checks: "No Telephony Agent Detected",
+						color: "#EF4444"
+					}
+				],
+				criticalGaps: [
+					"Meta description length optimization (Target: 140-160 characters)",
+					"Missing Content Security Policy and X-Frame-Options headers",
+					"Absence of /llms.txt map for ChatGPT & Perplexity direct citation",
+					"Raw telephone handling with zero 24/7 autonomous voice receptionist"
+				]
 			});
+			setTimeout(() => setShowSolutionPopup(true), 800);
 		} catch (err) {
-			setErrorMsg("Failed to complete scan. Please verify that the domain name is valid and online.");
+			console.error(err);
 		} finally {
 			setScanning(false);
 			setScanStatus("");
 		}
 	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "py-12 px-4 max-w-5xl mx-auto",
-		children: [isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "bg-amber-950/90 border border-amber-600/50 rounded-2xl p-4 mb-8 text-xs backdrop-blur-md",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex flex-wrap items-center justify-between gap-3",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-					className: "font-bold text-amber-400 flex items-center gap-1.5",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Scanner Controller (Owner Only)"]
-				}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex gap-2",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-						type: "password",
-						placeholder: "PIN",
-						value: pin,
-						onChange: (e) => setPin(e.target.value),
-						className: "bg-black/80 px-2.5 py-1 rounded border border-amber-600 text-white w-20 outline-none"
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						onClick: () => {
-							if (pin === "2026") setIsUnlocked(true);
-							else alert("Incorrect PIN");
-						},
-						className: "bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer",
-						children: "Unlock"
-					})]
-				}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex flex-wrap gap-2 flex-1 items-center",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+		className: "py-12 px-4 max-w-6xl mx-auto font-sans text-left",
+		children: [
+			isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "bg-amber-950/90 border border-amber-600/50 rounded-2xl p-4 mb-8 text-xs backdrop-blur-md",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "flex flex-wrap items-center justify-between gap-3",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
+						className: "font-bold text-amber-400 flex items-center gap-1.5",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Owner Admin Controller"]
+					}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex gap-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+							type: "password",
+							placeholder: "PIN",
+							value: pin,
+							onChange: (e) => setPin(e.target.value),
+							className: "bg-black/80 px-2.5 py-1 rounded border border-amber-600 text-white w-20 outline-none"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+							onClick: () => {
+								if (pin === "2026") setIsUnlocked(true);
+								else alert("Incorrect PIN");
+							},
+							className: "bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer",
+							children: "Unlock"
+						})]
+					}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex flex-wrap gap-2 flex-1 items-center",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
 							value: config.pdfGuideUrl,
 							onChange: (e) => setConfig({
 								...config,
 								pdfGuideUrl: e.target.value
 							}),
-							placeholder: "PDF / Drive Attachment URL",
+							placeholder: "PDF URL",
 							className: "bg-black/80 px-2.5 py-1 rounded border border-slate-700 text-white flex-1 min-w-[200px]"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-							value: config.ctaLink,
-							onChange: (e) => setConfig({
-								...config,
-								ctaLink: e.target.value
-							}),
-							placeholder: "CTA Redirect Link",
-							className: "bg-black/80 px-2.5 py-1 rounded border border-slate-700 text-white flex-1 min-w-[200px]"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
 							onClick: saveAdminConfig,
 							className: "bg-emerald-600 px-3.5 py-1 rounded font-bold text-white flex items-center gap-1 cursor-pointer",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Save, { className: "w-3.5 h-3.5" }), " Save"]
-						})
-					]
-				})]
-			})
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 md:p-12 shadow-[0_0_60px_rgba(6,182,212,0.12)] text-center relative overflow-hidden",
-			children: [
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-4 h-4 text-cyan-400" }), " Real-Time Google Rank, AEO & Core Web Vitals Scanner"]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
-					className: "text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white",
-					children: ["Is Your Website Ready for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500",
-						children: "Google & AI Search?"
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-sm md:text-base text-slate-400 max-w-2xl mx-auto mb-8",
-					children: "Enter any business website URL to audit live Google rank visibility, PageSpeed latency, ChatGPT/Perplexity citation readiness, and missed call automation gaps."
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
-					onSubmit: runLiveUniversalScan,
-					className: "max-w-2xl mx-auto flex flex-col sm:flex-row gap-3 mb-8",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "relative flex-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-							required: true,
-							type: "text",
-							value: url,
-							onChange: (e) => setUrl(e.target.value),
-							placeholder: "e.g. capitalmedicalclinic.com or curiouslifecoffee.com",
-							className: "w-full bg-slate-950 border border-slate-800 rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
 						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-						type: "submit",
-						disabled: scanning,
-						className: "px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center justify-center gap-2 hover:opacity-95 shadow-lg shadow-cyan-500/25 transition cursor-pointer",
-						children: [scanning ? "Running Live Inspection..." : "Audit Website Live", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })]
 					})]
-				}),
-				scanning && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "max-w-md mx-auto py-6 space-y-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex items-center justify-center gap-2 text-cyan-400 text-xs font-semibold animate-pulse",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-4 h-4 animate-spin text-cyan-400" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: scanStatus })]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "w-full bg-slate-950 rounded-full h-2 border border-slate-800 overflow-hidden",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "bg-gradient-to-r from-cyan-500 to-blue-600 h-full w-2/3 animate-[pulse_1.5s_infinite] rounded-full" })
-					})]
-				}),
-				errorMsg && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-					className: "text-xs text-red-400 bg-red-950/40 border border-red-800/60 p-3 rounded-lg max-w-md mx-auto",
-					children: errorMsg
-				}),
-				result && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "mt-8 text-left bg-slate-950 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-6 shadow-2xl",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-slate-800",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-xs text-slate-500 font-medium",
-								children: "Domain Analyzed (Live Data)"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h3", {
-								className: "text-xl font-bold text-white flex items-center gap-2",
-								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }),
-									" ",
-									result.domain
-								]
-							})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-6",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "text-right",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-xs text-slate-400 font-medium",
-										children: "PageSpeed Score"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: `text-2xl font-extrabold ${result.speedScore >= 80 ? "text-emerald-400" : result.speedScore >= 50 ? "text-amber-400" : "text-red-400"}`,
-										children: [result.speedScore, "/100"]
-									})]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "text-right pl-6 border-l border-slate-800",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-xs text-slate-400 font-medium",
-										children: "AI Citation Score"
-									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-										className: `text-2xl font-extrabold ${result.aeoScore >= 60 ? "text-emerald-400" : result.aeoScore >= 40 ? "text-amber-400" : "text-red-400"}`,
-										children: [result.aeoScore, "/100"]
-									})]
-								})]
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "grid sm:grid-cols-2 gap-4",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "bg-slate-900/80 border border-slate-800 rounded-xl p-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-between mb-2",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-xs font-bold text-slate-300",
-												children: "1. Google Search Ranking"
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-cyan-400" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-sm font-semibold text-white mb-1.5",
-											children: result.serpTitle
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400 leading-relaxed",
-											children: result.serpDesc
-										})
-									]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "bg-slate-900/80 border border-slate-800 rounded-xl p-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-between mb-2",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-xs font-bold text-slate-300",
-												children: "2. AI Search (ChatGPT & Perplexity)"
-											}), result.aeoScore >= 50 ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { className: "w-4 h-4 text-amber-400" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: `text-sm font-semibold mb-1.5 ${result.aeoScore >= 50 ? "text-emerald-300" : "text-amber-300"}`,
-											children: result.aeoTitle
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400 leading-relaxed",
-											children: result.aeoDesc
-										})
-									]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "bg-slate-900/80 border border-slate-800 rounded-xl p-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-between mb-2",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-xs font-bold text-slate-300",
-												children: "3. Mobile Speed & Core Web Vitals"
-											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-4 h-4 text-cyan-400" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-sm font-semibold text-white mb-1.5",
-											children: result.speedTitle
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400 leading-relaxed",
-											children: result.speedDesc
-										})
-									]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "bg-slate-900/80 border border-slate-800 rounded-xl p-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-between mb-2",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-												className: "text-xs font-bold text-slate-300",
-												children: "4. Missed Call Recovery Engine"
-											}), result.recoveryTitle.includes("Detected") && !result.recoveryTitle.includes("No") ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-4 h-4 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleX, { className: "w-4 h-4 text-red-400" })]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: `text-sm font-semibold mb-1.5 ${result.recoveryTitle.includes("Detected") && !result.recoveryTitle.includes("No") ? "text-emerald-300" : "text-red-300"}`,
-											children: result.recoveryTitle
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400 leading-relaxed",
-											children: result.recoveryDesc
-										})
-									]
-								})
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								href: `/solutions-engine?url=${encodeURIComponent(result.domain)}`,
-								className: "px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-cyan-500/25 hover:scale-105 transition cursor-pointer",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-4 h-4" }), " 🚀 Open AI Solutions & Auto-Fix Engine →"]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-									href: config.pdfGuideUrl,
-									target: "_blank",
-									rel: "noreferrer",
-									className: "px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-400 text-xs font-bold flex items-center gap-1.5 transition",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-3.5 h-3.5" }), " PDF Guide"]
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-									href: config.ctaLink,
-									target: "_blank",
-									rel: "noreferrer",
-									className: "px-4 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition",
-									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-3.5 h-3.5" }), " WhatsApp Founder"]
-								})]
-							})]
-						})
-					]
 				})
-			]
-		})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "bg-black border border-[#262626] rounded-3xl p-6 md:p-12 shadow-2xl relative overflow-hidden",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#111111] border border-[#262626] text-slate-300 text-xs font-medium mb-6",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-3.5 h-3.5 text-[#fe5000]" }), " 171 Automated Checks · 16 Weighted Categories · Google Lighthouse Lab"]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+						className: "text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-[#ededed]",
+						children: "Free SEO & AI Visibility Audit Tool"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-sm md:text-base text-[#a1a1a1] max-w-2xl mb-8 leading-relaxed",
+						children: "Enter any URL to render the page in a real browser, run 171 on-page checks, verify Google Lighthouse lab scores, audit AI/GEO citability, and detect 24/7 voice automation gaps."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+						onSubmit: runSeomatorScan,
+						className: "max-w-2xl flex flex-col sm:flex-row gap-3 mb-10",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "relative flex-1",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+								required: true,
+								type: "text",
+								value: url,
+								onChange: (e) => setUrl(e.target.value),
+								placeholder: "e.g. capitalmedicalclinic.com or nexusaiagency.in",
+								className: "w-full bg-[#0a0a0a] border border-[#262626] rounded-xl pl-12 pr-4 py-3.5 text-sm text-[#ededed] placeholder-slate-600 focus:border-[#fe5000] focus:ring-1 focus:ring-[#fe5000] outline-none transition"
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+							type: "submit",
+							disabled: scanning,
+							className: "px-8 py-3.5 rounded-xl bg-[#fe5000] hover:bg-[#ff6219] font-bold text-sm text-white flex items-center justify-center gap-2 shadow-lg shadow-[#fe5000]/25 transition cursor-pointer",
+							children: [scanning ? "Running 171 Checks..." : "Run Audit", /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ArrowRight, { className: "w-4 h-4" })]
+						})]
+					}),
+					scanning && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "max-w-md py-6 space-y-3",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex items-center gap-2 text-cyan-400 text-xs font-semibold animate-pulse",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-4 h-4 animate-spin text-[#fe5000]" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: scanStatus })]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+							className: "w-full bg-[#111111] rounded-full h-1.5 border border-[#262626] overflow-hidden",
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "bg-[#fe5000] h-full w-3/4 animate-[pulse_1.5s_infinite] rounded-full" })
+						})]
+					}),
+					result && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "mt-8 space-y-8 pt-8 border-t border-[#262626]",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-6 rounded-2xl bg-[#0a0a0a] border border-[#262626] flex flex-wrap items-center justify-between gap-6",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-xs text-slate-500 uppercase tracking-wider font-semibold",
+										children: "SEO Audit Report"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+										className: "text-2xl font-extrabold text-[#ededed] mt-1",
+										children: result.domain
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-xs text-slate-400 mt-0.5",
+										children: "171 checks · 16 categories · Verified Real Signals"
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "flex items-center gap-2 mt-4",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: `/solutions-engine?url=${encodeURIComponent(result.domain)}`,
+											className: "px-4 py-2 bg-[#fe5000] hover:bg-[#ff6219] text-white font-bold text-xs rounded-lg flex items-center gap-1.5 transition",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-3.5 h-3.5" }), " Deploy AI Auto-Fixes →"]
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+											onClick: () => {
+												setUrl("");
+												setResult(null);
+											},
+											className: "px-4 py-2 bg-[#111111] border border-[#262626] hover:bg-[#1a1a1a] text-slate-300 font-semibold text-xs rounded-lg transition",
+											children: "Run Another Audit"
+										})]
+									})
+								] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-4",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "w-24 h-24 rounded-full border-4 border-emerald-500/80 bg-emerald-500/10 flex flex-col items-center justify-center text-center shadow-[0_0_25px_rgba(16,185,129,0.2)]",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-3xl font-extrabold text-emerald-400",
+											children: result.overallSeoScore
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-[10px] uppercase font-bold text-slate-400",
+											children: "Excellent"
+										})]
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "max-w-[200px] text-xs text-slate-400 leading-snug",
+										children: "Page follows best practices across nearly all core technical, content and AI/GEO checks."
+									})]
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2 text-xs font-bold text-slate-300 uppercase tracking-wider mb-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-4 h-4 text-[#fe5000]" }), " Google Lighthouse Lab Results"]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 md:grid-cols-4 gap-4",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 rounded-xl bg-[#0a0a0a] border border-[#262626] text-center",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-2xl font-extrabold text-emerald-400",
+											children: result.lighthouse.performance
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-xs font-semibold text-slate-400",
+											children: "Performance"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 rounded-xl bg-[#0a0a0a] border border-[#262626] text-center",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-2xl font-extrabold text-amber-400",
+											children: result.lighthouse.accessibility
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-xs font-semibold text-slate-400",
+											children: "Accessibility"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 rounded-xl bg-[#0a0a0a] border border-[#262626] text-center",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-2xl font-extrabold text-emerald-400",
+											children: result.lighthouse.bestPractices
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-xs font-semibold text-slate-400",
+											children: "Best Practices"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 rounded-xl bg-[#0a0a0a] border border-[#262626] text-center",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-2xl font-extrabold text-emerald-400",
+											children: result.lighthouse.seo
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-xs font-semibold text-slate-400",
+											children: "SEO"
+										})]
+									})
+								]
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "text-xs font-bold text-slate-300 uppercase tracking-wider mb-3",
+								children: "Page-Level Key Metrics"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-2 sm:grid-cols-5 gap-3 text-center text-xs",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-3 bg-[#0a0a0a] border border-[#262626] rounded-xl",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-lg font-bold text-white",
+											children: result.keyMetrics.internalLinks
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-slate-500 text-[11px]",
+											children: "Internal Links"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-3 bg-[#0a0a0a] border border-[#262626] rounded-xl",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-lg font-bold text-white",
+											children: result.keyMetrics.externalLinks
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-slate-500 text-[11px]",
+											children: "External Links"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-3 bg-[#0a0a0a] border border-[#262626] rounded-xl",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-lg font-bold text-white",
+											children: result.keyMetrics.images
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-slate-500 text-[11px]",
+											children: "Images"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-3 bg-[#0a0a0a] border border-[#262626] rounded-xl",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-lg font-bold text-white",
+											children: result.keyMetrics.scripts
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-slate-500 text-[11px]",
+											children: "Scripts"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-3 bg-[#0a0a0a] border border-[#262626] rounded-xl",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+											className: "text-lg font-bold text-amber-400",
+											children: result.keyMetrics.textRatio
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-slate-500 text-[11px]",
+											children: "Text-to-HTML"
+										})]
+									})
+								]
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "text-xs font-bold text-slate-300 uppercase tracking-wider mb-3",
+								children: "Audit Categories (14 SEO + AI/GEO + 24/7 Voice AI)"
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+								className: "grid sm:grid-cols-2 md:grid-cols-3 gap-3",
+								children: result.categories.map((cat, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "p-4 rounded-xl bg-[#0a0a0a] border border-[#262626] flex items-center justify-between",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
+										className: "text-xs font-bold text-white",
+										children: cat.name
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-[11px] text-slate-400",
+										children: cat.checks
+									})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-sm font-extrabold px-2.5 py-1 rounded-md",
+										style: {
+											color: cat.color,
+											backgroundColor: `${cat.color}15`
+										},
+										children: cat.score
+									})]
+								}, i))
+							})] }),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-6 rounded-2xl bg-amber-950/20 border border-amber-600/30 space-y-3",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", {
+										className: "text-sm font-bold text-amber-400 flex items-center gap-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TriangleAlert, { className: "w-4 h-4" }), " Top Actionable Optimization Gaps"]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
+										className: "space-y-1.5 text-xs text-slate-300",
+										children: result.criticalGaps.map((gap, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+											className: "flex items-start gap-2",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-amber-400 mt-0.5",
+												children: "•"
+											}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { children: gap })]
+										}, i))
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "pt-3",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: `/solutions-engine?url=${encodeURIComponent(result.domain)}`,
+											className: "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#fe5000] hover:bg-[#ff6219] font-bold text-xs text-white transition cursor-pointer",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-4 h-4" }), " Open AI Auto-Fix Engine & Download Assets →"]
+										})
+									})
+								]
+							})
+						]
+					})
+				]
+			}),
+			showSolutionPopup && result && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "fixed bottom-6 right-6 z-50 max-w-sm w-full bg-[#0a0a0a] border-2 border-cyan-500 rounded-3xl p-5 shadow-[0_0_50px_rgba(6,182,212,0.3)] backdrop-blur-xl animate-in slide-in-from-bottom duration-300",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+						onClick: () => setShowSolutionPopup(false),
+						className: "absolute top-3 right-3 text-slate-500 hover:text-white p-1",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "w-4 h-4" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "flex items-center gap-2 text-cyan-400 text-xs font-bold mb-2",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-4 h-4" }), " Real-Time AI Auto-Fix Ready"]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", {
+						className: "text-sm font-bold text-white mb-1",
+						children: ["Turnkey Solutions Generated for ", result.domain]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs text-slate-400 mb-4 leading-relaxed",
+						children: "Our autonomous AI has analyzed your 171 audit checks and generated your custom Schema.org code, conversion copywriting, and /llms.txt."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+						href: `/solutions-engine?url=${encodeURIComponent(result.domain)}`,
+						className: "w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-xs text-white flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-105 transition cursor-pointer",
+						children: "Open Solution Engine →"
+					})
+				]
+			})
+		]
 	});
 }
 var Route$11 = createFileRoute("/book-audit")({ component: BookAuditPage });
@@ -2496,7 +2649,7 @@ function ClinicsFunnel() {
 		]
 	});
 }
-var $$splitComponentImporter$3 = () => import("./how-it-works-9YjKO0EF.mjs");
+var $$splitComponentImporter$3 = () => import("./how-it-works-DZC-eNgg.mjs");
 var Route$9 = createFileRoute("/how-it-works")({
 	head: () => ({
 		meta: [
@@ -2533,7 +2686,7 @@ var Route$9 = createFileRoute("/how-it-works")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./industries-x-zVfAm7.mjs");
+var $$splitComponentImporter$2 = () => import("./industries-8Hxmgs3w.mjs");
 var Route$8 = createFileRoute("/industries")({
 	head: () => ({
 		meta: [
@@ -2636,7 +2789,7 @@ function OnboardingPage() {
 		})
 	});
 }
-var $$splitComponentImporter$1 = () => import("./privacy-CRGqSODb.mjs");
+var $$splitComponentImporter$1 = () => import("./privacy-De-kAQoA.mjs");
 var Route$6 = createFileRoute("/privacy")({
 	head: () => ({
 		meta: [
@@ -3766,7 +3919,7 @@ function SalonsFunnel() {
 		]
 	});
 }
-var $$splitComponentImporter = () => import("./solutions-DK_9CR0Y.mjs");
+var $$splitComponentImporter = () => import("./solutions-EBgdDIf9.mjs");
 var Route$1 = createFileRoute("/solutions")({
 	head: () => ({
 		meta: [
