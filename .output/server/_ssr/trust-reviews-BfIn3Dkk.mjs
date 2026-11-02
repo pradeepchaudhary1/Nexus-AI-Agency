@@ -1,7 +1,7 @@
 import "../_runtime.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
-import { ct as CircleCheckBig, g as ShieldCheck, u as Star } from "../_libs/lucide-react.mjs";
+import { g as ShieldCheck, lt as CircleCheckBig, u as Star } from "../_libs/lucide-react.mjs";
 require_react();
 var import_jsx_runtime = require_jsx_runtime();
 var REVIEWS = [

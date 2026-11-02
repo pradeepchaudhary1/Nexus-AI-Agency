@@ -1,6 +1,6 @@
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { yt as ArrowRight } from "../_libs/lucide-react.mjs";
+import { bt as ArrowRight } from "../_libs/lucide-react.mjs";
 import { b as Link } from "../_libs/@tanstack/react-router+[...].mjs";
 import { a as ProcessStrip, i as PageHero, o as SectionHeading, t as CheckList } from "./page-sections-BSNCDcKl.mjs";
 //#region node_modules/.nitro/vite/services/ssr/assets/how-it-works-B37Nh0A9.js
