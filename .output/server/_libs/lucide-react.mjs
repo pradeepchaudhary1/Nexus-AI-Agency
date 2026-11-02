@@ -535,6 +535,24 @@ var Code = createLucideIcon("code", [["path", {
 * This source code is licensed under the ISC license.
 * See the LICENSE file in the root directory of this source tree.
 */
+var Copy = createLucideIcon("copy", [["rect", {
+	width: "14",
+	height: "14",
+	x: "8",
+	y: "8",
+	rx: "2",
+	ry: "2",
+	key: "17jyea"
+}], ["path", {
+	d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2",
+	key: "zix9uf"
+}]]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
 var Cpu = createLucideIcon("cpu", [
 	["path", {
 		d: "M12 20v2",
@@ -1008,6 +1026,16 @@ var Menu = createLucideIcon("menu", [
 		key: "1djgab"
 	}]
 ]);
+/**
+* @license lucide-react v0.575.0 - ISC
+*
+* This source code is licensed under the ISC license.
+* See the LICENSE file in the root directory of this source tree.
+*/
+var MessageCircle = createLucideIcon("message-circle", [["path", {
+	d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
+	key: "1sd12s"
+}]]);
 /**
 * @license lucide-react v0.575.0 - ISC
 *
@@ -1676,4 +1704,4 @@ var Zap = createLucideIcon("zap", [["path", {
 	key: "1xq2db"
 }]]);
 //#endregion
-export { Cpu as $, MousePointerClick as A, Linkedin as B, QrCode as C, PhoneCall as D, Phone as E, MapPin as F, FolderLock as G, Headphones as H, Mail as I, Earth as J, FileText as K, LogOut as L, MessageSquare as M, Menu as N, Pen as O, Megaphone as P, CreditCard as Q, Lock as R, RefreshCw as S, Play as T, GraduationCap as U, HeartPulse as V, Globe as W, Download as X, Dumbbell as Y, Database as Z, Settings2 as _, ArrowRight as _t, TriangleAlert as a, CircleCheck as at, Scissors as b, Activity as bt, Store as c, Check as ct, Square as d, Building2 as dt, Code as et, SquareCheckBig as f, Briefcase as ft, ShieldCheck as g, Award as gt, Shield as h, BookOpen as ht, Users as i, Clapperboard as it, Moon as j, Network as k, Stethoscope as l, ChartNoAxesCombined as lt, ShoppingBag as m, Bot as mt, X as n, CloudUpload as nt, Trash2 as o, CircleCheckBig as ot, Sparkles as p, BriefcaseBusiness as pt, ExternalLink as q, Video as r, Clock as rt, Sun as s, ChevronRight as st, Zap as t, CodeXml as tt, Star as u, CalendarCheck as ut, Send as v, Archive as vt, Plus as w, Save as x, Search as y, ArchiveRestore as yt, LockOpen as z };
+export { CreditCard as $, MousePointerClick as A, LockOpen as B, QrCode as C, PhoneCall as D, Phone as E, Megaphone as F, Globe as G, HeartPulse as H, MapPin as I, ExternalLink as J, FolderLock as K, Mail as L, MessageSquare as M, MessageCircle as N, Pen as O, Menu as P, Database as Q, LogOut as R, RefreshCw as S, Activity as St, Play as T, Headphones as U, Linkedin as V, GraduationCap as W, Dumbbell as X, Earth as Y, Download as Z, Settings2 as _, BookOpen as _t, TriangleAlert as a, Clock as at, Scissors as b, Archive as bt, Store as c, CircleCheckBig as ct, Square as d, ChartNoAxesCombined as dt, Cpu as et, SquareCheckBig as f, CalendarCheck as ft, ShieldCheck as g, Bot as gt, Shield as h, BriefcaseBusiness as ht, Users as i, CloudUpload as it, Moon as j, Network as k, Stethoscope as l, ChevronRight as lt, ShoppingBag as m, Briefcase as mt, X as n, Code as nt, Trash2 as o, Clapperboard as ot, Sparkles as p, Building2 as pt, FileText as q, Video as r, CodeXml as rt, Sun as s, CircleCheck as st, Zap as t, Copy as tt, Star as u, Check as ut, Send as v, Award as vt, Plus as w, Save as x, ArchiveRestore as xt, Search as y, ArrowRight as yt, Lock as z };

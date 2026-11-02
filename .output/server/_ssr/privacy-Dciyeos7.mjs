@@ -1,6 +1,6 @@
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
-import { i as PageHero } from "./page-sections-BwJ4gF98.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/privacy-De-kAQoA.js
+import { i as PageHero } from "./page-sections-BSNCDcKl.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/privacy-Dciyeos7.js
 var import_jsx_runtime = require_jsx_runtime();
 function PrivacyPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PageHero, {

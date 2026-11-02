@@ -1,564 +1,428 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
-import { CheckCircle2, Download, Code, Sparkles, Globe, FileText, PhoneCall, QrCode, CreditCard, Clock, CheckSquare, Shield, Lock, Unlock, X, ArrowDown, RefreshCw } from 'lucide-react'
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { useState, useMemo } from 'react';
+import { SiteShell } from '../components/site-shell';
+import { 
+  CheckCircle2, 
+  Copy, 
+  Download, 
+  ExternalLink, 
+  Lock, 
+  Sparkles, 
+  ShieldCheck, 
+  Code2, 
+  FileText, 
+  Cpu, 
+  ArrowRight,
+  MessageCircle,
+  HelpCircle,
+  Search,
+  RefreshCw
+} from 'lucide-react';
 
 export const Route = createFileRoute('/solutions-engine')({
+  component: SolutionsEnginePage,
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      url: (search.url as string) || 'example.com',
-    }
+      url: typeof search.url === 'string' ? search.url : '',
+    };
   },
-  component: SolutionEnginePage,
-})
+});
 
-function SolutionEnginePage() {
-  const { url } = Route.useSearch()
-  
-  // Clean URL parsing
-  let cleanDomain = url.trim().toLowerCase()
-  cleanDomain = cleanDomain.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0].split('?')[0].split('#')[0]
+export function SolutionsEnginePage() {
+  const { url } = Route.useSearch();
+  const navigate = useNavigate();
 
-  const [loadingAi, setLoadingAi] = useState(true)
-  const [isUnlocked, setIsUnlocked] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
-  const [pin, setPin] = useState('')
-  const [showPayModal, setShowPayModal] = useState(false)
-  const [paymentTab, setPaymentTab] = useState<'upi' | 'razorpay' | 'stripe'>('upi')
-  const [copiedUpi, setCopiedUpi] = useState(false)
+  // Resilient URL handling: Never crash on undefined or empty string
+  const rawInput = typeof url === 'string' && url.trim().length > 0 ? url.trim() : 'nexusaiagency.in';
+  const cleanDomain = rawInput
+    .replace(/^https?:\/\//i, '')
+    .replace(/^www\./i, '')
+    .split('/')[0]
+    .trim() || 'nexusaiagency.in';
 
-  const RAZORPAY_URL = 'https://razorpay.me/@nexusaiagency'
-  const BHIM_UPI_ID = '8003469293@upi'
+  const [inputUrl, setInputUrl] = useState(cleanDomain);
+  const [copiedSchema, setCopiedSchema] = useState(false);
+  const [copiedLlms, setCopiedLlms] = useState(false);
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
+  const [unlocked, setUnlocked] = useState(false);
+  const [passcode, setPasscode] = useState('');
+  const [passcodeError, setPasscodeError] = useState(false);
 
-  // AI-Engineered Niche Architecture State
-  const [aiData, setAiData] = useState({
-    businessName: cleanDomain.split('.')[0].toUpperCase(),
-    industry: 'Business & Professional Services',
-    schemaType: 'LocalBusiness',
-    schemaJson: '',
-    heroHeadline: '',
-    subHeadline: '',
-    valueBullets: [] as string[],
-    llmsTxt: '',
-    prompts: [] as string[],
-  })
+  const formattedName = useMemo(() => {
+    return cleanDomain
+      .split('.')[0]
+      .split(/[-_]/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }, [cleanDomain]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const p = new URLSearchParams(window.location.search)
-      if (p.get('admin') === 'true') setIsAdmin(true)
-      if (p.get('paid') === 'true') setIsUnlocked(true)
-    }
+  const handleDomainSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputUrl.trim()) return;
+    const sanitized = inputUrl.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
+    navigate({
+      to: '/solutions-engine',
+      search: { url: sanitized },
+    });
+  };
 
-    const runArchitectureAnalysis = async () => {
-      setLoadingAi(true)
-
-      // Dynamic Niche Classifier based on real domain characteristics
-      const isCoffeeOrFood = cleanDomain.includes('coffee') || cleanDomain.includes('cafe') || cleanDomain.includes('bakery') || cleanDomain.includes('restaurant')
-      const isClinic = cleanDomain.includes('medical') || cleanDomain.includes('clinic') || cleanDomain.includes('doctor') || cleanDomain.includes('health') || cleanDomain.includes('dental')
-      const isRealEstate = cleanDomain.includes('realty') || cleanDomain.includes('estate') || cleanDomain.includes('property') || cleanDomain.includes('homes')
-      const isDomainTool = cleanDomain.includes('expireddomains') || cleanDomain.includes('domains')
-      const isNexus = cleanDomain.includes('nexusaiagency')
-
-      let detectedIndustry = 'Enterprise & Professional Services'
-      let detectedSchema = 'LocalBusiness'
-      let businessTitle = cleanDomain.split('.')[0].toUpperCase()
-
-      let headline = 'Capture Every High-Intent Customer Inquiry 24/7'
-      let subhead = 'Autonomous voice receptionists, speed-to-lead qualification, and instant CRM synchronization.'
-
-      if (isCoffeeOrFood) {
-        detectedIndustry = 'Specialty Coffee Roastery & Cafe'
-        detectedSchema = 'CafeOrCoffeeShop'
-        businessTitle = cleanDomain.includes('curious') ? 'Curious Life Coffee Roasters' : businessTitle
-        headline = 'Never Miss an Online Bean Order or Table Reservation'
-        subhead = 'Automate customer phone queries, bean subscription inquiries, and WhatsApp order tracking.'
-      } else if (isClinic) {
-        detectedIndustry = 'Healthcare & Medical Clinic'
-        detectedSchema = 'MedicalClinic'
-        businessTitle = cleanDomain.includes('capital') ? 'Capital Medical Clinic' : businessTitle
-        headline = 'Never Miss an After-Hours Patient Call — 24/7 AI Medical Receptionist'
-        subhead = 'Attends patient appointment inquiries in under 800ms, manages doctor schedules, and delivers instant WhatsApp slips.'
-      } else if (isRealEstate) {
-        detectedIndustry = 'Real Estate Development & Brokerage'
-        detectedSchema = 'RealEstateAgent'
-        headline = 'Never Lose Another Property Buyer to a Busy Tone'
-        subhead = 'Calls incoming property leads in under 60 seconds, qualifies budget & location, and delivers instant WhatsApp brochures.'
-      } else if (isDomainTool) {
-        detectedIndustry = 'Domain Marketplace & Digital Assets'
-        detectedSchema = 'OnlineBusiness'
-        headline = 'Automate Inquiries for Premium & Expiring Domains'
-        subhead = 'Instant buyer qualification, automated escrow transfer FAQs, and 24/7 lead capture.'
-      } else if (isNexus) {
-        detectedIndustry = 'Autonomous AI Workforce & Voice Automation'
-        detectedSchema = 'ProfessionalService'
-        businessTitle = 'Nexus AI Agency'
-        headline = 'Deploy AI Employees That Never Sleep, Miss a Call, or Lose a Lead'
-        subhead = '24/7 Voice Calling Receptionists, AEO/GEO Search Optimization, and WhatsApp CRM automations.'
-      }
-
-      const schemaTemplate = `{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "${detectedSchema}",
-      "@id": "https://${cleanDomain}/#organization",
-      "name": "${businessTitle}",
-      "url": "https://${cleanDomain}/",
-      "telephone": "[Verified Business Telephone]",
-      "priceRange": "$$",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "08:00",
-          "closes": "20:00"
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://${cleanDomain}/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How to contact or schedule with ${businessTitle}?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with immediate verification and automated WhatsApp scheduling."
-          }
-        }
-      ]
-    }
-  ]
-}`
-
-      const llmsTemplate = `# ${businessTitle}
-> Official Machine-Readable Knowledge Map for AI Search Engines.
-
-## Core Services & Solutions
-- 24/7 Autonomous Customer Intake & Verified Booking.
-- Real-Time WhatsApp Confirmation & Google Sheets CRM Record.
-
-## Canonical Verification
-- Website: https://${cleanDomain}/
-- Entity Schema: https://${cleanDomain}/#organization
-- Crawler Directives: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
-`
-
-      setAiData({
-        businessName: businessTitle,
-        industry: detectedIndustry,
-        schemaType: detectedSchema,
-        schemaJson: schemaTemplate,
-        heroHeadline: headline,
-        subHeadline: subhead,
-        valueBullets: [
-          'Sub-Second Response Latency (<800ms) for zero customer drop-off',
-          'Automated WhatsApp confirmations & location pin dispatch',
-          'Live Google Sheets CRM synchronization with zero manual data entry'
+  const schemaJson = useMemo(() => {
+    return JSON.stringify(
+      {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'LocalBusiness',
+            '@id': `https://${cleanDomain}/#organization`,
+            name: formattedName,
+            url: `https://${cleanDomain}/`,
+            telephone: '+91-8003469293',
+            priceRange: '$$',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Rajasthan',
+              addressRegion: 'RJ',
+              addressCountry: 'IN',
+            },
+            openingHoursSpecification: [
+              {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                opens: '09:00',
+                closes: '19:00',
+              },
+            ],
+            sameAs: [
+              'https://www.linkedin.com/company/nexus-ai-agency',
+              'https://x.com/nexusaiagency',
+            ],
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `https://${cleanDomain}/#website`,
+            url: `https://${cleanDomain}/`,
+            name: formattedName,
+            publisher: {
+              '@id': `https://${cleanDomain}/#organization`,
+            },
+          },
         ],
-        llmsTxt: llmsTemplate,
-        prompts: [
-          `"Best ${businessTitle} in my area with 24/7 customer support"`,
-          `"How much does ${businessTitle} service or booking cost?"`,
-          `"Top verified alternatives near me"`,
-          `"How to book an instant slot with ${businessTitle} on WhatsApp"`
-        ]
-      })
+      },
+      null,
+      2
+    );
+  }, [cleanDomain, formattedName]);
 
-      setLoadingAi(false)
+  const llmsTxtContent = useMemo(() => {
+    return `# ${formattedName} — LLM Knowledge Architecture
+# Canonical Domain: https://${cleanDomain}
+# Primary Contact: +91 8003469293 | thenexusaiagency@gmail.com
+
+> Enterprise AI automation agency specializing in 24/7 AI Voice Receptionists, Speed-to-Lead WhatsApp workflows, and Generative Engine Optimization (GEO).
+
+## Core Capabilities
+- **24/7 Autonomous Voice Receptionist**: Sub-800ms speech-to-speech inbound call answering, appointment booking, and emergency triage.
+- **WhatsApp Speed-to-Lead Engine**: Instant qualification within 60 seconds of form submission via webhook pipelines.
+- **AEO & Local Search Architecture**: Semantic schema injection and entity grounding for ChatGPT Search, Perplexity, and Google Gemini.
+
+## Verification & Trust
+- **Founder**: Pradeep Chaudhary (Certified AI Specialist, ClaimSkills/Barleti ID: D9FB-8ACE98)
+- **Headquarters**: Rajasthan, India
+- **Official Website**: https://${cleanDomain}
+`;
+  }, [cleanDomain, formattedName]);
+
+  const handleCopy = (text: string, type: 'schema' | 'llms' | 'prompt') => {
+    navigator.clipboard.writeText(text);
+    if (type === 'schema') {
+      setCopiedSchema(true);
+      setTimeout(() => setCopiedSchema(false), 2000);
+    } else if (type === 'llms') {
+      setCopiedLlms(true);
+      setTimeout(() => setCopiedLlms(false), 2000);
+    } else {
+      setCopiedPrompt(true);
+      setTimeout(() => setCopiedPrompt(false), 2000);
     }
+  };
 
-    runArchitectureAnalysis()
-  }, [cleanDomain])
+  const handleDownload = (content: string, filename: string) => {
+    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
-  // Real File Downloader
-  const downloadFile = (content: string, filename: string) => {
-    if (!isUnlocked) {
-      setShowPayModal(true)
-      return
+  const handleUnlock = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passcode.trim() === '2026' || passcode.trim().toLowerCase() === 'nexus') {
+      setUnlocked(true);
+      setPasscodeError(false);
+    } else {
+      setPasscodeError(true);
     }
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
-    const downloadUrl = URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = downloadUrl
-    link.download = filename
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(downloadUrl)
-  }
-
-  const copyUpiId = () => {
-    navigator.clipboard.writeText(BHIM_UPI_ID)
-    setCopiedUpi(true)
-    setTimeout(() => setCopiedUpi(false), 2000)
-  }
-
-  const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent('upi://pay?pa=8003469293@upi&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit')}`
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black">
-      <div className="max-w-5xl mx-auto space-y-10">
-        {/* Owner Admin Controller */}
-        {isAdmin && (
-          <div className="bg-amber-950/90 border border-amber-600/50 rounded-2xl p-3 text-xs flex items-center justify-between">
-            <span className="font-bold text-amber-400 flex items-center gap-1.5">
-              <Shield className="w-4 h-4" /> Owner Admin Access
-            </span>
-            {!isUnlocked ? (
-              <div className="flex gap-2">
-                <input
-                  type="password"
-                  placeholder="PIN"
-                  value={pin}
-                  onChange={(e) => setPin(e.target.value)}
-                  className="bg-black/80 px-2 py-1 rounded border border-amber-600 text-white w-20 text-xs"
-                />
+    <SiteShell currentPath="/solutions-engine">
+      <div className="min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto space-y-10">
+          
+          {/* Header & Live Input Bar */}
+          <div className="bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5" /> Live AEO & Automation Solution Engine
+                </div>
+                <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+                  AI Auto-Fix & Solutions for <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">{cleanDomain}</span>
+                </h1>
+                <p className="text-slate-400 text-sm sm:text-base max-w-2xl">
+                  Ye engine aapki website ke liye ready-made Schema.org JSON-LD, /llms.txt map, aur AI Voice Agent architecture auto-generate karta hai.
+                </p>
+              </div>
+
+              {/* URL Switcher Input */}
+              <form onSubmit={handleDomainSubmit} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                <div className="relative">
+                  <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={inputUrl}
+                    onChange={(e) => setInputUrl(e.target.value)}
+                    placeholder="Enter any domain (e.g. drsingh.com)"
+                    className="w-full sm:w-64 pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition"
+                  />
+                </div>
                 <button
-                  onClick={() => {
-                    if (pin === '2026') setIsUnlocked(true)
-                    else alert('Incorrect PIN')
-                  }}
-                  className="bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer"
+                  type="submit"
+                  className="px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20"
                 >
-                  Unlock All Solutions
+                  <RefreshCw className="w-4 h-4" /> Generate
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Solution 1: Schema.org JSON-LD */}
+          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                  <Code2 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Solution 1: Auto-Generated Schema.org JSON-LD</h2>
+                  <p className="text-xs sm:text-sm text-slate-400">Google Rich Snippets & Knowledge Graph integration for {cleanDomain}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleCopy(schemaJson, 'schema')}
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
+                >
+                  <Copy className="w-3.5 h-3.5" /> {copiedSchema ? 'Copied!' : 'Copy Code'}
+                </button>
+                <button
+                  onClick={() => handleDownload(schemaJson, `${cleanDomain}-schema.json`)}
+                  className="px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
+                >
+                  <Download className="w-3.5 h-3.5" /> Download .JSON
                 </button>
               </div>
-            ) : (
-              <span className="text-emerald-400 font-bold flex items-center gap-1">
-                <Unlock className="w-4 h-4" /> All Solutions & Files Unlocked (Admin Preview)
+            </div>
+
+            <pre className="p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-cyan-300 font-mono overflow-x-auto max-h-64 scrollbar-thin">
+              {schemaJson}
+            </pre>
+          </div>
+
+          {/* Solution 2: /llms.txt AI Citation Map */}
+          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Solution 2: /llms.txt AI Citation Directive</h2>
+                  <p className="text-xs sm:text-sm text-slate-400">Perplexity, ChatGPT Search, and Claude crawler indexing map</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => handleCopy(llmsTxtContent, 'llms')}
+                  className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
+                >
+                  <Copy className="w-3.5 h-3.5" /> {copiedLlms ? 'Copied!' : 'Copy File'}
+                </button>
+                <button
+                  onClick={() => handleDownload(llmsTxtContent, 'llms.txt')}
+                  className="px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition"
+                >
+                  <Download className="w-3.5 h-3.5" /> Download llms.txt
+                </button>
+              </div>
+            </div>
+
+            <pre className="p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-purple-300 font-mono overflow-x-auto max-h-64 scrollbar-thin">
+              {llmsTxtContent}
+            </pre>
+          </div>
+
+          {/* Solution 3: Autonomous AI Voice Receptionist Architecture */}
+          <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                  <Cpu className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-bold text-white">Solution 3: 24/7 Voice AI & Speed-to-Lead Setup</h2>
+                  <p className="text-xs sm:text-sm text-slate-400">Zero missed patient/client calls with sub-800ms conversational AI</p>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+                Production Ready
               </span>
-            )}
-          </div>
-        )}
-
-        {/* Header */}
-        <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" /> Autonomous AI Solutions & Deployment Engine
-          </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-white">
-            Custom AI Solutions for <span className="text-cyan-400">{cleanDomain}</span>
-          </h1>
-          <p className="text-sm text-slate-400 max-w-2xl mx-auto">
-            Identified Niche: <span className="text-cyan-300 font-semibold">{aiData.industry}</span>. Engineered deployable Schema.org markup, conversion copywriting, and /llms.txt AI search maps.
-          </p>
-        </div>
-
-        {/* Loading Indicator */}
-        {loadingAi && (
-          <div className="p-8 text-center bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3">
-            <RefreshCw className="w-6 h-6 animate-spin text-cyan-400 mx-auto" />
-            <p className="text-xs text-slate-300 font-semibold animate-pulse">
-              Engineering tailored optimization assets for {cleanDomain}...
-            </p>
-          </div>
-        )}
-
-        {/* Solution 1: Auto-Generated Schema.org */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Code className="w-5 h-5 text-emerald-400" /> Solution 1: Custom Schema.org JSON-LD ({aiData.schemaType})
-              </h2>
-              <p className="text-xs text-slate-400 mt-1">
-                Zero manual coding required. Fully structured rich-snippet JSON-LD built specifically for your domain:
-              </p>
             </div>
-            <button
-              onClick={() => downloadFile(aiData.schemaJson, `${cleanDomain}-schema.json`)}
-              className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${
-                isUnlocked ? 'bg-emerald-600 hover:bg-emerald-500 text-white' : 'bg-slate-800 text-slate-400 border border-slate-700'
-              }`}
-            >
-              <Download className="w-4 h-4" />
-              {isUnlocked ? 'Download Schema (.json)' : 'Download Schema (Locked)'}
-            </button>
-          </div>
 
-          <div className="relative rounded-xl overflow-hidden">
-            <pre className={`p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56 ${!isUnlocked ? 'blur-[5px] select-none opacity-40' : ''}`}>
-              {aiData.schemaJson}
-            </pre>
-            {!isUnlocked && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center">
-                <Lock className="w-7 h-7 text-amber-400 mb-1" />
-                <p className="text-xs font-bold text-white">Custom {aiData.schemaType} Schema Locked</p>
-                <p className="text-[11px] text-slate-400">Complete payment of ₹999 ($19) below to download verified code.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2">
+                <p className="text-xs text-slate-400 font-semibold uppercase">Step 1: Inbound Webhook</p>
+                <p className="text-sm text-white font-medium">Twilio/SIP Trunk forwarding to Vapi/ElevenLabs pipeline within 500ms.</p>
               </div>
-            )}
-          </div>
-        </div>
-
-        {/* Solution 2: High-Converting AI Copywriting */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <FileText className="w-5 h-5 text-blue-400" /> Solution 2: High-Converting Conversion Copywriting
-              </h2>
-              <p className="text-xs text-slate-400 mt-1">
-                Tailored hero headlines and value propositions engineered to convert visitors into paying clients:
-              </p>
-            </div>
-            <button
-              onClick={() => downloadFile(`${aiData.heroHeadline}\n\n${aiData.subHeadline}\n\nValue Bullets:\n${aiData.valueBullets.join('\n')}`, `${cleanDomain}-copywriting.txt`)}
-              className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${
-                isUnlocked ? 'bg-blue-600 hover:bg-blue-500 text-white' : 'bg-slate-800 text-slate-400 border border-slate-700'
-              }`}
-            >
-              <Download className="w-4 h-4" />
-              {isUnlocked ? 'Download Copy (.txt)' : 'Download Copy (Locked)'}
-            </button>
-          </div>
-
-          <div className="relative rounded-xl overflow-hidden">
-            <div className={`space-y-3 text-xs ${!isUnlocked ? 'blur-[5px] select-none opacity-40' : ''}`}>
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-                <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-wider">Conversion Hero Headline</span>
-                <p className="text-sm font-bold text-white">"{aiData.heroHeadline}"</p>
-                <p className="text-[11px] text-slate-400">{aiData.subHeadline}</p>
+              <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2">
+                <p className="text-xs text-slate-400 font-semibold uppercase">Step 2: Live Calendar Sync</p>
+                <p className="text-sm text-white font-medium">Google Calendar & CRM booking via autonomous Make.com/n8n tool calls.</p>
               </div>
-              <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-                <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">3 Irresistible Value Bullets</span>
-                <ul className="space-y-1 text-slate-300">
-                  {aiData.valueBullets.map((bullet, i) => (
-                    <li key={i}>• {bullet}</li>
-                  ))}
-                </ul>
+              <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2">
+                <p className="text-xs text-slate-400 font-semibold uppercase">Step 3: Instant WhatsApp SMS</p>
+                <p className="text-sm text-white font-medium">Auto confirmation sent to caller's mobile in under 15 seconds.</p>
               </div>
             </div>
-            {!isUnlocked && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center">
-                <Lock className="w-7 h-7 text-amber-400 mb-1" />
-                <p className="text-xs font-bold text-white">Full Copywriting Framework Locked</p>
-                <p className="text-[11px] text-slate-400">Unlock benefit-driven hooks and high-converting CTA copy.</p>
-              </div>
-            )}
-          </div>
-        </div>
 
-        {/* Solution 3: GEO & /llms.txt AI Bot Permission */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Globe className="w-5 h-5 text-cyan-400" /> Solution 3: Automated GEO & /llms.txt Knowledge Map
-              </h2>
-              <p className="text-xs text-slate-400 mt-1">
-                Machine-readable directives enabling ChatGPT, Perplexity, and Claude crawler bots to cite your business:
-              </p>
-            </div>
-            <button
-              onClick={() => downloadFile(aiData.llmsTxt, 'llms.txt')}
-              className={`px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${
-                isUnlocked ? 'bg-cyan-600 hover:bg-cyan-500 text-white' : 'bg-slate-800 text-slate-400 border border-slate-700'
-              }`}
-            >
-              <Download className="w-4 h-4" />
-              {isUnlocked ? 'Download /llms.txt' : 'Download /llms.txt (Locked)'}
-            </button>
-          </div>
-
-          <div className="relative rounded-xl overflow-hidden">
-            <pre className={`p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44 ${!isUnlocked ? 'blur-[5px] select-none opacity-40' : ''}`}>
-              {aiData.llmsTxt}
-            </pre>
-            {!isUnlocked && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center">
-                <Lock className="w-7 h-7 text-amber-400 mb-1" />
-                <p className="text-xs font-bold text-white">/llms.txt Directive File Locked</p>
-                <p className="text-[11px] text-slate-400">Unlock ready-to-upload markdown knowledge map.</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Solution 4: Top AI Search Prompts */}
-        <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-400" /> Solution 4: Top AI Prompts to Rank In (ChatGPT & Perplexity)
-          </h2>
-          <div className="grid sm:grid-cols-2 gap-3 text-xs">
-            {aiData.prompts.map((p, i) => (
-              <div key={i} className="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-                <p className="font-semibold text-cyan-300">{i + 1}. {p}</p>
-                <p className="text-[11px] text-slate-400 mt-1">Optimization Action: Add entity schema and verified question-answer blocks to your root page.</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Payment & Unlock Section */}
-        <div id="payment-section" className="bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.2)] text-center space-y-6">
-          <span className="px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider">
-            Turnkey Deployment & Code Unlock
-          </span>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white">
-            Unlock All AI Solutions for {cleanDomain}
-          </h2>
-          <p className="text-xs md:text-sm text-slate-400 max-w-lg mx-auto">
-            Zero technical complexity. We configure Auto-Schema, /llms.txt, Core Web Vitals speed optimization, and 24/7 AI Voice Receptionist completely turnkey on your domain.
-          </p>
-
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-slate-500 line-through text-lg font-bold">₹4,999 ($79)</span>
-            <span className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-              ₹999 <span className="text-sm text-slate-400 font-normal">/ $19 USD</span>
-            </span>
-            <span className="bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full">
-              80% OFF Launch
-            </span>
-          </div>
-
-          {/* Payment Tabs: BHIM UPI | Razorpay | Stripe */}
-          <div className="max-w-md mx-auto">
-            <div className="flex p-1 rounded-xl bg-slate-950 border border-slate-800 mb-6 text-xs font-bold">
-              <button
-                onClick={() => setPaymentTab('upi')}
-                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'upi' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
+            <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
+              <a
+                href="https://wa.me/918003469293?text=Hi%20Pradeep,%20I%20want%20to%20deploy%20the%20AI%20Voice%20Receptionist%20for%20my%20business."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-600/20"
               >
-                <QrCode className="w-3.5 h-3.5" /> BHIM UPI (India)
-              </button>
-              <button
-                onClick={() => setPaymentTab('razorpay')}
-                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'razorpay' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
-              >
-                <CreditCard className="w-3.5 h-3.5" /> Razorpay
-              </button>
-              <button
-                onClick={() => setPaymentTab('stripe')}
-                className={`flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === 'stripe' ? 'bg-cyan-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
-              >
-                <Clock className="w-3.5 h-3.5" /> Stripe (USD)
-              </button>
+                <MessageCircle className="w-4 h-4" /> Deploy on WhatsApp (+91 8003469293)
+              </a>
+              <span className="text-xs text-slate-400">Founder setup assistance included for all clients.</span>
             </div>
+          </div>
 
-            {/* Tab 1: BHIM UPI / QR Code */}
-            {paymentTab === 'upi' && (
-              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
-                <p className="text-xs font-semibold text-slate-300">Scan QR Code via PhonePe / GPay / Paytm / BHIM</p>
-                <div className="w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center">
-                  <img src={upiQrUrl} alt="UPI Payment QR Code" className="w-full h-full object-contain" />
+          {/* Solution 4: Paywalled Custom Blueprint / Founder Unlock */}
+          <div className="bg-gradient-to-br from-slate-900 to-slate-950 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 text-xs font-bold border border-cyan-500/30 mb-2">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Full Enterprise Execution Blueprint
                 </div>
-                <div className="flex items-center justify-center gap-2 pt-1">
-                  <span className="text-xs text-slate-400">BHIM UPI:</span>
-                  <code className="text-xs bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-cyan-400 font-mono">
-                    {BHIM_UPI_ID}
-                  </code>
-                  <button
-                    onClick={copyUpiId}
-                    className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 cursor-pointer"
-                    title="Copy UPI ID"
+                <h2 className="text-xl sm:text-2xl font-bold text-white">Full Agency Automation Architecture & SOP Guide</h2>
+                <p className="text-sm text-slate-400">Complete 34-page deployment guide, Make.com blueprint JSONs, and live Vapi scripts.</p>
+              </div>
+
+              {!unlocked && (
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-black text-cyan-400">₹499</span>
+                  <span className="text-xs text-slate-400">one-time access</span>
+                </div>
+              )}
+            </div>
+
+            {unlocked ? (
+              <div className="p-6 bg-emerald-950/30 border border-emerald-500/40 rounded-xl space-y-4">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                  <CheckCircle2 className="w-5 h-5" /> Access Granted: Master Automation Bundle Unlocked
+                </div>
+                <p className="text-xs sm:text-sm text-slate-300">
+                  Neeche diye gaye links se full blueprint documents aur webhook blueprints direct access karein:
+                </p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <a
+                    href="https://docs.google.com/document/d/1kzX_D2Z3TBfQmJ9Mw6xqDX4RYlXlfFSyv-9NcO34eX8/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition"
                   >
-                    {copiedUpi ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    <ExternalLink className="w-3.5 h-3.5 text-cyan-400" /> Clinic AI Prompt Architecture Doc
+                  </a>
+                  <a
+                    href="https://docs.google.com/document/d/1h4qICCNySNjdyxZ_jS74MJduAsjCGw5epHVDk8H6Ums/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-emerald-400" /> WhatsApp Webhook Blueprint Doc
+                  </a>
+                  <a
+                    href="https://docs.google.com/document/d/1-io0l6EbqEMM-yCScg0yUxqt2WSpxpNLWCvDYgXdqac/edit"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5 text-purple-400" /> Complete 2026 AEO Checklist
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="space-y-1">
+                    <p className="text-sm font-semibold text-white">Instant Unlock via UPI or Card</p>
+                    <p className="text-xs text-slate-400">Pay ₹499 to UPI: <span className="text-cyan-400 font-mono">8003469293@upi</span> or via Razorpay.</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://razorpay.me/@nexusaiagency"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20"
+                    >
+                      Pay ₹499 via Razorpay
+                    </a>
+                  </div>
+                </div>
+
+                {/* PIN Unlock for Founder & Clients */}
+                <form onSubmit={handleUnlock} className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                  <div className="relative w-full sm:w-64">
+                    <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="password"
+                      value={passcode}
+                      onChange={(e) => setPasscode(e.target.value)}
+                      placeholder="Enter Unlock PIN (Client / Founder)"
+                      className="w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl text-xs transition"
+                  >
+                    Unlock Guides
                   </button>
-                </div>
-                <p className="text-[11px] text-slate-500">Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation.</p>
-              </div>
-            )}
-
-            {/* Tab 2: Razorpay Official User Link */}
-            {paymentTab === 'razorpay' && (
-              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
-                <CreditCard className="w-10 h-10 text-cyan-400 mx-auto" />
-                <h4 className="text-sm font-bold text-white">Razorpay Secure Checkout</h4>
-                <p className="text-xs text-slate-400">Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets.</p>
-                <a
-                  href={RAZORPAY_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer"
-                >
-                  Pay ₹999 via Razorpay Portal &rarr;
-                </a>
-              </div>
-            )}
-
-            {/* Tab 3: Stripe International */}
-            {paymentTab === 'stripe' && (
-              <div className="p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold">
-                  <Clock className="w-3.5 h-3.5" /> Coming Soon / Account In Setup
-                </div>
-                <h4 className="text-sm font-bold text-white">Stripe USD Card Gateway ($19 USD)</h4>
-                <p className="text-xs text-slate-400">Stripe international checkout is undergoing merchant onboarding. For international credit card payments, connect via WhatsApp for an instant payment invoice link.</p>
-                <a
-                  href={`https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition"
-                >
-                  <PhoneCall className="w-3.5 h-3.5" /> Request $19 USD Invoice on WhatsApp &rarr;
-                </a>
+                  {passcodeError && (
+                    <span className="text-xs text-rose-400 font-medium">Invalid PIN. Contact +91 8003469293.</span>
+                  )}
+                </form>
               </div>
             )}
           </div>
 
-          <div className="pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={`https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I reviewed the AI Solution Engine for ${cleanDomain} and want to activate the ₹999 deployment.`)}`}
-              target="_blank"
-              rel="noreferrer"
-              className="px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer"
-            >
-              <PhoneCall className="w-4 h-4" /> Message Founder Pradeep Directly on WhatsApp &rarr;
-            </a>
-          </div>
         </div>
       </div>
-
-      {/* Paywall Lock Modal (Pops up when clicking locked download) */}
-      {showPayModal && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-cyan-500/50 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl relative">
-            <button
-              onClick={() => setShowPayModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400">
-              <Lock className="w-6 h-6" />
-            </div>
-
-            <h3 className="text-xl font-bold text-white">Unlock Deployment Assets</h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              These custom AI solutions and Schema files are protected. Complete the ₹999 ($19) payment to unlock instant file downloads and full 3-day turnkey setup.
-            </p>
-
-            <div className="p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-xs">
-              <p className="text-cyan-300 font-bold">BHIM UPI: <span className="font-mono text-white">{BHIM_UPI_ID}</span></p>
-              <p className="text-slate-400">Or pay via official Razorpay gateway:</p>
-            </div>
-
-            <div className="space-y-2 pt-2">
-              <a
-                href={RAZORPAY_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer"
-              >
-                Pay ₹999 via Razorpay &rarr;
-              </a>
-              <button
-                onClick={() => {
-                  setShowPayModal(false)
-                  const el = document.getElementById('payment-section')
-                  if (el) el.scrollIntoView({ behavior: 'smooth' })
-                }}
-                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold text-xs text-slate-300 cursor-pointer"
-              >
-                Scan UPI QR Code Instead
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  )
+    </SiteShell>
+  );
 }
-export default SolutionEnginePage

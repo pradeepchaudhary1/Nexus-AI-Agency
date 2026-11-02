@@ -3,18 +3,20 @@ import { i as performance_default } from "../_libs/h3-v2+rou3+srvx+unenv.mjs";
 import { n as require_react } from "../_libs/@radix-ui/react-compose-refs+[...].mjs";
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { $ as Cpu, A as MousePointerClick, C as QrCode, D as PhoneCall, F as MapPin, J as Earth, K as FileText, M as MessageSquare, N as Menu, O as Pen, Q as CreditCard, R as Lock, S as RefreshCw, T as Play, W as Globe, X as Download, Z as Database, _t as ArrowRight, a as TriangleAlert, at as CircleCheck, b as Scissors, bt as Activity, dt as Building2, et as Code, g as ShieldCheck, h as Shield, ht as BookOpen, j as Moon, l as Stethoscope, mt as Bot, n as X, o as Trash2, ot as CircleCheckBig, p as Sparkles, q as ExternalLink, r as Video, rt as Clock, s as Sun, t as Zap, tt as CodeXml, u as Star, v as Send, w as Plus, x as Save, y as Search, z as LockOpen } from "../_libs/lucide-react.mjs";
-import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
+import { $ as CreditCard, B as LockOpen, C as QrCode, D as PhoneCall, G as Globe, I as MapPin, J as ExternalLink, M as MessageSquare, N as MessageCircle, O as Pen, P as Menu, Q as Database, S as RefreshCw, St as Activity, T as Play, Z as Download, _t as BookOpen, a as TriangleAlert, at as Clock, b as Scissors, et as Cpu, g as ShieldCheck, gt as Bot, h as Shield, j as Moon, l as Stethoscope, n as X, nt as Code, o as Trash2, p as Sparkles, pt as Building2, q as FileText, r as Video, rt as CodeXml, s as Sun, st as CircleCheck, t as Zap, tt as Copy$1, v as Send, w as Plus, x as Save, y as Search, yt as ArrowRight, z as Lock } from "../_libs/lucide-react.mjs";
+import { S as useRouter, _ as lazyRouteComponent, b as Link, d as Scripts, f as HeadContent, g as Outlet, h as createRouter, p as useRouterState, q as redirect, v as createFileRoute, x as useNavigate, y as createRootRouteWithContext } from "../_libs/@tanstack/react-router+[...].mjs";
 import { t as Input } from "./input-BlEJlNY0.mjs";
 import { t as supabase } from "./client-BmndfN-r.mjs";
 import { t as Route$19 } from "./admin.resources-Br5CEXKt.mjs";
 import { n as QueryClientProvider } from "../_libs/tanstack__react-query.mjs";
 import { t as QueryClient } from "../_libs/tanstack__query-core.mjs";
-import { i as navItems, o as socials, t as LeadForm } from "./lead-forms-CCE1LWhA.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/router-Bp233MXF.js
+import { a as socials, r as navItems } from "./site-data-C78hRize.mjs";
+import { t as LeadForm } from "./lead-forms-DCxr9lrH.mjs";
+import { t as TrustReviews } from "./trust-reviews-BfIn3Dkk.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/router-ZUZuJBrF.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
-var styles_default = "/assets/styles-CtOv_fmi.css";
+var styles_default = "/assets/styles-Bzp-bVq7.css";
 function reportLovableError(error, context = {}) {
 	if (typeof window === "undefined") return;
 	window.__lovableEvents?.captureException?.(error, {
@@ -594,424 +596,31 @@ function RootComponent() {
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SiteShell, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Outlet, {}) })
 	});
 }
-var REVIEWS = [
-	{
-		name: "Dr. Sameer Saxena",
-		role: "Managing Director",
-		business: "Apex Dental Care, Jaipur",
-		rating: 5,
-		date: "Verified 3 weeks ago",
-		comment: "We used to lose 15-20 patient calls every weekend. Nexus AI deployed their voice receptionist within 4 days. Now every after-hours call is booked directly into our calendar with instant WhatsApp slips.",
-		source: "Google Verified"
-	},
-	{
-		name: "Vikramaditya Rathore",
-		role: "Principal Broker",
-		business: "Rathore Realty & Builders",
-		rating: 5,
-		date: "Verified 1 month ago",
-		comment: "The speed-to-lead automation is unbelievable. As soon as a lead arrives from our portal ads, the AI calls them within 45 seconds, qualifies budget, and sends our WhatsApp brochure. Closed 2 luxury units last month alone.",
-		source: "Trustpilot"
-	},
-	{
-		name: "Ananya Deshmukh",
-		role: "Owner & Head Stylist",
-		business: "Glow Luxury Studio",
-		rating: 5,
-		date: "Verified 2 weeks ago",
-		comment: "My stylists no longer have to stop cutting hair to pick up phone calls. The AI voice assistant handles appointments smoothly and our no-shows dropped by over 80% with automated reminders.",
-		source: "Google Verified"
-	}
-];
-function TrustReviews() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-		className: "py-16 px-4 max-w-6xl mx-auto",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 mb-8 backdrop-blur-md",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex items-center gap-3",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-extrabold text-lg",
-					children: "4.9"
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-					className: "flex items-center gap-1 text-amber-400 mb-0.5",
-					children: [...Array(5)].map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Star, { className: "w-4 h-4 fill-amber-400 text-amber-400" }, i))
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-					className: "text-xs text-slate-300 font-semibold",
-					children: ["EXCELLENT RATING ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-slate-500 font-normal",
-						children: "| Based on 28+ verified client deployments"
-					})]
-				})] })]
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-3.5 py-1.5 rounded-full border border-emerald-500/20",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "w-4 h-4" }), " TrustIndex Verified Partner"]
-			})]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "grid md:grid-cols-3 gap-6",
-			children: REVIEWS.map((rev, idx) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-cyan-500/30 transition shadow-lg",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center justify-between mb-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "flex items-center gap-1 text-amber-400",
-						children: [...Array(rev.rating)].map((_, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Star, { className: "w-3.5 h-3.5 fill-amber-400 text-amber-400" }, i))
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-[10px] text-slate-500 font-medium",
-						children: rev.date
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-					className: "text-xs text-slate-300 leading-relaxed mb-4 italic",
-					children: [
-						"\"",
-						rev.comment,
-						"\""
-					]
-				})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "pt-4 border-t border-slate-800/80 flex items-center justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h4", {
-						className: "text-xs font-bold text-white flex items-center gap-1",
-						children: [
-							rev.name,
-							" ",
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheckBig, { className: "w-3 h-3 text-cyan-400 inline" })
-						]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-						className: "text-[11px] text-slate-400",
-						children: [
-							rev.role,
-							", ",
-							rev.business
-						]
-					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700",
-						children: rev.source
-					})]
-				})]
-			}, idx))
-		})]
-	});
-}
-function LiveMetrics() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
-		className: "py-12 px-4 max-w-6xl mx-auto",
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "bg-slate-900/90 border border-slate-800 rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-2xl",
-			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80",
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "flex items-center gap-2",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-						className: "relative flex h-2.5 w-2.5",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" })]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-						className: "text-xs font-bold uppercase tracking-wider text-slate-300",
-						children: "Live Network Telemetry"
-					})]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-					className: "text-[11px] text-cyan-400 font-semibold bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20",
-					children: "Real-Time System Activity"
-				})]
-			}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "grid grid-cols-2 lg:grid-cols-4 gap-6 text-left",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-2 text-cyan-400 mb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Earth, { className: "w-4 h-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs text-slate-400 font-medium",
-									children: "Websites Audited"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "text-2xl md:text-3xl font-extrabold text-white",
-								children: "1,482+"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-[11px] text-slate-500 mt-1",
-								children: "Domains inspected via live AEO engine"
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-2 text-emerald-400 mb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MousePointerClick, { className: "w-4 h-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs text-slate-400 font-medium",
-									children: "Inquiries & Clicks"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "text-2xl md:text-3xl font-extrabold text-white",
-								children: "9,240+"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-[11px] text-slate-500 mt-1",
-								children: "High-intent client actions logged"
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-2 text-blue-400 mb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-4 h-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs text-slate-400 font-medium",
-									children: "AI Schemas Built"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "text-2xl md:text-3xl font-extrabold text-white",
-								children: "3,150+"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-[11px] text-slate-500 mt-1",
-								children: "Structured JSON-LD & /llms.txt maps"
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "flex items-center gap-2 text-amber-400 mb-2",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-4 h-4" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-xs text-slate-400 font-medium",
-									children: "Speed-to-Lead Response"
-								})]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-								className: "text-2xl md:text-3xl font-extrabold text-emerald-400",
-								children: "< 780ms"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-[11px] text-slate-500 mt-1",
-								children: "Autonomous conversational voice latency"
-							})
-						]
-					})
-				]
-			})]
-		})
-	});
-}
-function HomePage() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "min-h-screen bg-slate-950 text-white selection:bg-cyan-500 selection:text-black",
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				className: "pt-24 pb-12 px-4 text-center max-w-5xl mx-auto",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold mb-6",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-4 h-4" }), " Enterprise Autonomous Workforce & Voice AI"]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
-						className: "text-4xl md:text-7xl font-extrabold tracking-tight leading-tight mb-6",
-						children: [
-							"Deploy AI Employees That ",
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("br", { className: "hidden md:inline" }),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500",
-								children: "Never Sleep, Miss a Call, or Lose a Lead"
-							})
-						]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed",
-						children: "Nexus AI Agency builds 24/7 Voice Calling Receptionists, AEO/GEO Search Optimization, and WhatsApp CRM automations for clinics, real estate, and growing businesses worldwide."
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-wrap items-center justify-center gap-4 mb-6",
-						children: [
-							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Link, {
-								to: "/book-audit",
-								className: "px-7 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-bold text-sm text-white flex items-center gap-2 shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:scale-105 transition",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Zap, { className: "w-4 h-4" }), " Scan Your Website Live →"]
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-								to: "/real-estate",
-								className: "px-7 py-4 rounded-xl bg-slate-900 border border-slate-800 font-semibold text-sm text-slate-200 hover:bg-slate-800 transition",
-								children: "Real Estate AI Funnel"
-							}),
-							/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
-								to: "/clinics",
-								className: "px-7 py-4 rounded-xl bg-slate-900 border border-slate-800 font-semibold text-sm text-slate-200 hover:bg-slate-800 transition",
-								children: "Healthcare & Clinic AI"
-							})
-						]
-					})
-				]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LiveMetrics, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(TrustReviews, {}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
-				id: "contact",
-				className: "py-20 px-4 max-w-3xl mx-auto text-center",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
-						className: "text-3xl md:text-4xl font-bold mb-3 text-white",
-						children: "Get Your Custom AI Blueprint"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-xs md:text-sm text-slate-400 mb-8 max-w-md mx-auto",
-						children: "Select required automations and our architecture team will deliver a configured deployment blueprint within 24 hours."
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LeadForm, {})
-				]
-			})
-		]
-	});
-}
-var schemaData = {
-	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "ProfessionalService",
-			"@id": "https://www.nexusaiagency.in/#organization",
-			"name": "NexusAIAgency",
-			"alternateName": ["Nexus AI Solution", "Nexus AI Agency"],
-			"url": "https://www.nexusaiagency.in/",
-			"logo": "https://www.nexusaiagency.in/favicon.ico",
-			"description": "NexusAIAgency builds autonomous AI support, sales, calling, research, CRM, and automation systems for clinics, real estate, salons, and SMBs.",
-			"email": "thenexusaiagency@gmail.com",
-			"telephone": "+91-8003469293",
-			"founder": {
-				"@type": "Person",
-				"name": "Pradeep Kumar Dagur",
-				"jobTitle": "Founder & Principal AI Solutions Architect",
-				"url": "https://www.linkedin.com/in/pradeep-kumar-dagur"
-			},
-			"areaServed": [
-				"India",
-				"United States",
-				"Luxembourg",
-				"Russia",
-				"Switzerland",
-				"Japan",
-				"Taiwan",
-				"France",
-				"Italy",
-				"Spain",
-				"Singapore",
-				"Germany",
-				"Australia",
-				"Canada",
-				"South Korea",
-				"Sweden",
-				"United Kingdom",
-				"Mexico",
-				"Brazil",
-				"New Zealand",
-				"South Africa",
-				"Colombia",
-				"Malaysia",
-				"Pakistan"
-			],
-			"hasOfferCatalog": {
-				"@type": "OfferCatalog",
-				"name": "AI Automation Services",
-				"itemListElement": [{
-					"@type": "Offer",
-					"itemOffered": {
-						"@type": "Service",
-						"name": "24/7 AI Voice Calling & Receptionist Agents",
-						"description": "Human-like conversational voice agents built on Vapi.ai for appointment bookings, lead qualification, and customer support."
-					}
-				}, {
-					"@type": "Offer",
-					"itemOffered": {
-						"@type": "Service",
-						"name": "Workflow Automation, AEO Optimization & CRM Integration",
-						"description": "Event-driven automation connecting voice webhooks to Make.com, n8n, Google Sheets, and WhatsApp & Website Schema Markup, AEO Optimization WITH SEO."
-					}
-				}]
-			}
-		},
-		{
-			"@type": "WebSite",
-			"@id": "https://www.nexusaiagency.in/#website",
-			"url": "https://www.nexusaiagency.in/",
-			"name": "NexusAIAgency",
-			"publisher": { "@id": "https://www.nexusaiagency.in/#organization" }
-		},
-		{
-			"@type": "FAQPage",
-			"@id": "https://www.nexusaiagency.in/#faq",
-			"mainEntity": [{
-				"@type": "Question",
-				"name": "What services does NexusAIAgency provide?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "NexusAIAgency builds autonomous AI voice calling agents, sales qualification bots, Website Optimize on google & AI tools, AEO optimization and workflow automations to prevent missed customer inquiries."
-				}
-			}, {
-				"@type": "Question",
-				"name": "How do AI Calling Agents help businesses?",
-				"acceptedAnswer": {
-					"@type": "Answer",
-					"text": "Our voice agents answer customer calls 24/7 in real-time, qualify incoming leads, handle bookings, and automatically sync details into your CRM or Google Sheets."
-				}
-			}]
-		}
-	]
-};
+var $$splitComponentImporter$8 = () => import("./routes-DA7Hgoa6.mjs");
 var Route$17 = createFileRoute("/")({
+	component: lazyRouteComponent($$splitComponentImporter$8, "component"),
 	head: () => ({
 		meta: [
-			{ title: "NexusAIAgency — Build an AI workforce for your business" },
+			{ title: "Nexus AI Agency | Autonomous AI Receptionists & 2026 AEO Optimization" },
 			{
 				name: "description",
-				content: "Nexus AI Agency deploys 24/7 AI voice calling receptionists, AEO search optimization, and automated WhatsApp CRM systems for clinics and businesses."
-			},
-			{
-				name: "keywords",
-				content: "AI Voice Agents, Nexus AI Agency, Vapi Calling Agent, AI Receptionist, Make.com Automation, Pradeep Kumar Dagur"
-			},
-			{
-				name: "author",
-				content: "Pradeep Kumar Dagur"
-			},
-			{
-				name: "robots",
-				content: "index, follow"
+				content: "Nexus AI builds 24/7 AI Voice Receptionists, WhatsApp Speed-to-Lead pipelines, and AEO Schema architecture for high-growth healthcare and service firms."
 			},
 			{
 				property: "og:title",
-				content: "NexusAIAgency — Build an AI workforce for your business"
+				content: "Nexus AI Agency | Autonomous AI Receptionists & 2026 AEO Optimization"
 			},
 			{
 				property: "og:description",
-				content: "Deploy AI agents and automation systems around your real workflows, tools and team."
-			},
-			{
-				property: "og:type",
-				content: "website"
+				content: "Recover 100% of missed calls and rank in ChatGPT Search, Perplexity, and Google Maps with sub-800ms conversational AI voice agents."
 			},
 			{
 				property: "og:url",
 				content: "https://www.nexusaiagency.in/"
 			},
 			{
-				property: "og:image",
-				content: "https://www.nexusaiagency.in/og-image.png"
-			},
-			{
 				name: "twitter:card",
 				content: "summary_large_image"
-			},
-			{
-				name: "twitter:title",
-				content: "NexusAIAgency — Build an AI workforce for your business"
-			},
-			{
-				name: "twitter:description",
-				content: "Deploy AI agents and automation systems around your real workflows, tools and team."
 			}
 		],
 		links: [{
@@ -1020,27 +629,9 @@ var Route$17 = createFileRoute("/")({
 		}, {
 			rel: "llms-txt",
 			href: "https://www.nexusaiagency.in/llms.txt"
-		}],
-		scripts: [{
-			type: "application/ld+json",
-			children: JSON.stringify(schemaData)
 		}]
-	}),
-	component: Index
+	})
 });
-function Index() {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", { dangerouslySetInnerHTML: { __html: `
-        [data-lovable-badge],
-        div[class*="netlify-drawer"],
-        iframe[src*="app.netlify.com"],
-        a[href*="netlify.com"][target="_blank"]:not(footer a) {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-        }
-      ` } }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HomePage, {})] });
-}
 var $$splitComponentImporter$7 = () => import("./route-Di7iQBCH.mjs");
 var Route$16 = createFileRoute("/_authenticated")({
 	ssr: false,
@@ -1088,7 +679,7 @@ var Route$15 = createFileRoute("/about")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$6, "component")
 });
-var $$splitComponentImporter$5 = () => import("./agent-demos-BE9LrAZ1.mjs");
+var $$splitComponentImporter$5 = () => import("./agent-demos-Cp97KO7F.mjs");
 var Route$14 = createFileRoute("/agent-demos")({
 	head: () => ({
 		meta: [
@@ -1129,9 +720,9 @@ var Route$13 = createFileRoute("/audit-report")({
 	validateSearch: (search) => {
 		return { url: search.url || "example.com" };
 	},
-	component: SolutionEnginePage$1
+	component: SolutionEnginePage
 });
-function SolutionEnginePage$1() {
+function SolutionEnginePage() {
 	const { url } = Route$13.useSearch();
 	let cleanDomain = url.trim().toLowerCase();
 	cleanDomain = cleanDomain.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0].split("?")[0].split("#")[0];
@@ -2649,7 +2240,7 @@ function ClinicsFunnel() {
 		]
 	});
 }
-var $$splitComponentImporter$3 = () => import("./how-it-works-DZC-eNgg.mjs");
+var $$splitComponentImporter$3 = () => import("./how-it-works-B37Nh0A9.mjs");
 var Route$9 = createFileRoute("/how-it-works")({
 	head: () => ({
 		meta: [
@@ -2686,7 +2277,7 @@ var Route$9 = createFileRoute("/how-it-works")({
 	}),
 	component: lazyRouteComponent($$splitComponentImporter$3, "component")
 });
-var $$splitComponentImporter$2 = () => import("./industries-8Hxmgs3w.mjs");
+var $$splitComponentImporter$2 = () => import("./industries-BELO7LBf.mjs");
 var Route$8 = createFileRoute("/industries")({
 	head: () => ({
 		meta: [
@@ -2789,7 +2380,7 @@ function OnboardingPage() {
 		})
 	});
 }
-var $$splitComponentImporter$1 = () => import("./privacy-De-kAQoA.mjs");
+var $$splitComponentImporter$1 = () => import("./privacy-Dciyeos7.mjs");
 var Route$6 = createFileRoute("/privacy")({
 	head: () => ({
 		meta: [
@@ -3919,7 +3510,7 @@ function SalonsFunnel() {
 		]
 	});
 }
-var $$splitComponentImporter = () => import("./solutions-EBgdDIf9.mjs");
+var $$splitComponentImporter = () => import("./solutions-BblEoD8O.mjs");
 var Route$1 = createFileRoute("/solutions")({
 	head: () => ({
 		meta: [
@@ -3957,627 +3548,443 @@ var Route$1 = createFileRoute("/solutions")({
 	component: lazyRouteComponent($$splitComponentImporter, "component")
 });
 var Route = createFileRoute("/solutions-engine")({
+	component: SolutionsEnginePage,
 	validateSearch: (search) => {
-		return { url: search.url || "example.com" };
-	},
-	component: SolutionEnginePage
+		return { url: typeof search.url === "string" ? search.url : "" };
+	}
 });
-function SolutionEnginePage() {
+function SolutionsEnginePage() {
 	const { url } = Route.useSearch();
-	let cleanDomain = url.trim().toLowerCase();
-	cleanDomain = cleanDomain.replace(/^(?:https?:\/\/)?(?:www\.)?/i, "").split("/")[0].split("?")[0].split("#")[0];
-	const [loadingAi, setLoadingAi] = (0, import_react.useState)(true);
-	const [isUnlocked, setIsUnlocked] = (0, import_react.useState)(false);
-	const [isAdmin, setIsAdmin] = (0, import_react.useState)(false);
-	const [pin, setPin] = (0, import_react.useState)("");
-	const [showPayModal, setShowPayModal] = (0, import_react.useState)(false);
-	const [paymentTab, setPaymentTab] = (0, import_react.useState)("upi");
-	const [copiedUpi, setCopiedUpi] = (0, import_react.useState)(false);
-	const RAZORPAY_URL = "https://razorpay.me/@nexusaiagency";
-	const BHIM_UPI_ID = "8003469293@upi";
-	const [aiData, setAiData] = (0, import_react.useState)({
-		businessName: cleanDomain.split(".")[0].toUpperCase(),
-		industry: "Business & Professional Services",
-		schemaType: "LocalBusiness",
-		schemaJson: "",
-		heroHeadline: "",
-		subHeadline: "",
-		valueBullets: [],
-		llmsTxt: "",
-		prompts: []
-	});
-	(0, import_react.useEffect)(() => {
-		if (typeof window !== "undefined") {
-			const p = new URLSearchParams(window.location.search);
-			if (p.get("admin") === "true") setIsAdmin(true);
-			if (p.get("paid") === "true") setIsUnlocked(true);
-		}
-		const runArchitectureAnalysis = async () => {
-			setLoadingAi(true);
-			const isCoffeeOrFood = cleanDomain.includes("coffee") || cleanDomain.includes("cafe") || cleanDomain.includes("bakery") || cleanDomain.includes("restaurant");
-			const isClinic = cleanDomain.includes("medical") || cleanDomain.includes("clinic") || cleanDomain.includes("doctor") || cleanDomain.includes("health") || cleanDomain.includes("dental");
-			const isRealEstate = cleanDomain.includes("realty") || cleanDomain.includes("estate") || cleanDomain.includes("property") || cleanDomain.includes("homes");
-			const isDomainTool = cleanDomain.includes("expireddomains") || cleanDomain.includes("domains");
-			const isNexus = cleanDomain.includes("nexusaiagency");
-			let detectedIndustry = "Enterprise & Professional Services";
-			let detectedSchema = "LocalBusiness";
-			let businessTitle = cleanDomain.split(".")[0].toUpperCase();
-			let headline = "Capture Every High-Intent Customer Inquiry 24/7";
-			let subhead = "Autonomous voice receptionists, speed-to-lead qualification, and instant CRM synchronization.";
-			if (isCoffeeOrFood) {
-				detectedIndustry = "Specialty Coffee Roastery & Cafe";
-				detectedSchema = "CafeOrCoffeeShop";
-				businessTitle = cleanDomain.includes("curious") ? "Curious Life Coffee Roasters" : businessTitle;
-				headline = "Never Miss an Online Bean Order or Table Reservation";
-				subhead = "Automate customer phone queries, bean subscription inquiries, and WhatsApp order tracking.";
-			} else if (isClinic) {
-				detectedIndustry = "Healthcare & Medical Clinic";
-				detectedSchema = "MedicalClinic";
-				businessTitle = cleanDomain.includes("capital") ? "Capital Medical Clinic" : businessTitle;
-				headline = "Never Miss an After-Hours Patient Call — 24/7 AI Medical Receptionist";
-				subhead = "Attends patient appointment inquiries in under 800ms, manages doctor schedules, and delivers instant WhatsApp slips.";
-			} else if (isRealEstate) {
-				detectedIndustry = "Real Estate Development & Brokerage";
-				detectedSchema = "RealEstateAgent";
-				headline = "Never Lose Another Property Buyer to a Busy Tone";
-				subhead = "Calls incoming property leads in under 60 seconds, qualifies budget & location, and delivers instant WhatsApp brochures.";
-			} else if (isDomainTool) {
-				detectedIndustry = "Domain Marketplace & Digital Assets";
-				detectedSchema = "OnlineBusiness";
-				headline = "Automate Inquiries for Premium & Expiring Domains";
-				subhead = "Instant buyer qualification, automated escrow transfer FAQs, and 24/7 lead capture.";
-			} else if (isNexus) {
-				detectedIndustry = "Autonomous AI Workforce & Voice Automation";
-				detectedSchema = "ProfessionalService";
-				businessTitle = "Nexus AI Agency";
-				headline = "Deploy AI Employees That Never Sleep, Miss a Call, or Lose a Lead";
-				subhead = "24/7 Voice Calling Receptionists, AEO/GEO Search Optimization, and WhatsApp CRM automations.";
-			}
-			const schemaTemplate = `{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "${detectedSchema}",
-      "@id": "https://${cleanDomain}/#organization",
-      "name": "${businessTitle}",
-      "url": "https://${cleanDomain}/",
-      "telephone": "[Verified Business Telephone]",
-      "priceRange": "$$",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "08:00",
-          "closes": "20:00"
-        }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://${cleanDomain}/#faq",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How to contact or schedule with ${businessTitle}?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Inquiries are attended 24/7 with immediate verification and automated WhatsApp scheduling."
-          }
-        }
-      ]
-    }
-  ]
-}`;
-			const llmsTemplate = `# ${businessTitle}
-> Official Machine-Readable Knowledge Map for AI Search Engines.
-
-## Core Services & Solutions
-- 24/7 Autonomous Customer Intake & Verified Booking.
-- Real-Time WhatsApp Confirmation & Google Sheets CRM Record.
-
-## Canonical Verification
-- Website: https://${cleanDomain}/
-- Entity Schema: https://${cleanDomain}/#organization
-- Crawler Directives: GPTBot, PerplexityBot, ClaudeBot (Allow: /)
-`;
-			setAiData({
-				businessName: businessTitle,
-				industry: detectedIndustry,
-				schemaType: detectedSchema,
-				schemaJson: schemaTemplate,
-				heroHeadline: headline,
-				subHeadline: subhead,
-				valueBullets: [
-					"Sub-Second Response Latency (<800ms) for zero customer drop-off",
-					"Automated WhatsApp confirmations & location pin dispatch",
-					"Live Google Sheets CRM synchronization with zero manual data entry"
-				],
-				llmsTxt: llmsTemplate,
-				prompts: [
-					`"Best ${businessTitle} in my area with 24/7 customer support"`,
-					`"How much does ${businessTitle} service or booking cost?"`,
-					`"Top verified alternatives near me"`,
-					`"How to book an instant slot with ${businessTitle} on WhatsApp"`
-				]
-			});
-			setLoadingAi(false);
-		};
-		runArchitectureAnalysis();
+	const navigate = useNavigate();
+	const cleanDomain = (typeof url === "string" && url.trim().length > 0 ? url.trim() : "nexusaiagency.in").replace(/^https?:\/\//i, "").replace(/^www\./i, "").split("/")[0].trim() || "nexusaiagency.in";
+	const [inputUrl, setInputUrl] = (0, import_react.useState)(cleanDomain);
+	const [copiedSchema, setCopiedSchema] = (0, import_react.useState)(false);
+	const [copiedLlms, setCopiedLlms] = (0, import_react.useState)(false);
+	const [copiedPrompt, setCopiedPrompt] = (0, import_react.useState)(false);
+	const [unlocked, setUnlocked] = (0, import_react.useState)(false);
+	const [passcode, setPasscode] = (0, import_react.useState)("");
+	const [passcodeError, setPasscodeError] = (0, import_react.useState)(false);
+	const formattedName = (0, import_react.useMemo)(() => {
+		return cleanDomain.split(".")[0].split(/[-_]/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 	}, [cleanDomain]);
-	const downloadFile = (content, filename) => {
-		if (!isUnlocked) {
-			setShowPayModal(true);
-			return;
+	const handleDomainSubmit = (e) => {
+		e.preventDefault();
+		if (!inputUrl.trim()) return;
+		const sanitized = inputUrl.trim().replace(/^https?:\/\//i, "").replace(/^www\./i, "").split("/")[0];
+		navigate({
+			to: "/solutions-engine",
+			search: { url: sanitized }
+		});
+	};
+	const schemaJson = (0, import_react.useMemo)(() => {
+		return JSON.stringify({
+			"@context": "https://schema.org",
+			"@graph": [{
+				"@type": "LocalBusiness",
+				"@id": `https://${cleanDomain}/#organization`,
+				name: formattedName,
+				url: `https://${cleanDomain}/`,
+				telephone: "+91-8003469293",
+				priceRange: "$$",
+				address: {
+					"@type": "PostalAddress",
+					addressLocality: "Rajasthan",
+					addressRegion: "RJ",
+					addressCountry: "IN"
+				},
+				openingHoursSpecification: [{
+					"@type": "OpeningHoursSpecification",
+					dayOfWeek: [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday"
+					],
+					opens: "09:00",
+					closes: "19:00"
+				}],
+				sameAs: ["https://www.linkedin.com/company/nexus-ai-agency", "https://x.com/nexusaiagency"]
+			}, {
+				"@type": "WebSite",
+				"@id": `https://${cleanDomain}/#website`,
+				url: `https://${cleanDomain}/`,
+				name: formattedName,
+				publisher: { "@id": `https://${cleanDomain}/#organization` }
+			}]
+		}, null, 2);
+	}, [cleanDomain, formattedName]);
+	const llmsTxtContent = (0, import_react.useMemo)(() => {
+		return `# ${formattedName} — LLM Knowledge Architecture
+# Canonical Domain: https://${cleanDomain}
+# Primary Contact: +91 8003469293 | thenexusaiagency@gmail.com
+
+> Enterprise AI automation agency specializing in 24/7 AI Voice Receptionists, Speed-to-Lead WhatsApp workflows, and Generative Engine Optimization (GEO).
+
+## Core Capabilities
+- **24/7 Autonomous Voice Receptionist**: Sub-800ms speech-to-speech inbound call answering, appointment booking, and emergency triage.
+- **WhatsApp Speed-to-Lead Engine**: Instant qualification within 60 seconds of form submission via webhook pipelines.
+- **AEO & Local Search Architecture**: Semantic schema injection and entity grounding for ChatGPT Search, Perplexity, and Google Gemini.
+
+## Verification & Trust
+- **Founder**: Pradeep Chaudhary (Certified AI Specialist, ClaimSkills/Barleti ID: D9FB-8ACE98)
+- **Headquarters**: Rajasthan, India
+- **Official Website**: https://${cleanDomain}
+`;
+	}, [cleanDomain, formattedName]);
+	const handleCopy = (text, type) => {
+		navigator.clipboard.writeText(text);
+		if (type === "schema") {
+			setCopiedSchema(true);
+			setTimeout(() => setCopiedSchema(false), 2e3);
+		} else if (type === "llms") {
+			setCopiedLlms(true);
+			setTimeout(() => setCopiedLlms(false), 2e3);
+		} else {
+			setCopiedPrompt(true);
+			setTimeout(() => setCopiedPrompt(false), 2e3);
 		}
+	};
+	const handleDownload = (content, filename) => {
 		const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-		const downloadUrl = URL.createObjectURL(blob);
+		const url = URL.createObjectURL(blob);
 		const link = document.createElement("a");
-		link.href = downloadUrl;
+		link.href = url;
 		link.download = filename;
 		document.body.appendChild(link);
 		link.click();
 		document.body.removeChild(link);
-		URL.revokeObjectURL(downloadUrl);
+		URL.revokeObjectURL(url);
 	};
-	const copyUpiId = () => {
-		navigator.clipboard.writeText(BHIM_UPI_ID);
-		setCopiedUpi(true);
-		setTimeout(() => setCopiedUpi(false), 2e3);
+	const handleUnlock = (e) => {
+		e.preventDefault();
+		if (passcode.trim() === "2026" || passcode.trim().toLowerCase() === "nexus") {
+			setUnlocked(true);
+			setPasscodeError(false);
+		} else setPasscodeError(true);
 	};
-	const upiQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent("upi://pay?pa=8003469293@upi&pn=NexusAIAgency&am=999&cu=INR&tn=Nexus%20AI%20Deployment%20Audit")}`;
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-		className: "min-h-screen bg-slate-950 text-white py-16 px-4 selection:bg-cyan-500 selection:text-black",
-		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-			className: "max-w-5xl mx-auto space-y-10",
-			children: [
-				isAdmin && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-amber-950/90 border border-amber-600/50 rounded-2xl p-3 text-xs flex items-center justify-between",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-						className: "font-bold text-amber-400 flex items-center gap-1.5",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Shield, { className: "w-4 h-4" }), " Owner Admin Access"]
-					}), !isUnlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
-							type: "password",
-							placeholder: "PIN",
-							value: pin,
-							onChange: (e) => setPin(e.target.value),
-							className: "bg-black/80 px-2 py-1 rounded border border-amber-600 text-white w-20 text-xs"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							onClick: () => {
-								if (pin === "2026") setIsUnlocked(true);
-								else alert("Incorrect PIN");
-							},
-							className: "bg-amber-600 px-3 py-1 rounded font-bold text-black cursor-pointer",
-							children: "Unlock All Solutions"
-						})]
-					}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-						className: "text-emerald-400 font-bold flex items-center gap-1",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(LockOpen, { className: "w-4 h-4" }), " All Solutions & Files Unlocked (Admin Preview)"]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "text-center space-y-3",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-semibold",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Autonomous AI Solutions & Deployment Engine"]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
-							className: "text-3xl md:text-5xl font-extrabold text-white",
-							children: ["Custom AI Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "text-cyan-400",
-								children: cleanDomain
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "text-sm text-slate-400 max-w-2xl mx-auto",
-							children: [
-								"Identified Niche: ",
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-cyan-300 font-semibold",
-									children: aiData.industry
-								}),
-								". Engineered deployable Schema.org markup, conversion copywriting, and /llms.txt AI search maps."
-							]
-						})
-					]
-				}),
-				loadingAi && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "p-8 text-center bg-slate-900/60 border border-slate-800 rounded-2xl space-y-3",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-6 h-6 animate-spin text-cyan-400 mx-auto" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-						className: "text-xs text-slate-300 font-semibold animate-pulse",
-						children: [
-							"Engineering tailored optimization assets for ",
-							cleanDomain,
-							"..."
-						]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-wrap items-center justify-between gap-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Code, { className: "w-5 h-5 text-emerald-400" }),
-								" Solution 1: Custom Schema.org JSON-LD (",
-								aiData.schemaType,
-								")"
-							]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-xs text-slate-400 mt-1",
-							children: "Zero manual coding required. Fully structured rich-snippet JSON-LD built specifically for your domain:"
-						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => downloadFile(aiData.schemaJson, `${cleanDomain}-schema.json`),
-							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-emerald-600 hover:bg-emerald-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-4 h-4" }), isUnlocked ? "Download Schema (.json)" : "Download Schema (Locked)"]
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "relative rounded-xl overflow-hidden",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-cyan-300 overflow-x-auto max-h-56 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
-							children: aiData.schemaJson
-						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-									className: "text-xs font-bold text-white",
-									children: [
-										"Custom ",
-										aiData.schemaType,
-										" Schema Locked"
-									]
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400",
-									children: "Complete payment of ₹999 ($19) below to download verified code."
-								})
-							]
-						})]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-wrap items-center justify-between gap-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5 text-blue-400" }), " Solution 2: High-Converting Conversion Copywriting"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-xs text-slate-400 mt-1",
-							children: "Tailored hero headlines and value propositions engineered to convert visitors into paying clients:"
-						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => downloadFile(`${aiData.heroHeadline}\n\n${aiData.subHeadline}\n\nValue Bullets:\n${aiData.valueBullets.join("\n")}`, `${cleanDomain}-copywriting.txt`),
-							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-blue-600 hover:bg-blue-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-4 h-4" }), isUnlocked ? "Download Copy (.txt)" : "Download Copy (Locked)"]
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "relative rounded-xl overflow-hidden",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: `space-y-3 text-xs ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(SiteShell, {
+		currentPath: "/solutions-engine",
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+			className: "min-h-screen bg-slate-950 text-slate-100 py-12 px-4 sm:px-6 lg:px-8",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "max-w-6xl mx-auto space-y-10",
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-slate-900/80 border border-cyan-500/30 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-2xl relative overflow-hidden",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10",
 							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
+								className: "space-y-2",
 								children: [
-									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-[10px] font-bold text-cyan-400 uppercase tracking-wider",
-										children: "Conversion Hero Headline"
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-400 text-xs font-semibold uppercase tracking-wider",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-3.5 h-3.5" }), " Live AEO & Automation Solution Engine"]
 									}),
-									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-										className: "text-sm font-bold text-white",
-										children: [
-											"\"",
-											aiData.heroHeadline,
-											"\""
-										]
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h1", {
+										className: "text-2xl sm:text-4xl font-extrabold text-white tracking-tight",
+										children: ["AI Auto-Fix & Solutions for ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+											className: "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500",
+											children: cleanDomain
+										})]
 									}),
 									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-										className: "text-[11px] text-slate-400",
-										children: aiData.subHeadline
+										className: "text-slate-400 text-sm sm:text-base max-w-2xl",
+										children: "Ye engine aapki website ke liye ready-made Schema.org JSON-LD, /llms.txt map, aur AI Voice Agent architecture auto-generate karta hai."
 									})
 								]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-								className: "p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-[10px] font-bold text-emerald-400 uppercase tracking-wider",
-									children: "3 Irresistible Value Bullets"
-								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ul", {
-									className: "space-y-1 text-slate-300",
-									children: aiData.valueBullets.map((bullet, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", { children: ["• ", bullet] }, i))
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+								onSubmit: handleDomainSubmit,
+								className: "flex flex-col sm:flex-row gap-2 w-full md:w-auto",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "relative",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Search, { className: "w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+										type: "text",
+										value: inputUrl,
+										onChange: (e) => setInputUrl(e.target.value),
+										placeholder: "Enter any domain (e.g. drsingh.com)",
+										className: "w-full sm:w-64 pl-9 pr-4 py-2.5 bg-slate-950 border border-slate-700 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition"
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									type: "submit",
+									className: "px-5 py-2.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-xl text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(RefreshCw, { className: "w-4 h-4" }), " Generate"]
 								})]
 							})]
-						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-xs font-bold text-white",
-									children: "Full Copywriting Framework Locked"
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400",
-									children: "Unlock benefit-driven hooks and high-converting CTA copy."
-								})
-							]
 						})]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "flex flex-wrap items-center justify-between gap-3",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "text-lg font-bold text-white flex items-center gap-2",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Globe, { className: "w-5 h-5 text-cyan-400" }), " Solution 3: Automated GEO & /llms.txt Knowledge Map"]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-xs text-slate-400 mt-1",
-							children: "Machine-readable directives enabling ChatGPT, Perplexity, and Claude crawler bots to cite your business:"
-						})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-							onClick: () => downloadFile(aiData.llmsTxt, "llms.txt"),
-							className: `px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-1.5 transition cursor-pointer ${isUnlocked ? "bg-cyan-600 hover:bg-cyan-500 text-white" : "bg-slate-800 text-slate-400 border border-slate-700"}`,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-4 h-4" }), isUnlocked ? "Download /llms.txt" : "Download /llms.txt (Locked)"]
-						})]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "relative rounded-xl overflow-hidden",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
-							className: `p-4 bg-slate-950 border border-slate-800 text-[11px] font-mono text-emerald-300 overflow-x-auto max-h-44 ${!isUnlocked ? "blur-[5px] select-none opacity-40" : ""}`,
-							children: aiData.llmsTxt
-						}), !isUnlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "absolute inset-0 flex flex-col items-center justify-center bg-slate-950/40 backdrop-blur-[1px] p-4 text-center",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-7 h-7 text-amber-400 mb-1" }),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-xs font-bold text-white",
-									children: "/llms.txt Directive File Locked"
-								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-									className: "text-[11px] text-slate-400",
-									children: "Unlock ready-to-upload markdown knowledge map."
-								})
-							]
-						})]
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					className: "bg-slate-900/90 border border-slate-800 rounded-2xl p-6 md:p-8 space-y-4",
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-						className: "text-lg font-bold text-white flex items-center gap-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "w-5 h-5 text-amber-400" }), " Solution 4: Top AI Prompts to Rank In (ChatGPT & Perplexity)"]
-					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "grid sm:grid-cols-2 gap-3 text-xs",
-						children: aiData.prompts.map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "p-3.5 rounded-xl bg-slate-950 border border-slate-800",
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-								className: "font-semibold text-cyan-300",
-								children: [
-									i + 1,
-									". ",
-									p
-								]
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-								className: "text-[11px] text-slate-400 mt-1",
-								children: "Optimization Action: Add entity schema and verified question-answer blocks to your root page."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CodeXml, { className: "w-5 h-5" })
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+									className: "text-lg sm:text-xl font-bold text-white",
+									children: "Solution 1: Auto-Generated Schema.org JSON-LD"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+									className: "text-xs sm:text-sm text-slate-400",
+									children: ["Google Rich Snippets & Knowledge Graph integration for ", cleanDomain]
+								})] })]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									onClick: () => handleCopy(schemaJson, "schema"),
+									className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy$1, { className: "w-3.5 h-3.5" }),
+										" ",
+										copiedSchema ? "Copied!" : "Copy Code"
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									onClick: () => handleDownload(schemaJson, `${cleanDomain}-schema.json`),
+									className: "px-4 py-2 bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-3.5 h-3.5" }), " Download .JSON"]
+								})]
 							})]
-						}, i))
-					})]
-				}),
-				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-					id: "payment-section",
-					className: "bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-cyan-500/50 rounded-3xl p-6 md:p-10 shadow-[0_0_60px_rgba(6,182,212,0.2)] text-center space-y-6",
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-							className: "px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase tracking-wider",
-							children: "Turnkey Deployment & Code Unlock"
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("h2", {
-							className: "text-3xl md:text-4xl font-extrabold text-white",
-							children: ["Unlock All AI Solutions for ", cleanDomain]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-xs md:text-sm text-slate-400 max-w-lg mx-auto",
-							children: "Zero technical complexity. We configure Auto-Schema, /llms.txt, Core Web Vitals speed optimization, and 24/7 AI Voice Receptionist completely turnkey on your domain."
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "flex items-center justify-center gap-3",
-							children: [
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "text-slate-500 line-through text-lg font-bold",
-									children: "₹4,999 ($79)"
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: "p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-cyan-300 font-mono overflow-x-auto max-h-64 scrollbar-thin",
+							children: schemaJson
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-3",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FileText, { className: "w-5 h-5" })
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+									className: "text-lg sm:text-xl font-bold text-white",
+									children: "Solution 2: /llms.txt AI Citation Directive"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs sm:text-sm text-slate-400",
+									children: "Perplexity, ChatGPT Search, and Claude crawler indexing map"
+								})] })]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									onClick: () => handleCopy(llmsTxtContent, "llms"),
+									className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition",
+									children: [
+										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy$1, { className: "w-3.5 h-3.5" }),
+										" ",
+										copiedLlms ? "Copied!" : "Copy File"
+									]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
+									onClick: () => handleDownload(llmsTxtContent, "llms.txt"),
+									className: "px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/40 text-xs font-semibold rounded-lg flex items-center gap-1.5 transition",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Download, { className: "w-3.5 h-3.5" }), " Download llms.txt"]
+								})]
+							})]
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", {
+							className: "p-4 bg-slate-950 rounded-xl border border-slate-800 text-xs text-purple-300 font-mono overflow-x-auto max-h-64 scrollbar-thin",
+							children: llmsTxtContent
+						})]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center justify-between",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex items-center gap-3",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+										className: "w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400",
+										children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Cpu, { className: "w-5 h-5" })
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+										className: "text-lg sm:text-xl font-bold text-white",
+										children: "Solution 3: 24/7 Voice AI & Speed-to-Lead Setup"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-xs sm:text-sm text-slate-400",
+										children: "Zero missed patient/client calls with sub-800ms conversational AI"
+									})] })]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500/30 text-emerald-400 text-xs font-bold",
+									children: "Production Ready"
+								})]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs text-slate-400 font-semibold uppercase",
+											children: "Step 1: Inbound Webhook"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-sm text-white font-medium",
+											children: "Twilio/SIP Trunk forwarding to Vapi/ElevenLabs pipeline within 500ms."
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs text-slate-400 font-semibold uppercase",
+											children: "Step 2: Live Calendar Sync"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-sm text-white font-medium",
+											children: "Google Calendar & CRM booking via autonomous Make.com/n8n tool calls."
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "p-4 bg-slate-950/60 rounded-xl border border-slate-800 space-y-2",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-xs text-slate-400 font-semibold uppercase",
+											children: "Step 3: Instant WhatsApp SMS"
+										}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+											className: "text-sm text-white font-medium",
+											children: "Auto confirmation sent to caller's mobile in under 15 seconds."
+										})]
+									})
+								]
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "pt-2 flex flex-col sm:flex-row items-center gap-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+									href: "https://wa.me/918003469293?text=Hi%20Pradeep,%20I%20want%20to%20deploy%20the%20AI%20Voice%20Receptionist%20for%20my%20business.",
+									target: "_blank",
+									rel: "noopener noreferrer",
+									className: "w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-600/20",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageCircle, { className: "w-4 h-4" }), " Deploy on WhatsApp (+91 8003469293)"]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-xs text-slate-400",
+									children: "Founder setup assistance included for all clients."
+								})]
+							})
+						]
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "bg-gradient-to-br from-slate-900 to-slate-950 border border-cyan-500/40 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl relative",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950 text-cyan-400 text-xs font-bold border border-cyan-500/30 mb-2",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ShieldCheck, { className: "w-3.5 h-3.5" }), " Full Enterprise Execution Blueprint"]
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", {
-									className: "text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400",
-									children: ["₹999 ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-										className: "text-sm text-slate-400 font-normal",
-										children: "/ $19 USD"
-									})]
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+									className: "text-xl sm:text-2xl font-bold text-white",
+									children: "Full Agency Automation Architecture & SOP Guide"
 								}),
-								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-									className: "bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-bold px-2.5 py-1 rounded-full",
-									children: "80% OFF Launch"
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-sm text-slate-400",
+									children: "Complete 34-page deployment guide, Make.com blueprint JSONs, and live Vapi scripts."
 								})
-							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-							className: "max-w-md mx-auto",
+							] }), !unlocked && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "flex items-center gap-2",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-lg font-black text-cyan-400",
+									children: "₹499"
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "text-xs text-slate-400",
+									children: "one-time access"
+								})]
+							})]
+						}), unlocked ? /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "p-6 bg-emerald-950/30 border border-emerald-500/40 rounded-xl space-y-4",
 							children: [
 								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "flex p-1 rounded-xl bg-slate-950 border border-slate-800 mb-6 text-xs font-bold",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-											onClick: () => setPaymentTab("upi"),
-											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "upi" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(QrCode, { className: "w-3.5 h-3.5" }), " BHIM UPI (India)"]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-											onClick: () => setPaymentTab("razorpay"),
-											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "razorpay" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-3.5 h-3.5" }), " Razorpay"]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", {
-											onClick: () => setPaymentTab("stripe"),
-											className: `flex-1 py-2 rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${paymentTab === "stripe" ? "bg-cyan-500 text-slate-950" : "text-slate-400 hover:text-white"}`,
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), " Stripe (USD)"]
-										})
-									]
+									className: "flex items-center gap-2 text-emerald-400 font-bold text-sm",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CircleCheck, { className: "w-5 h-5" }), " Access Granted: Master Automation Bundle Unlocked"]
 								}),
-								paymentTab === "upi" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs font-semibold text-slate-300",
-											children: "Scan QR Code via PhonePe / GPay / Paytm / BHIM"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-											className: "w-44 h-44 mx-auto p-2 bg-white rounded-xl shadow-lg flex items-center justify-center",
-											children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
-												src: upiQrUrl,
-												alt: "UPI Payment QR Code",
-												className: "w-full h-full object-contain"
-											})
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "flex items-center justify-center gap-2 pt-1",
-											children: [
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-													className: "text-xs text-slate-400",
-													children: "BHIM UPI:"
-												}),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("code", {
-													className: "text-xs bg-slate-900 border border-slate-800 px-2.5 py-1 rounded text-cyan-400 font-mono",
-													children: BHIM_UPI_ID
-												}),
-												/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-													onClick: copyUpiId,
-													className: "p-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 cursor-pointer",
-													title: "Copy UPI ID",
-													children: copiedUpi ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Check, { className: "w-3.5 h-3.5 text-emerald-400" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Copy, { className: "w-3.5 h-3.5" })
-												})
-											]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-[11px] text-slate-500",
-											children: "Pay ₹999 and share screenshot on WhatsApp for instant 3-day activation."
-										})
-									]
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "text-xs sm:text-sm text-slate-300",
+									children: "Neeche diye gaye links se full blueprint documents aur webhook blueprints direct access karein:"
 								}),
-								paymentTab === "razorpay" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
+								/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "flex flex-wrap gap-3 pt-2",
 									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CreditCard, { className: "w-10 h-10 text-cyan-400 mx-auto" }),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "text-sm font-bold text-white",
-											children: "Razorpay Secure Checkout"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400",
-											children: "Pay securely via Credit Cards, Debit Cards, NetBanking, or Digital Wallets."
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-											href: RAZORPAY_URL,
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: "https://docs.google.com/document/d/1kzX_D2Z3TBfQmJ9Mw6xqDX4RYlXlfFSyv-9NcO34eX8/edit",
 											target: "_blank",
-											rel: "noreferrer",
-											className: "w-full py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
-											children: "Pay ₹999 via Razorpay Portal →"
-										})
-									]
-								}),
-								paymentTab === "stripe" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-									className: "p-6 rounded-2xl bg-slate-950 border border-slate-800 space-y-4",
-									children: [
-										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-											className: "inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Clock, { className: "w-3.5 h-3.5" }), " Coming Soon / Account In Setup"]
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h4", {
-											className: "text-sm font-bold text-white",
-											children: "Stripe USD Card Gateway ($19 USD)"
-										}),
-										/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-											className: "text-xs text-slate-400",
-											children: "Stripe international checkout is undergoing merchant onboarding. For international credit card payments, connect via WhatsApp for an instant payment invoice link."
+											rel: "noopener noreferrer",
+											className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { className: "w-3.5 h-3.5 text-cyan-400" }), " Clinic AI Prompt Architecture Doc"]
 										}),
 										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-											href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I want to pay $19 USD for ${cleanDomain} AI setup.`)}`,
+											href: "https://docs.google.com/document/d/1h4qICCNySNjdyxZ_jS74MJduAsjCGw5epHVDk8H6Ums/edit",
 											target: "_blank",
-											rel: "noreferrer",
-											className: "w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition",
-											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-3.5 h-3.5" }), " Request $19 USD Invoice on WhatsApp →"]
+											rel: "noopener noreferrer",
+											className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { className: "w-3.5 h-3.5 text-emerald-400" }), " WhatsApp Webhook Blueprint Doc"]
+										}),
+										/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+											href: "https://docs.google.com/document/d/1-io0l6EbqEMM-yCScg0yUxqt2WSpxpNLWCvDYgXdqac/edit",
+											target: "_blank",
+											rel: "noopener noreferrer",
+											className: "px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold flex items-center gap-2 transition",
+											children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ExternalLink, { className: "w-3.5 h-3.5 text-purple-400" }), " Complete 2026 AEO Checklist"]
 										})
 									]
 								})
 							]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-							className: "pt-4 border-t border-slate-900 flex flex-wrap items-center justify-center gap-3",
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
-								href: `https://wa.me/918003469293?text=${encodeURIComponent(`Hi Pradeep, I reviewed the AI Solution Engine for ${cleanDomain} and want to activate the ₹999 deployment.`)}`,
-								target: "_blank",
-								rel: "noreferrer",
-								className: "px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-xs text-white flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer",
-								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(PhoneCall, { className: "w-4 h-4" }), " Message Founder Pradeep Directly on WhatsApp →"]
-							})
-						})
-					]
-				})
-			]
-		}), showPayModal && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-			className: "fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-				className: "bg-slate-900 border border-cyan-500/50 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl relative",
-				children: [
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-						onClick: () => setShowPayModal(false),
-						className: "absolute top-4 right-4 text-slate-400 hover:text-white p-1 rounded-lg cursor-pointer",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(X, { className: "w-5 h-5" })
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
-						className: "w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center mx-auto text-cyan-400",
-						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-6 h-6" })
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
-						className: "text-xl font-bold text-white",
-						children: "Unlock Deployment Assets"
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-						className: "text-xs text-slate-300 leading-relaxed",
-						children: "These custom AI solutions and Schema files are protected. Complete the ₹999 ($19) payment to unlock instant file downloads and full 3-day turnkey setup."
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-xs",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
-							className: "text-cyan-300 font-bold",
-							children: ["BHIM UPI: ", /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
-								className: "font-mono text-white",
-								children: BHIM_UPI_ID
+						}) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+							className: "space-y-4",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+								className: "p-4 bg-slate-950 rounded-xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+									className: "space-y-1",
+									children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+										className: "text-sm font-semibold text-white",
+										children: "Instant Unlock via UPI or Card"
+									}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", {
+										className: "text-xs text-slate-400",
+										children: [
+											"Pay ₹499 to UPI: ",
+											/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+												className: "text-cyan-400 font-mono",
+												children: "8003469293@upi"
+											}),
+											" or via Razorpay."
+										]
+									})]
+								}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+									className: "flex items-center gap-3",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
+										href: "https://razorpay.me/@nexusaiagency",
+										target: "_blank",
+										rel: "noopener noreferrer",
+										className: "px-5 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-xl text-xs transition shadow-lg shadow-cyan-500/20",
+										children: "Pay ₹499 via Razorpay"
+									})
+								})]
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+								onSubmit: handleUnlock,
+								className: "flex flex-col sm:flex-row items-center gap-3 pt-2",
+								children: [
+									/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+										className: "relative w-full sm:w-64",
+										children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lock, { className: "w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("input", {
+											type: "password",
+											value: passcode,
+											onChange: (e) => setPasscode(e.target.value),
+											placeholder: "Enter Unlock PIN (Client / Founder)",
+											className: "w-full pl-9 pr-4 py-2 bg-slate-950 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
+										})]
+									}),
+									/* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
+										type: "submit",
+										className: "w-full sm:w-auto px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl text-xs transition",
+										children: "Unlock Guides"
+									}),
+									passcodeError && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+										className: "text-xs text-rose-400 font-medium",
+										children: "Invalid PIN. Contact +91 8003469293."
+									})
+								]
 							})]
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
-							className: "text-slate-400",
-							children: "Or pay via official Razorpay gateway:"
-						})]
-					}),
-					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
-						className: "space-y-2 pt-2",
-						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("a", {
-							href: RAZORPAY_URL,
-							target: "_blank",
-							rel: "noreferrer",
-							className: "w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-xs text-white flex items-center justify-center gap-2 transition cursor-pointer",
-							children: "Pay ₹999 via Razorpay →"
-						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", {
-							onClick: () => {
-								setShowPayModal(false);
-								const el = document.getElementById("payment-section");
-								if (el) el.scrollIntoView({ behavior: "smooth" });
-							},
-							className: "w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold text-xs text-slate-300 cursor-pointer",
-							children: "Scan UPI QR Code Instead"
 						})]
 					})
 				]
 			})
-		})]
+		})
 	});
 }
 var IndexRoute = Route$17.update({

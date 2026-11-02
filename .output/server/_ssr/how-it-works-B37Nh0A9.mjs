@@ -1,9 +1,9 @@
 import { i as require_jsx_runtime } from "../_libs/@radix-ui/react-label+[...].mjs";
 import { t as Button } from "./button-Bo4nKw7z.mjs";
-import { _t as ArrowRight } from "../_libs/lucide-react.mjs";
+import { yt as ArrowRight } from "../_libs/lucide-react.mjs";
 import { b as Link } from "../_libs/@tanstack/react-router+[...].mjs";
-import { a as ProcessStrip, i as PageHero, o as SectionHeading, t as CheckList } from "./page-sections-BwJ4gF98.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/how-it-works-DZC-eNgg.js
+import { a as ProcessStrip, i as PageHero, o as SectionHeading, t as CheckList } from "./page-sections-BSNCDcKl.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/how-it-works-B37Nh0A9.js
 var import_jsx_runtime = require_jsx_runtime();
 function HowItWorksPage() {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
