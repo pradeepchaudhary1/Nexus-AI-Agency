@@ -1,5 +1,5 @@
-import { runAudit } from "../src/lib/audit-engine.ts";
-import { generateFixes } from "../src/lib/fix-generator.ts";
+import { runAudit } from "../lib/audit-engine.ts";
+import { generateFixes } from "../lib/fix-generator.ts";
 const html = `<!doctype html><html lang="en"><head><title>Acme Dental Jaipur</title><meta name="description" content="Short"><link rel="canonical" href="https://www.acme.in/"><meta name="viewport" content="width=device-width"></head><body><h1>Welcome</h1><h4>Doctor</h4><img src="a.jpg"><a href="tel:+911234567890">Call</a><a target="_blank" href="https://x.com/acme">X</a><form><input name="n"><input id="e" name="e"><label for="e">Email</label></form><p>${"word ".repeat(120)}</p></body></html>`;
 const r = runAudit({ url: "https://acme.in/", html, headers: { "x-content-type-options": "nosniff" }, responseMs: 1200, robotsTxt: "User-agent: GPTBot\nDisallow: /\n", llmsTxt: null, sitemapOk: false });
 const get = (id) => r.checks.find((c) => c.id === id);

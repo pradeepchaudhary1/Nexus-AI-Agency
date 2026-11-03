@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Send, CheckCircle2, CheckSquare, Square } from 'lucide-react'
 
-export function LeadForm() {
+export function LeadForm(_props: { source?: string; demoType?: string; compact?: boolean } = {}) {
   const [formData, setFormData] = useState({
     fullName: '',
     businessName: '',
@@ -77,7 +77,7 @@ export function LeadForm() {
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                id="lead-name" name="name" id="lead-name" name="name" placeholder="e.g. David Miller"
+                id="lead-name" name="name" placeholder="e.g. David Miller"
               />
             </div>
             <div>
@@ -88,7 +88,7 @@ export function LeadForm() {
                 value={formData.businessName}
                 onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                id="lead-biz" name="businessName" id="lead-biz" name="businessName" placeholder="e.g. Apex Health Clinic / Urban Realty"
+                id="lead-biz" name="businessName" placeholder="e.g. Apex Health Clinic / Urban Realty"
               />
             </div>
           </div>
@@ -102,7 +102,7 @@ export function LeadForm() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                id="lead-email" name="email" id="lead-email" name="email" placeholder="name@company.com"
+                id="lead-email" name="email" placeholder="name@company.com"
               />
             </div>
             <div>
@@ -113,7 +113,7 @@ export function LeadForm() {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3.5 py-2.5 text-sm text-white placeholder-slate-600 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition"
-                id="lead-phone" name="phone" id="lead-phone" name="phone" placeholder="e.g. +91 9876543210"
+                id="lead-phone" name="phone" placeholder="e.g. +91 9876543210"
               />
             </div>
           </div>

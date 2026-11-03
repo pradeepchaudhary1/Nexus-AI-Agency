@@ -1,11 +1,11 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react'
-import { CheckCircle2, Download, Code, Sparkles, Globe, FileText, PhoneCall, QrCode, CreditCard, Clock, CheckSquare, Shield, Lock, Unlock, X, ArrowDown, RefreshCw } from 'lucide-react'
+import { CheckCircle2, Download, Code, Sparkles, Globe, FileText, PhoneCall, QrCode, CreditCard, Clock, CheckSquare, Shield, Lock, Unlock, X, ArrowDown, RefreshCw, Check, Copy } from 'lucide-react'
 
 export const Route = createFileRoute('/audit-report')({
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      url: (search.url as string) || 'example.com',
+      url: (search['url'] as string) || 'example.com',
     }
   },
   component: SolutionEnginePage,
@@ -16,7 +16,7 @@ function SolutionEnginePage() {
   
   // Clean URL parsing
   let cleanDomain = url.trim().toLowerCase()
-  cleanDomain = cleanDomain.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0].split('?')[0].split('#')[0]
+  cleanDomain = cleanDomain.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').split('/')[0]!.split('?')[0]!.split('#')[0]!
 
   const [loadingAi, setLoadingAi] = useState(true)
   const [isUnlocked, setIsUnlocked] = useState(false)
@@ -31,7 +31,7 @@ function SolutionEnginePage() {
 
   // AI-Engineered Niche Architecture State
   const [aiData, setAiData] = useState({
-    businessName: cleanDomain.split('.')[0].toUpperCase(),
+    businessName: cleanDomain.split('.')[0]!.toUpperCase(),
     industry: 'Business & Professional Services',
     schemaType: 'LocalBusiness',
     schemaJson: '',
@@ -61,7 +61,7 @@ function SolutionEnginePage() {
 
       let detectedIndustry = 'Enterprise & Professional Services'
       let detectedSchema = 'LocalBusiness'
-      let businessTitle = cleanDomain.split('.')[0].toUpperCase()
+      let businessTitle = cleanDomain.split('.')[0]!.toUpperCase()
 
       let headline = 'Capture Every High-Intent Customer Inquiry 24/7'
       let subhead = 'Autonomous voice receptionists, speed-to-lead qualification, and instant CRM synchronization.'

@@ -23,7 +23,7 @@ export const Route = createFileRoute('/solutions-engine')({
   component: SolutionsEnginePage,
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      url: typeof search.url === 'string' ? search.url : '',
+      url: typeof search['url'] === 'string' ? search['url'] : '',
     };
   },
 });
@@ -36,8 +36,8 @@ export function SolutionsEnginePage() {
   const cleanDomain = rawInput
     .replace(/^https?:\/\//i, '')
     .replace(/^www\./i, '')
-    .split('/')[0]
-    .split('?')[0]
+    .split('/')[0]!
+    .split('?')[0]!
     .trim() || 'nexusaiagency.in';
 
   const [inputUrl, setInputUrl] = useState(cleanDomain);
@@ -51,7 +51,7 @@ export function SolutionsEnginePage() {
   const businessProfile = useMemo(() => {
     const d = cleanDomain.toLowerCase();
     const formattedName = cleanDomain
-      .split('.')[0]
+      .split('.')[0]!
       .split(/[-_]/)
       .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
       .join(' ');
@@ -89,7 +89,7 @@ export function SolutionsEnginePage() {
   const handleDomainSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputUrl.trim()) return;
-    const sanitized = inputUrl.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0];
+    const sanitized = inputUrl.trim().replace(/^https?:\/\//i, '').replace(/^www\./i, '').split('/')[0]!;
     navigate({
       to: '/solutions-engine',
       search: { url: sanitized },
