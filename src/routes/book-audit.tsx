@@ -14,4 +14,3 @@ function BookAuditPage() {
     </div>
   )
 }
-export default BookAuditPage

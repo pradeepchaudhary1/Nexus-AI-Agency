@@ -180,4 +180,3 @@ function ClinicsFunnel() {
     </div>
   )
 }
-export default ClinicsFunnel

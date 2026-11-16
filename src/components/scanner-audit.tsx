@@ -76,7 +76,7 @@ export function ScannerAudit() {
               <Search aria-hidden className="w-5 h-5 text-slate-500 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input id="scan-url" name="url" required type="text" inputMode="url" autoComplete="url" value={url} onChange={(e) => setUrl(e.target.value)} placeholder="yourbusiness.com" className={`${input} pl-12 py-3.5`} />
             </div>
-            <button type="submit" disabled={busy} className="px-8 py-3.5 rounded-xl bg-[#fe5000] hover:bg-[#ff6219] disabled:opacity-60 font-bold text-sm text-white flex items-center justify-center gap-2">
+            <button type="submit" disabled={busy || !token} title={!token ? "Waiting for the security check" : undefined} className="px-8 py-3.5 rounded-xl bg-[#fe5000] hover:bg-[#ff6219] disabled:opacity-60 font-bold text-sm text-white flex items-center justify-center gap-2">
               {busy ? "Scanning…" : "Run audit"} <ArrowRight className="w-4 h-4" aria-hidden />
             </button>
           </div>
@@ -141,7 +141,7 @@ export function ScannerAudit() {
                 </div>
                 <form onSubmit={unlock} className="p-6 rounded-2xl bg-[#0a0a0a] border border-[#fe5000]/40 space-y-4">
                   <h3 className="text-base font-bold text-white flex items-center gap-2"><Lock className="w-4 h-4 text-[#fe5000]" aria-hidden /> Unlock the full report and your ready-to-paste fixes</h3>
-                  <p className="text-xs text-slate-400">All {t.counts.total} checks with details, plus structured data, llms.txt, security headers and form fixes generated from your own page. We will also email you the report.</p>
+                  <p className="text-xs text-slate-400">All {t.counts.total} checks with details, plus structured data, llms.txt, security headers and form fixes generated from your own page.</p>
                   <div className="grid sm:grid-cols-3 gap-3">
                     <div><label htmlFor="u-name" className="block text-xs text-slate-400 mb-1">Full name *</label><input id="u-name" name="name" required minLength={2} autoComplete="name" value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} className={input} /></div>
                     <div><label htmlFor="u-email" className="block text-xs text-slate-400 mb-1">Work email *</label><input id="u-email" name="email" type="email" required autoComplete="email" value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} className={input} /></div>

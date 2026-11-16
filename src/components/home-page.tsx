@@ -20,7 +20,7 @@ export function HomePage() {
           </span>
         </h1>
         <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Nexus AI Agency builds 24/7 Voice Calling Receptionists, AEO/GEO Search Optimization, and WhatsApp CRM automations for clinics, real estate, and growing businesses worldwide.
+          Nexus AI Agency builds 24/7 Voice Calling Receptionists, AEO/GEO Search Optimization, and WhatsApp CRM automations custom SaaS web apps, and WhatsApp CRM automations for ambitious businesses worldwide.
         </p>
 
         {/* Action Buttons */}
@@ -31,12 +31,14 @@ export function HomePage() {
           >
             <Zap className="w-4 h-4" /> Scan Your Website Live &rarr;
           </Link>
-          <Link
-            to="/real-estate"
-            className="px-7 py-4 rounded-xl bg-slate-900 border border-slate-800 font-semibold text-sm text-slate-200 hover:bg-slate-800 transition"
-          >
-            Real Estate AI Funnel
-          </Link>
+          <a
+              href="https://cloutivo.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/40 text-cyan-300 font-bold text-sm transition"
+            >
+              #1 Rank Your Business
+            </a>
           <Link
             to="/clinics"
             className="px-7 py-4 rounded-xl bg-slate-900 border border-slate-800 font-semibold text-sm text-slate-200 hover:bg-slate-800 transition"

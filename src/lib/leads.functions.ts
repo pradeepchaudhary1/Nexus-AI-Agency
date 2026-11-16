@@ -143,32 +143,74 @@ const SOURCE_LABELS: Record<string, string> = {
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 async function sendLeadAlert(data: Lead) {
-  const lovableKey = process.env["LOVABLE_API_KEY"];
   const resendKey = process.env["RESEND_API_KEY"];
-  if (!lovableKey || !resendKey) throw new Error("Email alert keys are not configured");
+
+  if (!resendKey) {
+    throw new Error("RESEND_API_KEY is not configured");
+  }
+
   const formType = SOURCE_LABELS[data.source] ?? data.source;
-  const submittedAt = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", dateStyle: "medium", timeStyle: "short" }) + " IST";
+
+  const submittedAt =
+    new Date().toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      dateStyle: "medium",
+      timeStyle: "short",
+    }) + " IST";
+
   const rows: [string, string | undefined][] = [
-    ["Form type", formType], ["Submitted at", submittedAt], ["Name", data.name], ["Email", data.email],
-    ["Phone", data.phone], ["Business type", data.businessType], ["Team size", data.teamSize],
-    ["Monthly lead volume", data.leadVolume], ["Biggest bottleneck", data.bottleneck],
-    ["Existing tools", data.existingTools], ["Demo type", data.demoType], ["Message", data.message],
+    ["Form type", formType],
+    ["Submitted at", submittedAt],
+    ["Name", data.name],
+    ["Email", data.email],
+    ["Phone", data.phone],
+    ["Business type", data.businessType],
+    ["Team size", data.teamSize],
+    ["Monthly lead volume", data.leadVolume],
+    ["Biggest bottleneck", data.bottleneck],
+    ["Existing tools", data.existingTools],
+    ["Demo type", data.demoType],
+    ["Message", data.message],
   ];
-  const html = `<h2>New ${esc(formType)} lead</h2><table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif">${rows
-    .filter(([, v]) => v)
-    .map(([k, v]) => `<tr><td style="font-weight:bold;vertical-align:top">${k}</td><td style="white-space:pre-wrap">${esc(v!)}</td></tr>`)
-    .join("")}</table>`;
-  const res = await fetch("https://connector-gateway.lovable.dev/resend/emails", {
+
+  const html = `<h2>New ${esc(formType)} lead</h2>
+    <table cellpadding="6" style="border-collapse:collapse;font-family:Arial,sans-serif">
+      ${rows
+        .filter(([, v]) => v)
+        .map(
+          ([k, v]) =>
+            `<tr><td style="font-weight:bold;vertical-align:top">${k}</td><td style="white-space:pre-wrap">${esc(v!)}</td></tr>`,
+        )
+        .join("")}
+    </table>`;
+
+  const from =
+    process.env["LEAD_ALERT_FROM"] ??
+    "NexusAIAgency Leads <onboarding@resend.dev>";
+
+  const to =
+    process.env["LEAD_ALERT_TO"] ??
+    "thenexusaiagency@gmail.com";
+
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${lovableKey}`, "X-Connection-Api-Key": resendKey },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${resendKey}`,
+    },
     body: JSON.stringify({
-      from: "NexusAIAgency Leads <onboarding@resend.dev>",
-      to: ["thenexusaiagency@gmail.com"],
+      from,
+      to: [to],
       reply_to: data.email,
       subject: `New ${formType} lead: ${data.name}`,
       html,
     }),
     signal: AbortSignal.timeout(8000),
   });
-  if (!res.ok) throw new Error(`Resend failed [${res.status}]: ${await res.text()}`);
+
+  if (!res.ok) {
+    throw new Error(
+      `Resend failed [${res.status}]: ${(await res.text()).slice(0, 300)}`,
+    );
+  }
 }

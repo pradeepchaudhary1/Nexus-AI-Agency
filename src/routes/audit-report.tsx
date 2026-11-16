@@ -561,4 +561,3 @@ function SolutionEnginePage() {
     </div>
   )
 }
-export default SolutionEnginePage

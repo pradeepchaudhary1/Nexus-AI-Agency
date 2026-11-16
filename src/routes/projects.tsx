@@ -21,6 +21,18 @@ interface Project {
 
 const DEFAULT_PROJECTS: Project[] = [
   {
+    id: 'proj-cloutivo',
+    title: 'CLOUTIVO — Startup Leaderboard & Deals Platform',
+    category: 'Website & AEO',
+    clientBusiness: 'CLOUTIVO',
+    clientLocation: 'India & Global',
+    clientPhone: '+91 8003469293',
+    coverImage: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+    description: 'Pay-to-rank startup leaderboard and deals platform built with Next.js, Supabase, and Razorpay webhooks with real-time visitor analytics.',
+    deploymentType: 'website',
+    deploymentUrl: 'https://cloutivo.in',
+  },
+  {
     id: 'proj-1',
     title: 'Dental Clinic 24/7 AI Receptionist (Sofia)',
     category: 'Voice AI System',
@@ -456,4 +468,3 @@ function ProjectsPage() {
   )
 }
 
-export default ProjectsPage

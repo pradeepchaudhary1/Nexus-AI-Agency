@@ -28,7 +28,7 @@ export const Route = createFileRoute('/solutions-engine')({
   },
 });
 
-export function SolutionsEnginePage() {
+function SolutionsEnginePage() {
   const { url } = Route.useSearch();
   const navigate = useNavigate();
 

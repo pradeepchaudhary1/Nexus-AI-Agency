@@ -39,12 +39,14 @@ async function get(url: string, ms: number, max = 1_500_000) {
   }
   throw new Error("The site redirected too many times.");
 }
-async function hashIp(): Promise<string | null> {
-  const ip = getRequestHeader("cf-connecting-ip") || getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim();
-  if (!ip) return null;
-  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`nexus-scan:${ip}`));
-  return Array.from(new Uint8Array(d), (b) => b.toString(16).padStart(2, "0")).join("");
+async function clientBucket(): Promise<{ hash: string; known: boolean }> {
+  // Netlify sets x-nf-client-connection-ip, Cloudflare sets cf-connecting-ip. If neither exists (e.g. local dev) all such
+  // visitors share one "unknown" bucket with its own limit, so the limiter never silently turns off.
+  const ip = getRequestHeader("cf-connecting-ip") || getRequestHeader("x-nf-client-connection-ip") || getRequestHeader("x-forwarded-for")?.split(",")[0]?.trim();
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(`nexus-scan:${ip ?? "unknown"}`));
+  return { hash: Array.from(new Uint8Array(d), (b) => b.toString(16).padStart(2, "0")).join(""), known: !!ip };
 }
+const envInt = (k: string, d: number) => { const n = Number.parseInt(process.env[k] ?? "", 10); return Number.isFinite(n) && n > 0 ? n : d; };
 async function verifyTurnstile(token: string): Promise<boolean> {
   const secret = process.env["TURNSTILE_SECRET_KEY"];
   if (!secret || !token) return false; // fail closed
@@ -52,8 +54,10 @@ async function verifyTurnstile(token: string): Promise<boolean> {
     const body = new URLSearchParams({ secret, response: token });
     const ip = getRequestHeader("cf-connecting-ip"); if (ip) body.set("remoteip", ip);
     const r = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body, signal: AbortSignal.timeout(8000) });
-    return !!((await r.json()) as { success?: boolean }).success;
-  } catch { return false; }
+    const out = (await r.json()) as { success?: boolean; "error-codes"?: string[]; hostname?: string };
+    if (!out.success) console.warn("[turnstile] siteverify failed:", out["error-codes"]?.join(",") ?? "unknown", "hostname:", out.hostname ?? "-");
+    return !!out.success;
+  } catch (e) { console.warn("[turnstile] siteverify request error:", e instanceof Error ? e.message : e); return false; }
 }
 function toTeaser(id: string, url: string, audit: AuditResult, lighthouse: Lighthouse | null): ScanTeaser {
   const bad = audit.checks.filter((c) => c.status !== "pass").sort((a, b) => (a.status === b.status ? b.weight - a.weight : a.status === "fail" ? -1 : 1));
@@ -82,12 +86,11 @@ export const scanSite = createServerFn({ method: "POST" })
       const cachedQ = await db.from("scan_audits").select("id,url,audit,lighthouse").eq("domain", u.hostname.replace(/^www\./, "")).gte("created_at", since).order("created_at", { ascending: false }).limit(1).maybeSingle();
       if (cachedQ?.data) return { ok: true, cached: true, teaser: toTeaser(cachedQ.data.id, cachedQ.data.url, cachedQ.data.audit as AuditResult, cachedQ.data.lighthouse as Lighthouse | null) };
 
-      const ipHash = await hashIp();
-      if (ipHash) {
-        const hour = new Date(Date.now() - 3600_000).toISOString();
-        const { count } = await db.from("scan_audits").select("id", { count: "exact", head: true }).eq("client_ip_hash", ipHash).gte("created_at", hour);
-        if ((count ?? 0) >= MAX_SCANS_PER_HOUR) return { ok: false, error: "You have reached the hourly scan limit. Please try again later." };
-      }
+      const bucket = await clientBucket();
+      const limit = bucket.known ? envInt("SCAN_LIMIT_PER_HOUR", MAX_SCANS_PER_HOUR) : envInt("SCAN_LIMIT_UNKNOWN_IP", 30);
+      const hour = new Date(Date.now() - 3600_000).toISOString();
+      const { count } = await db.from("scan_audits").select("id", { count: "exact", head: true }).eq("client_ip_hash", bucket.hash).gte("created_at", hour);
+      if ((count ?? 0) >= limit) return { ok: false, error: "You have reached the hourly scan limit. Please try again later." };
 
       const main = await get(u.toString(), 12000);
       const origin = new URL(main.finalUrl).origin;
@@ -105,7 +108,7 @@ export const scanSite = createServerFn({ method: "POST" })
           if (c?.["performance"]) lighthouse = { performance: n("performance"), accessibility: n("accessibility"), bestPractices: n("best-practices"), seo: n("seo") }; }
       } catch { /* Lighthouse is optional */ }
 
-      const ins = await db.from("scan_audits").insert({ url: main.finalUrl, domain: new URL(main.finalUrl).hostname.replace(/^www\./, ""), score: audit.score, grade: audit.grade, lighthouse, audit, client_ip_hash: ipHash }).select("id").single();
+      const ins = await db.from("scan_audits").insert({ url: main.finalUrl, domain: new URL(main.finalUrl).hostname.replace(/^www\./, ""), score: audit.score, grade: audit.grade, lighthouse, audit, client_ip_hash: bucket.hash }).select("id").single();
       if (ins.error || !ins.data) { console.error("scan_audits insert failed:", ins.error); return { ok: false, error: "The scan finished but could not be saved. Please try again." }; }
       return { ok: true, cached: false, teaser: toTeaser(ins.data.id, main.finalUrl, audit, lighthouse) };
     } catch (e) {

@@ -180,4 +180,3 @@ function SalonsFunnel() {
     </div>
   )
 }
-export default SalonsFunnel

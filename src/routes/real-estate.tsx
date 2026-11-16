@@ -180,4 +180,3 @@ function RealEstateFunnel() {
     </div>
   )
 }
-export default RealEstateFunnel

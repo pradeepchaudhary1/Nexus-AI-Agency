@@ -22,7 +22,7 @@ export const Route = createFileRoute('/')({
       },
       {
         property: 'og:url',
-        content: 'https://www.nexusaiagency.in/',
+        content: 'https://nexusaiagency.in/',
       },
       {
         name: 'twitter:card',
@@ -32,11 +32,11 @@ export const Route = createFileRoute('/')({
     links: [
       {
         rel: 'canonical',
-        href: 'https://www.nexusaiagency.in/',
+        href: 'https://nexusaiagency.in/',
       },
       {
         rel: 'llms-txt',
-        href: 'https://www.nexusaiagency.in/llms.txt',
+        href: 'https://nexusaiagency.in/llms.txt',
       },
     ],
   }),
